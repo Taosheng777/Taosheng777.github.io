@@ -242,7 +242,7 @@ main {
 
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -278,6 +278,7 @@ main {
 }
 
 .growth-card .tool-number { background: #e2f4f1; color: var(--teal); }
+.mental-card .tool-number { background: #eee9fb; color: #6944aa; }
 .game-card .tool-number { background: #f5ecdc; color: var(--gold); }
 
 .tool-kind {

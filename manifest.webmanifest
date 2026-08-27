@@ -2,7 +2,7 @@
   "id": "/",
   "name": "我的工具箱",
   "short_name": "工具箱",
-  "description": "三个不收集数据、可离线使用的个人工具。",
+  "description": "四个不收集数据、可离线使用的个人工具。",
   "lang": "zh-CN",
   "start_url": "/",
   "scope": "/",
@@ -16,6 +16,7 @@
   "shortcuts": [
     {"name": "AI 思考 Prompt", "url": "/tools/ai-thinking/"},
     {"name": "WHO 生长曲线", "url": "/tools/who-growth/"},
+    {"name": "心理问卷测评", "url": "/tools/mental-health/"},
     {"name": "奇物速查", "url": "/tools/darkest-dungeon/"}
   ]
 }
