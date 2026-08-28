@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3159d8">
+  <meta name="description" content="生长发育工具板块：基于 WHO 官方标准的儿童体格生长本地计算，输入值不上传、不留存。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <title>生长发育工具｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a aria-current="page" href="/growth/">生长发育</a>
+      <a href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page section-page" data-accent="growth">
+    <header class="page-heading">
+      <p class="eyebrow">GROWTH</p>
+      <h1>生长发育工具</h1>
+      <p>儿童体格生长的本地计算工具。输入的测量值只在当前页面参与计算，不上传、不写入浏览器存储、不进入离线缓存。</p>
+    </header>
+
+    <div class="section-note" role="note">
+      <p><strong>使用边界：</strong>这里的工具用于生长评估的快速计算和对照，不能替代完整的临床评估、诊断或治疗建议。</p>
+      <p>单次测量只是一个点，真正有意义的是孩子自己的生长轨迹。结果偏离或你有疑问时，请到正规医疗机构就诊。</p>
+    </div>
+
+    <div class="tool-grid">
+      <a class="tool-card" data-accent="growth" href="/growth/who-curve/">
+        <span class="tool-number" aria-hidden="true">01</span>
+        <span class="tool-kind">儿童保健 · 本地计算</span>
+        <h2>WHO 0–3 岁生长曲线</h2>
+        <p>输入性别、月龄和单次测量值，得到体重、身长/身高、头围和体重别身长的 Z 分数、百分位与四张生长曲线。标准表来自 WHO 官方 anthro 数据。</p>
+        <span class="card-action">打开工具 <span aria-hidden="true">↗</span></span>
+      </a>
+      <div class="tool-card placeholder" data-accent="growth">
+        <span class="tool-number" aria-hidden="true">+</span>
+        <span class="tool-kind">规划中</span>
+        <h2>更多生长发育工具</h2>
+        <p>生长速度、靶身高与青春期发育评估，规划中。</p>
+        <span class="card-action">暂未开放</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.2.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/about/">关于</a>
+      <a href="/tools/">全部工具</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+  <script src="/assets/pwa.js" defer></script>
+</body>
+</html>

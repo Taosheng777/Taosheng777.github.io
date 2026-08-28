@@ -202,7 +202,7 @@
   margin: 0 0 18px;
   padding: 20px;
   border-radius: 16px;
-  background: var(--ink);
+  background: var(--invert-bg);
   color: #fff;
 }
 
@@ -475,4 +475,40 @@
   .assessment-card,
   .progress-fill,
   .response-option { transition: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .local-only-banner {
+    border-color: #2b4d48;
+    background: #142522;
+    color: #bfe0da;
+  }
+  .local-only-mark { background: #1d3a35; color: #7fd4c6; }
+
+  .scale-code { background: #14302d; color: #6fcabc; }
+  .age-pill { background: #222a37; color: #a6b1c6; }
+  .sources-note { background: rgba(23, 29, 39, 0.66); }
+
+  .audience-note { background: #142522; color: #b7d8d1; }
+
+  .question-progress { background: rgba(23, 29, 39, 0.96); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4); }
+  .progress-track { background: #253040; }
+
+  .response-option { background: #1b222e; color: #c3ccdb; }
+  .response-option:hover { border-color: #3d6a63; }
+  .response-option:has(input:checked) { border-color: var(--teal); background: #16302c; color: #a9e2d7; }
+
+  .safety-card { border-color: #6d5427; background: #2c2312; color: #efd9a6; }
+
+  .threshold-label { background: #222a37; color: #a6b1c6; }
+  .report-guidance { color: #b3bccc; }
+  .report-disclaimer { background: #1c2331; color: #adb7c8; }
+  .general-safety { background: #2a2416; color: #ddc79a; }
+  .answer-list li { color: #b3bccc; }
+
+  .result-card[data-level="mild"] { border-top-color: #d3a94f; }
+  .result-card[data-level="moderate"] { border-top-color: #e08a4e; }
+  .result-card[data-level="high"] { border-top-color: #e07272; }
+
+  .audience-dialog::backdrop { background: rgba(4, 8, 16, 0.72); }
 }

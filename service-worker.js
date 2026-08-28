@@ -1,15 +1,19 @@
-const CACHE_NAME = 'personal-toolbox-v1.1.0';
+const CACHE_NAME = 'personal-toolbox-v1.2.0';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
   '/404.html',
+  '/about/',
   '/tools/',
-  '/tools/ai-thinking/',
-  '/tools/who-growth/',
-  '/tools/mental-health/',
-  '/tools/mental-health/phq-9/',
-  '/tools/mental-health/gad-7/',
-  '/tools/darkest-dungeon/',
+  '/ai/',
+  '/ai/prompts/',
+  '/growth/',
+  '/growth/who-curve/',
+  '/mind/',
+  '/mind/phq-9/',
+  '/mind/gad-7/',
+  '/life/',
+  '/life/darkest-dungeon/',
   '/privacy/',
   '/version/',
   '/licenses/',

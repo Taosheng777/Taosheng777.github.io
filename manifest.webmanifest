@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "我的工具箱",
-  "short_name": "工具箱",
-  "description": "四个不收集数据、可离线使用的个人工具。",
+  "name": "涛生 · 个人主页",
+  "short_name": "涛生",
+  "description": "四个板块的本地工具：AI、生长发育、心理测评、个人生活。不收集数据，可离线使用。",
   "lang": "zh-CN",
   "start_url": "/",
   "scope": "/",
@@ -14,9 +14,9 @@
     {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
   ],
   "shortcuts": [
-    {"name": "AI 思考 Prompt", "url": "/tools/ai-thinking/"},
-    {"name": "WHO 生长曲线", "url": "/tools/who-growth/"},
-    {"name": "心理问卷测评", "url": "/tools/mental-health/"},
-    {"name": "奇物速查", "url": "/tools/darkest-dungeon/"}
+    {"name": "AI 工具", "url": "/ai/"},
+    {"name": "生长发育工具", "url": "/growth/"},
+    {"name": "心理测评工具", "url": "/mind/"},
+    {"name": "个人生活工具", "url": "/life/"}
   ]
 }
