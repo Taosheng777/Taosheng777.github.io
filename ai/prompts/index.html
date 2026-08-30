@@ -11,27 +11,27 @@
 <title>12 个常用 Prompt</title>
 <style>
 :root {
-  --bg:#f6f7fb;
-  --panel:#fff;
-  --panel2:#f9fafc;
-  --text:#172033;
-  --muted:#6d7587;
-  --line:#e6e9ef;
-  --accent:#5c66e8;
-  --accent-soft:#eef0ff;
-  --shadow:0 10px 30px rgba(28,35,57,.07);
+  --bg:#f6f4ef;
+  --panel:#ffffff;
+  --panel2:#f0ede6;
+  --text:#1c1a19;
+  --muted:#6e6862;
+  --line:#ddd8cf;
+  --accent:#9e221d;
+  --accent-soft:#f2e3e1;
+  --shadow:none;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:#0f131a;
-    --panel:#171c25;
-    --panel2:#121720;
-    --text:#edf1f7;
-    --muted:#a2abb9;
-    --line:#27303d;
-    --accent:#9099ff;
-    --accent-soft:#202544;
-    --shadow:0 12px 32px rgba(0,0,0,.28);
+    --bg:#0f0e0d;
+    --panel:#191716;
+    --panel2:#141211;
+    --text:#f6f2ee;
+    --muted:#928c86;
+    --line:#2e2a27;
+    --accent:#e85a4c;
+    --accent-soft:#2a1614;
+    --shadow:none;
   }
 }
 *{box-sizing:border-box}
@@ -54,7 +54,7 @@ a{color:inherit}
 .toc{
   background:var(--panel);
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:0;
   box-shadow:var(--shadow);
   overflow:hidden;
   margin-bottom:24px;
@@ -93,7 +93,7 @@ a{color:inherit}
   align-items:center;
   gap:10px;
   padding:9px 10px;
-  border-radius:10px;
+  border-radius:0;
   text-decoration:none;
   font-size:14px;
 }
@@ -123,7 +123,7 @@ a{color:inherit}
   text-decoration:none;
   background:var(--panel);
   border:1px solid var(--line);
-  border-radius:16px;
+  border-radius:0;
   padding:15px 16px;
   transition:.15s ease;
 }
@@ -166,7 +166,7 @@ a{color:inherit}
   scroll-margin-top:18px;
   background:var(--panel);
   border:1px solid var(--line);
-  border-radius:20px;
+  border-radius:0;
   box-shadow:var(--shadow);
   padding:22px;
   margin:0 0 22px;
@@ -189,7 +189,7 @@ a{color:inherit}
 .prompt-num{
   width:40px;height:40px;
   flex:0 0 auto;
-  border-radius:12px;
+  border-radius:0;
   display:grid;
   place-items:center;
   color:var(--accent);
@@ -217,7 +217,7 @@ a{color:inherit}
 .prompt-box{
   background:var(--panel2);
   border:1px solid var(--line);
-  border-radius:14px;
+  border-radius:0;
   overflow:hidden;
 }
 pre{
@@ -234,7 +234,7 @@ pre{
   border:1px solid var(--line);
   background:var(--panel2);
   color:var(--text);
-  border-radius:11px;
+  border-radius:0;
   height:39px;
   padding:0 12px;
   cursor:pointer;
@@ -264,7 +264,7 @@ pre{
   transform:translate(-50%,10px);
   background:var(--text);
   color:var(--panel);
-  border-radius:999px;
+  border-radius:0;
   padding:9px 13px;
   font-size:13px;
   font-weight:750;
@@ -277,12 +277,12 @@ pre{
 
 @media(max-width:680px){
   .wrap{width:min(100% - 20px,680px);padding-top:10px}
-  .toc{border-radius:15px;margin-bottom:20px}
+  .toc{border-radius:0;margin-bottom:20px}
   .toc summary{padding:15px}
   .quick-guide h1{font-size:24px}
   .quick-grid{grid-template-columns:1fr;gap:9px}
   .quick-card{padding:13px 14px}
-  .prompt-card{padding:16px;border-radius:17px;margin-bottom:16px}
+  .prompt-card{padding:16px;border-radius:0;margin-bottom:16px}
   .prompt-head>.copy-btn{display:none}
   .bottom-copy{display:block}
   .prompt-actions{gap:10px}
