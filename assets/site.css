@@ -1,4 +1,4 @@
-/* 涛生 · 个人主页 v1.3.0
+/* 涛生 · 个人主页 v1.4.0
    视觉方向：临床索引（瑞士国际主义 / Vignelli）
    色板取自站主提供的两张参考图：暖白纸底 + 近黑墨 + 朱红唯一强调色，
    四个板块色取自风景图的远山蓝 / 林绿 / 暗青与头像图的暖赭。
@@ -230,28 +230,24 @@ main {
   object-position: 50% 45%;
 }
 
-/* 实心墨块压图：硬边、左侧出血，任何亮度的照片上白字都可读 */
+/* 身份区直接压在照片上：不用实心墨块，只用一层自下而上的渐变保证白字可读 */
 .intro-block {
   position: absolute;
   left: 0;
+  right: 0;
   bottom: 0;
-  max-width: min(76%, 660px);
   display: flex;
   align-items: flex-end;
   gap: 20px;
-  padding: 22px 34px 20px 0;
-  background: var(--ink);
-  color: var(--bg);
-}
-
-.intro-block::before {
-  content: "";
-  position: absolute;
-  right: 100%;
-  top: 0;
-  bottom: 0;
-  width: 100vw;
-  background: var(--ink);
+  padding: clamp(64px, 12vw, 120px) 28px 22px 22px;
+  background: linear-gradient(
+    to top,
+    rgba(10, 9, 8, 0.88) 0%,
+    rgba(10, 9, 8, 0.74) 34%,
+    rgba(10, 9, 8, 0.42) 64%,
+    rgba(10, 9, 8, 0) 100%
+  );
+  color: #ffffff;
 }
 
 .intro-avatar {
@@ -271,7 +267,7 @@ main {
   letter-spacing: 0.14em;
 }
 
-.intro-block .eyebrow { color: var(--invert-eyebrow); }
+.intro-block .eyebrow { color: #e8a9a4; }
 
 .intro-name {
   margin: 0;
@@ -299,13 +295,9 @@ main {
   margin: 0 8px;
 }
 
-.intro-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 0;
-}
+.intro-body { display: block; }
 
-.intro-main { padding: 34px 32px 32px 0; }
+.intro-main { padding: 34px 0 32px; }
 
 .intro-lede {
   max-width: 600px;
@@ -348,48 +340,6 @@ main {
   background: var(--brand);
   color: var(--on-brand);
   box-shadow: none;
-}
-
-/* 隐私说明块：通栏朱红色带 */
-.privacy-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 30px 24px;
-  border-left: 2px solid var(--line);
-  background: var(--brand);
-  color: var(--on-brand);
-}
-
-.privacy-icon {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-.privacy-card strong {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.privacy-card p {
-  margin: 0 0 20px;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.privacy-card a {
-  align-self: flex-start;
-  padding-bottom: 3px;
-  border-bottom: 2px solid currentColor;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
 }
 
 .text-link {
@@ -588,7 +538,7 @@ main {
   line-height: 1.6;
 }
 
-/* ---------- 离线色带 ---------- */
+/* ---------- 页尾：本地处理与离线色带 ---------- */
 
 .offline-strip {
   display: grid;
@@ -609,6 +559,35 @@ main {
   margin: 0;
   font-size: 14px;
   line-height: 1.6;
+}
+
+.offline-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.offline-copy p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.offline-copy strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.offline-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding-bottom: 3px;
+  border-bottom: 2px solid currentColor;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 /* ---------- 页脚 ---------- */
@@ -804,22 +783,16 @@ main {
 /* ---------- 响应式 ---------- */
 
 @media (max-width: 900px) {
-  .intro-body { grid-template-columns: 1fr; }
   .intro-main { padding: 28px 0; }
-  .privacy-card { border-left: 0; border-top: 2px solid var(--line); padding: 26px 22px; }
   .now-card { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
 }
 
 @media (max-width: 860px) {
-  .intro-banner { aspect-ratio: auto; overflow: visible; background: transparent; }
-  .intro-photo { position: static; height: min(46vw, 240px); }
+  .intro-banner { aspect-ratio: 16 / 10; }
   .intro-block {
-    position: static;
-    max-width: none;
-    align-items: center;
-    padding: 18px 20px;
+    align-items: flex-end;
+    padding: clamp(56px, 22vw, 110px) 18px 18px 16px;
   }
-  .intro-block::before { display: none; }
   .section-grid,
   .tool-grid { grid-template-columns: 1fr; }
   .section-card,

@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#9e221d">
-  <meta name="description" content="GAD-7 焦虑症状自评：无需填写个人资料，浏览器本地计分并即时生成报告。">
+  <meta name="description" content="GAD-7 焦虑症状自评：7 题 · 最近两周。不填写个人资料，浏览器本地计分并即时生成报告。">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
   <link rel="stylesheet" href="/assets/site.css">
@@ -31,7 +32,7 @@
   <main id="main" class="inner-page assessment-page" data-mental-health-scale="gad7">
     <a class="assessment-back" href="/mind/"><span aria-hidden="true">←</span>&nbsp; 返回心理测评工具</a>
     <header class="assessment-heading">
-      <p class="eyebrow">GAD-7 · 7 题</p>
+      <p class="eyebrow">GAD-7 · 7 题 · 最近两周</p>
       <h1>焦虑症状自评</h1>
       <p>请根据最近两周的真实感受作答。页面不询问姓名、年龄或其他个人资料。</p>
       <div class="audience-note"><strong>适用人群：</strong>建议 12 岁及以上、能独立理解题意并由本人作答。12–17 岁结果应由监护人与专业人员结合年龄解释。</div>
@@ -42,32 +43,33 @@
         <div class="progress-row"><span id="progressText">已完成 0 / 7 题</span><span>预计 2 分钟</span></div>
         <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
       </div>
-      <div class="question-intro" id="questionnaireTitle"><strong>在过去两周里，您有多少时候受到以下问题的困扰？</strong><span>请选择最符合实际情况的一项。</span></div>
+      <div class="question-intro" id="questionnaireTitle"><strong>在过去两周里，您有多少时候受到以下问题的困扰？</strong><span>请选择最符合实际情况的一项。回顾范围：最近两周。</span></div>
       <form id="assessmentForm" novalidate>
         <div id="questionList"></div>
         <div class="submit-panel">
           <p id="completionHint" aria-live="polite">还差 7 题。</p>
-          <button class="button primary" id="generateReport" type="submit" disabled>生成我的报告</button>
+          <button class="button primary" id="generateReport" type="submit" disabled>生成报告</button>
         </div>
       </form>
     </section>
 
     <section id="report" class="report-shell" aria-labelledby="reportTitle" hidden>
       <p class="eyebrow">PERSONAL REPORT · GAD-7</p>
-      <h2 id="reportTitle" tabindex="-1">本次自评报告</h2>
-      <div class="safety-card" id="safetyCard" role="alert" hidden></div>
+      <h2 id="reportTitle" tabindex="-1">本次本人自评报告</h2>
       <div class="result-card" id="resultCard" data-level="minimal">
-        <p class="result-label">总分</p>
+        <p class="result-label" id="scoreLabel">总分</p>
         <p class="result-score" id="scoreValue">0 / 21</p>
         <p class="result-severity" id="severityLabel"></p>
         <span class="threshold-label" id="thresholdLabel"></span>
         <p class="report-guidance" id="reportGuidance"></p>
       </div>
-      <p class="report-disclaimer"><strong>这不是诊断。</strong>分数只反映最近两周的自我报告，不能替代完整的精神科或心理专业评估，也不能单独决定治疗。</p>
+      <div class="detail-list" id="resultDetails" hidden></div>
+      <p class="report-disclaimer"><strong>这不是诊断。</strong>分数只反映本次本人自评的结果，不能替代完整的精神科、心理或发育行为专业评估，也不能单独决定治疗。</p>
+      <p class="general-safety">无论分数多少，如果你或孩子最近有伤害自己的想法，请现在就告诉可信任的人或专业人员；也可拨打全国统一心理援助热线 12356。紧急情况下请拨 120 或 110。</p>
       <details class="answer-details" open><summary>查看本次作答明细</summary><ol class="answer-list" id="answerReview"></ol></details>
-      <details class="source-details"><summary>量表来源与年龄说明</summary><div class="details-body">
-        <p>GAD-7 由 Robert L. Spitzer、Kurt Kroenke、Janet B.W. Williams、Bernd Löwe 等编制，属公有领域。本站使用原门诊演示工具已核对的大陆临床流通简体措辞。</p>
-        <p>原始成人验证：<a href="https://pubmed.ncbi.nlm.nih.gov/16717171/" rel="external noreferrer">Spitzer 等，2006</a>；11–17 岁初级保健样本验证：<a href="https://pubmed.ncbi.nlm.nih.gov/34672926/" rel="external noreferrer">Mossman 等，2021</a>。青少年研究支持量表使用，不表示成人常用切点适合所有未成年人。</p>
+      <details class="source-details"><summary>量表来源与适用说明</summary><div class="details-body">
+        <p>GAD-7 由 Robert L. Spitzer、Kurt Kroenke、Janet B.W. Williams 等编制，属公有领域。本站使用原门诊演示工具已核对的大陆临床流通简体措辞。</p>
+        <p>原始验证：<a href="https://pubmed.ncbi.nlm.nih.gov/16717171/" rel="external noreferrer">Spitzer 等，2006</a>。</p>
       </div></details>
       <div class="report-actions"><button class="button primary" id="printReport" type="button">打印或保存 PDF</button><button class="button secondary" id="restartAssessment" type="button">重新测评</button></div>
     </section>
@@ -77,20 +79,21 @@
   <dialog class="audience-dialog" id="audienceDialog" aria-labelledby="audienceTitle">
     <form method="dialog">
       <p class="dialog-code">开始前请先确认 · GAD-7</p>
-      <h2 id="audienceTitle">这份问卷适合谁？</h2>
+      <h2 id="audienceTitle">这份量表适合谁？</h2>
       <p class="dialog-emphasis">建议 12 岁及以上、能独立理解题目的人群，由本人作答。</p>
-      <p>12–17 岁已有研究支持使用 GAD-7，但本页分级沿用成人常用切点，结果应由监护人与专业人员结合年龄解释。12 岁以下建议使用儿童专用评估工具。</p>
-      <p>问卷只用于症状筛查，不等于诊断；不会要求你填写年龄或任何身份资料。</p>
+      <p>12–17 岁已有研究支持使用 GAD-7，但本页分级沿用成人常用切点，结果应由监护人与专业人员结合年龄解释。</p>
+      <p>量表只用于筛查或计分，不等于诊断；不会要求你填写年龄或任何身份资料。</p>
       <div class="dialog-actions"><button class="button primary" value="continue" autofocus>我已了解，开始作答</button><a class="button secondary" href="/mind/">暂不作答</a></div>
     </form>
   </dialog>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.3.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.4.0</p>
     <nav aria-label="页脚导航">
       <a href="/mind/">心理测评</a>
       <a href="/privacy/">隐私说明</a>
       <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
     </nav>
   </footer>
   <script type="module" src="/assets/mental-health.js"></script>

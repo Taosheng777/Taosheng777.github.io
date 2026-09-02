@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="theme-color" content="#9e221d">
+<meta name="description" content="4–18 岁儿童青少年生长曲线：中国参照标准与 WHO 参照可切换，浏览器本地计算身高、体重、BMI 的 Z 分数、百分位和标准曲线。" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="icon" href="/icons/icon-192.png" sizes="192x192" />
+<title>儿童青少年生长曲线｜4–18 岁</title>
+<style>
+:root{
+  --bg:#f6f4ef;--card:#fff;--ink:#1c1a19;--muted:#6e6862;--line:#ddd8cf;
+  --brand:#9e221d;--brand2:#7e1a16;--ok:#2f855a;--warn:#b7791f;--bad:#c53030;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 18px 56px}
+.hero{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+.hero h1{margin:0;font-size:28px;letter-spacing:.2px}.hero p{margin:7px 0 0;color:var(--muted);font-size:14px}
+.badge{font-size:12px;padding:6px 10px;border:1px solid var(--line);background:#f0ede6;color:var(--muted);white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--line);padding:20px;margin:14px 0}
+.section-title{margin:0 0 14px;font-size:18px}
+input,select,button{font:inherit}
+input{width:100%;height:42px;border:1px solid #c9c3b9;padding:0 11px;background:#fff;color:var(--ink);outline:none}
+input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(158,34,29,.16)}
+.grid{display:grid;grid-template-columns:1.1fr .9fr .9fr 1fr 1fr;gap:12px}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;height:42px;border:1px solid #c9c3b9;background:#fff;cursor:pointer}
+.seg button[aria-pressed="true"]{border-color:var(--brand);background:#f2e3e1;color:var(--brand2);font-weight:650}
+.std-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.std-row .seg{flex:0 0 auto;min-width:280px}
+.std-hint{color:var(--muted);font-size:12.5px;line-height:1.6;flex:1;min-width:220px}
+.age-pair{display:flex;gap:8px;align-items:center}
+.age-pair input{text-align:center}
+.age-pair span{color:var(--muted);font-size:13px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.btn{height:44px;padding:0 16px;border:0;cursor:pointer;font-weight:650}
+.primary{background:var(--brand);color:#fff}.primary:hover{background:var(--brand2)}
+.secondary{background:#e9e5dd;color:var(--ink)}
+.hint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6}
+.alert{display:none;margin-top:12px;padding:11px 13px;background:#fff6e8;color:#85570c;border:1px solid #f0d4a2;font-size:13px;line-height:1.55}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.meta span{font-size:13px;background:#f0ede6;padding:7px 9px;color:var(--muted)}
+.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.result{border:1px solid var(--line);padding:14px;background:#fbfaf6}
+.result .name{font-size:13px;color:var(--muted)}
+.result .value{font-size:21px;font-weight:750;margin-top:6px}
+.result .sub{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
+.result.na .value{font-size:16px;color:var(--muted)}
+.tag{display:inline-block;margin-top:7px;font-size:12px;padding:4px 7px;background:#f0ede6;color:var(--muted)}
+.tag.ok{background:#edf8f2;color:#276749}.tag.warn{background:#fff7e6;color:#96661e}.tag.bad{background:#fff0f0;color:#ad2929}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chart-card{border:1px solid var(--line);padding:14px;background:#fff;overflow:hidden}
+.chart-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
+.chart-head h3{font-size:15px;margin:0}.chart-head small{color:var(--muted)}
+svg{display:block;width:100%;height:auto;min-height:285px}
+.legend{font-size:11px;color:var(--muted);margin-top:5px}
+.chart-card.notes{background:#fbfaf6}
+.chart-empty{margin:0;padding:22px 2px;color:var(--muted);font-size:12.5px;line-height:1.75}
+.read-notes{margin:0;padding-left:18px;color:var(--muted);font-size:12.5px;line-height:1.75}
+.read-notes li{margin-bottom:9px}
+.read-notes li:last-child{margin-bottom:0}
+.read-notes strong{color:var(--ink)}
+.footer{font-size:12px;color:var(--muted);line-height:1.8;margin-top:18px}
+.source-box{background:#f0ede6;border-left:3px solid var(--brand);padding:11px 13px}
+.source-box + .source-box{margin-top:10px}
+.source-box a{color:inherit}
+.hidden{display:none!important}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.results{grid-template-columns:1fr}.charts{grid-template-columns:1fr}}
+@media(max-width:560px){.hero{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.wrap{padding:18px 11px 40px}.card{padding:15px}.hero h1{font-size:23px}.std-row .seg{min-width:0;width:100%}}
+@media print{
+ body{background:#fff}.wrap{max-width:none;padding:0}.card{break-inside:avoid}.actions,.badge{display:none!important}
+ .charts{grid-template-columns:1fr 1fr}.chart-card{break-inside:avoid}
+}
+</style>
+<link rel="stylesheet" href="/assets/tool-shell.css" />
+</head>
+<body class="tool-page">
+<a class="tool-shell-skip" href="#tool-main">跳到工具内容</a>
+<header class="tool-site-header">
+  <a class="tool-site-brand" href="/"><span class="tool-site-mark" aria-hidden="true">涛</span><span>涛生</span></a>
+  <nav class="tool-site-nav" aria-label="工具导航"><a href="/growth/">生长发育工具</a><a href="/tools/">全部工具</a><a href="/privacy/">隐私</a></nav>
+</header>
+<main class="wrap" id="tool-main">
+  <div class="hero">
+    <div>
+      <h1>儿童青少年生长曲线</h1>
+      <p>4–18 岁 · 年龄别身高、年龄别体重、年龄别 BMI · 中国参照标准与 WHO 参照可切换 · 门诊单次使用</p>
+    </div>
+    <div class="badge">0–3 岁请用 <a href="/growth/who-curve/">WHO 婴幼儿工具</a></div>
+  </div>
+
+  <section class="card">
+    <h2 class="section-title">选择参照标准</h2>
+    <div class="std-row">
+      <div class="seg" role="group" aria-label="参照标准">
+        <button type="button" class="std-btn" data-std="cn" aria-pressed="true">中国参照标准</button>
+        <button type="button" class="std-btn" data-std="who" aria-pressed="false">WHO 参照</button>
+      </div>
+      <p class="std-hint" id="stdHint"></p>
+    </div>
+
+    <h2 class="section-title">输入测量值</h2>
+    <div class="grid">
+      <div class="field">
+        <span class="field-label">性别</span>
+        <div class="seg" role="group" aria-label="性别">
+          <button type="button" class="sex-btn" data-sex="M" aria-pressed="true">男</button>
+          <button type="button" class="sex-btn" data-sex="F" aria-pressed="false">女</button>
+        </div>
+      </div>
+      <div class="field">
+        <span class="field-label">年龄</span>
+        <div class="age-pair">
+          <input id="ageYears" type="number" step="1" min="4" max="18" inputmode="numeric" placeholder="9" aria-label="年龄（岁）" />
+          <span>岁</span>
+          <input id="ageMonths" type="number" step="1" min="0" max="11" inputmode="numeric" placeholder="0" aria-label="年龄（月）" />
+          <span>月</span>
+        </div>
+      </div>
+      <div class="field"><span class="field-label">&nbsp;</span><div class="hint" id="ageEcho">满 4 岁 0 月 – 18 岁 0 月</div></div>
+      <div class="field"><label class="field-label" for="height">身高（cm）</label><input id="height" type="number" step="0.1" min="80" max="220" inputmode="decimal" placeholder="132.5" /></div>
+      <div class="field"><label class="field-label" for="weight">体重（kg）</label><input id="weight" type="number" step="0.1" min="8" max="200" inputmode="decimal" placeholder="28.4" /></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="calcBtn" type="button">计算并绘图</button>
+      <button class="btn secondary" id="resetBtn" type="button">清空重填</button>
+      <button class="btn secondary" id="printBtn" type="button">打印 / 导出 PDF</button>
+    </div>
+    <p class="hint">4–18 岁按立位身高测量。本工具不处理早产儿矫正月龄，也不建立档案或保存历史记录。</p>
+    <div class="alert" id="alertBox" role="alert" aria-live="assertive"></div>
+  </section>
+
+  <section class="card hidden" id="resultSection" aria-live="polite">
+    <h2 class="section-title">评估结果</h2>
+    <div class="meta" id="meta"></div>
+    <div class="results" id="results"></div>
+  </section>
+
+  <section class="card hidden" id="chartSection">
+    <h2 class="section-title">生长曲线</h2>
+    <div class="charts">
+      <div class="chart-card"><div class="chart-head"><div><h3>年龄别身高</h3><small>Height-for-age</small></div><small id="hInfo"></small></div><div id="chartH"></div></div>
+      <div class="chart-card"><div class="chart-head"><div><h3>年龄别体重</h3><small>Weight-for-age</small></div><small id="wInfo"></small></div><div id="chartW"></div></div>
+      <div class="chart-card"><div class="chart-head"><div><h3>年龄别 BMI</h3><small>BMI-for-age</small></div><small id="bInfo"></small></div><div id="chartB"></div></div>
+      <div class="chart-card notes">
+        <div class="chart-head"><div><h3>怎么读这三张图</h3><small>How to read</small></div></div>
+        <ul class="read-notes">
+          <li>七条曲线从下到上是 −3、−2、−1、0、+1、+2、+3 SD；中间加粗的红线是中位数（P50）。</li>
+          <li>最外侧两条虚线是 ±3 SD。<strong>● 是本次测量的位置</strong>，竖虚线标出对应年龄。</li>
+          <li>落在 ±2 SD 之间是同龄同性别的常见范围，落在范围外先复核测量值和测量方式，再结合病史判断。</li>
+          <li>一次测量只是一个点。判断生长问题看的是<strong>同一个孩子沿着自己那条线的走向</strong>，而不是单点高低。</li>
+          <li>切换上方的参照标准，三张图会同时换成另一套；<strong>同一次判断只用一套标准。</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="source-box">
+      <strong>中国参照标准：</strong>宗心南、李辉、张亚钦等，<em>Construction of a New Growth References for China Based on Urban Chinese Children</em>，<a href="https://doi.org/10.1371/journal.pone.0059569" rel="external noreferrer">PLoS ONE 2013;8(4):e59569</a>（开放获取）。数据来源为 2005 年第四次全国九市城区 7 岁以下儿童体格发育调查与 2005 年中国学生体质与健康调研，94,302 名城区健康儿童；与李辉等 2009 年《中华儿科杂志》47(7):487-492 / 493-498 同一数据源。本工具直接使用论文附表的 L、M、S 参数，来源网格为 48 月龄起每 6 个月一个点，中间月龄按 L、M、S 线性插值。
+    </div>
+    <div class="source-box">
+      <strong>WHO 参照：</strong>48–60 月龄取 <a href="https://www.who.int/toolkits/child-growth-standards" rel="external noreferrer">WHO Child Growth Standards</a>（0–5 岁），61 月龄起取 <a href="https://www.who.int/tools/growth-reference-data-for-5to19-years" rel="external noreferrer">WHO Growth reference 5–19 years</a>（2007），衔接点与 WHO 自身规则一致。整数月龄换算天数采用 WHO <code>anthro</code> 的 30.4375 日/月规则。<strong>WHO 的年龄别体重只发布到 120 月龄（10 岁）</strong>，10 岁以上 WHO 不提供年龄别体重参照，本工具据实显示「不适用」，请改看年龄别 BMI。
+    </div>
+    <div class="source-box">
+      <strong>计算口径：</strong>两套标准均采用原始 LMS Z 分数（<code>Z = ((X/M)^L − 1) / (L·S)</code>，L 接近 0 时取 <code>ln(X/M)/S</code>），<strong>不做 WHO Anthro 对 |Z|&gt;3 的调整</strong>——中国参照标准未规定该调整，为保证两套口径可比，WHO 侧也不做。本站 <a href="/growth/who-curve/">0–3 岁工具</a>沿用 WHO <code>anthro</code> 的调整规则，因此两个工具在极端值上会有差异。|Z|&gt;5 时按超出参照范围提示。
+    </div>
+    <div class="source-box">
+      <strong>用途限制：</strong>本工具用于门诊单次生长评估与对照，不建立档案、不保存历史记录、不处理早产儿矫正月龄。单次测量只是一个点，真正有意义的是孩子自己的生长轨迹。<strong>两套标准不能混着用在同一次判断上</strong>：中国参照基于 2005 年全国调查，WHO 参照基于国际多中心数据与 1977 NCHS 数据重构，同一个孩子在两套标准下的 Z 分数本来就不同。本工具不能替代完整临床评估、诊断或治疗建议。
+    </div>
+    <div class="tool-site-note"><strong>隐私：</strong>性别、年龄和测量值只在当前页面内存中计算，不会上传、写入浏览器存储或进入离线缓存。刷新或关闭页面即清除。<a href="/privacy/">查看隐私说明</a></div>
+  </div>
+</main>
+<footer class="tool-site-footer">数据来源与许可说明见<a href="/licenses/">来源与许可</a> · 工具版本 2026-09-02</footer>
+
+<script src="/growth/curve-4-18/dataset.js"></script>
+<script>
+const MIN_MONTH = 48;
+const MAX_MONTH = 216;
+const Z_LINES = [-3, -2, -1, 0, 1, 2, 3];
+
+const STANDARDS = {
+  cn: {
+    label: '中国参照标准',
+    hint: '宗心南、李辉等 PLoS ONE 2013，基于 2005 年全国九市城区调查。国内门诊对照通常用这一套。',
+    indicators: { hfa: [48, 216], wfa: [48, 216], bfa: [48, 216] }
+  },
+  who: {
+    label: 'WHO 参照',
+    hint: 'WHO 0–5 岁标准 + 2007 年 5–19 岁参照。年龄别体重 WHO 只发布到 10 岁，10 岁以上请看 BMI。',
+    indicators: { hfa: [48, 216], wfa: [48, 120], bfa: [48, 216] }
+  }
+};
+
+const INDICATORS = {
+  hfa: { name: '年龄别身高', unit: 'cm', decimals: 1, chart: 'chartH', info: 'hInfo', yLabel: '身高（cm）' },
+  wfa: { name: '年龄别体重', unit: 'kg', decimals: 2, chart: 'chartW', info: 'wInfo', yLabel: '体重（kg）' },
+  bfa: { name: '年龄别 BMI', unit: 'kg/m²', decimals: 2, chart: 'chartB', info: 'bInfo', yLabel: 'BMI（kg/m²）' }
+};
+
+let selectedStandard = 'cn';
+let selectedSex = 'M';
+let lastCalc = null;
+
+/* ---------- LMS 计算 ---------- */
+
+function lookupLMS(rows, month) {
+  if (!rows || !rows.length) return null;
+  if (month < rows[0][0] || month > rows[rows.length - 1][0]) return null;
+  let lo = 0;
+  let hi = rows.length - 1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    if (rows[mid][0] === month) return { l: rows[mid][1], m: rows[mid][2], s: rows[mid][3] };
+    if (rows[mid][0] < month) lo = mid + 1; else hi = mid - 1;
+  }
+  const before = rows[hi];
+  const after = rows[lo];
+  const ratio = (month - before[0]) / (after[0] - before[0]);
+  return {
+    l: before[1] + (after[1] - before[1]) * ratio,
+    m: before[2] + (after[2] - before[2]) * ratio,
+    s: before[3] + (after[3] - before[3]) * ratio
+  };
+}
+
+function zFromLMS(x, l, m, s) {
+  if (!(x > 0) || !(m > 0) || !(s > 0)) return null;
+  const z = Math.abs(l) < 1e-7 ? Math.log(x / m) / s : (Math.pow(x / m, l) - 1) / (l * s);
+  return Number.isFinite(z) ? z : null;
+}
+
+function valueAtZ(l, m, s, z) {
+  return Math.abs(l) < 1e-7 ? m * Math.exp(s * z) : m * Math.pow(1 + l * s * z, 1 / l);
+}
+
+function erf(value) {
+  const sign = value < 0 ? -1 : 1;
+  const x = Math.abs(value);
+  const t = 1 / (1 + 0.3275911 * x);
+  const y = 1 - (((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t) * Math.exp(-x * x);
+  return sign * y;
+}
+
+function percentileFromZ(z) {
+  return 100 * 0.5 * (1 + erf(z / Math.SQRT2));
+}
+
+function formatPercentile(z) {
+  const p = percentileFromZ(z);
+  if (p < 0.1) return '< P0.1';
+  if (p > 99.9) return '> P99.9';
+  return `P${p.toFixed(1)}`;
+}
+
+function zTag(z) {
+  if (z === null) return { text: '—', cls: '' };
+  if (z < -3 || z > 3) return { text: '超出 ±3 SD', cls: 'bad' };
+  if (z < -2 || z > 2) return { text: '超出 ±2 SD', cls: 'warn' };
+  return { text: '在 ±2 SD 内', cls: 'ok' };
+}
+
+function rowsFor(standard, sex, indicator) {
+  return GROWTH_4_18[standard]?.[sex]?.[indicator] || null;
+}
+
+/* ---------- 交互 ---------- */
+
+function bindSegment(selector, onPick) {
+  const buttons = [...document.querySelectorAll(selector)];
+  buttons.forEach(button => button.addEventListener('click', () => {
+    buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+    onPick(button.dataset);
+  }));
+}
+
+bindSegment('.std-btn', data => {
+  selectedStandard = data.std;
+  renderStandardHint();
+  if (lastCalc) calculate();
+});
+
+bindSegment('.sex-btn', data => {
+  selectedSex = data.sex;
+  if (lastCalc) calculate();
+});
+
+function renderStandardHint() {
+  document.getElementById('stdHint').textContent = STANDARDS[selectedStandard].hint;
+}
+
+function showAlert(message) {
+  const box = document.getElementById('alertBox');
+  box.textContent = message;
+  box.style.display = message ? 'block' : 'none';
+}
+
+function readNumber(id) {
+  const raw = document.getElementById(id).value.trim();
+  if (raw === '') return null;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : NaN;
+}
+
+function totalMonths() {
+  const years = readNumber('ageYears');
+  const months = readNumber('ageMonths');
+  if (years === null) return null;
+  if (Number.isNaN(years) || (months !== null && Number.isNaN(months))) return NaN;
+  if (!Number.isInteger(years) || (months !== null && !Number.isInteger(months))) return NaN;
+  if (months !== null && (months < 0 || months > 11)) return NaN;
+  return years * 12 + (months || 0);
+}
+
+function updateAgeEcho() {
+  const month = totalMonths();
+  const echo = document.getElementById('ageEcho');
+  if (month === null || Number.isNaN(month)) {
+    echo.textContent = '满 4 岁 0 月 – 18 岁 0 月';
+    return;
+  }
+  echo.textContent = `${month} 月龄${month < MIN_MONTH || month > MAX_MONTH ? '（超出 4–18 岁范围）' : ''}`;
+}
+
+['ageYears', 'ageMonths'].forEach(id => document.getElementById(id).addEventListener('input', updateAgeEcho));
+
+/* ---------- 主流程 ---------- */
+
+function calculate() {
+  showAlert('');
+  const month = totalMonths();
+  const height = readNumber('height');
+  const weight = readNumber('weight');
+
+  if (month === null) return showAlert('请填写年龄。');
+  if (Number.isNaN(month)) return showAlert('年龄请填整数：岁 4–18，月 0–11。');
+  if (month < MIN_MONTH || month > MAX_MONTH) return showAlert('本工具覆盖 4 岁 0 月至 18 岁 0 月。0–3 岁请使用 WHO 婴幼儿生长曲线工具。');
+  if (height === null && weight === null) return showAlert('请至少填写身高或体重其中一项。');
+  if (Number.isNaN(height) || (height !== null && (height < 80 || height > 220))) return showAlert('身高请填 80–220 cm 之间的数值。');
+  if (Number.isNaN(weight) || (weight !== null && (weight < 8 || weight > 200))) return showAlert('体重请填 8–200 kg 之间的数值。');
+
+  const bmi = height !== null && weight !== null ? weight / Math.pow(height / 100, 2) : null;
+  const measurements = { hfa: height, wfa: weight, bfa: bmi };
+  const standard = STANDARDS[selectedStandard];
+  const rows = {};
+  const results = {};
+
+  for (const key of Object.keys(INDICATORS)) {
+    const [from, to] = standard.indicators[key];
+    rows[key] = rowsFor(selectedStandard, selectedSex, key);
+    if (month < from || month > to) {
+      results[key] = { state: 'out-of-range', from, to };
+      continue;
+    }
+    if (measurements[key] === null) {
+      results[key] = { state: 'missing' };
+      continue;
+    }
+    const lms = lookupLMS(rows[key], month);
+    if (!lms) {
+      results[key] = { state: 'out-of-range', from, to };
+      continue;
+    }
+    const z = zFromLMS(measurements[key], lms.l, lms.m, lms.s);
+    results[key] = { state: 'ok', z, lms, value: measurements[key] };
+  }
+
+  lastCalc = { month, height, weight, bmi, results, rows };
+  renderResults(lastCalc);
+  renderCharts(lastCalc);
+}
+
+function renderResults(calc) {
+  const years = Math.floor(calc.month / 12);
+  const months = calc.month % 12;
+  const meta = [
+    `${selectedSex === 'M' ? '男' : '女'}童`,
+    `${years} 岁 ${months} 月（${calc.month} 月龄）`,
+    STANDARDS[selectedStandard].label
+  ];
+  if (calc.bmi !== null) meta.push(`BMI ${calc.bmi.toFixed(2)} kg/m²`);
+  document.getElementById('meta').innerHTML = meta.map(text => `<span>${text}</span>`).join('');
+
+  document.getElementById('results').innerHTML = Object.entries(INDICATORS).map(([key, config]) => {
+    const result = calc.results[key];
+    if (result.state === 'missing') {
+      return `<div class="result na"><div class="name">${config.name}</div><div class="value">未填写</div><div class="sub">${key === 'bfa' ? '需要同时填写身高和体重' : '填写后即可计算'}</div></div>`;
+    }
+    if (result.state === 'out-of-range') {
+      const to = Math.floor(result.to / 12);
+      return `<div class="result na"><div class="name">${config.name}</div><div class="value">不适用</div><div class="sub">${STANDARDS[selectedStandard].label}只覆盖到 ${to} 岁；${key === 'wfa' ? '10 岁以上请改看年龄别 BMI。' : '请切换另一套标准。'}</div></div>`;
+    }
+    if (result.z === null) {
+      return `<div class="result na"><div class="name">${config.name}</div><div class="value">无法计算</div><div class="sub">测量值超出可计算范围</div></div>`;
+    }
+    const tag = zTag(result.z);
+    const extreme = Math.abs(result.z) > 5;
+    return `<div class="result">
+      <div class="name">${config.name}</div>
+      <div class="value">Z = ${result.z.toFixed(2)}</div>
+      <div class="sub">${result.value.toFixed(config.decimals)} ${config.unit} · ${formatPercentile(result.z)} · 同龄同性别中位数 ${result.lms.m.toFixed(config.decimals)} ${config.unit}</div>
+      <span class="tag ${tag.cls}">${tag.text}</span>
+      ${extreme ? '<div class="sub">|Z| &gt; 5，已超出参照范围，请先复核测量值。</div>' : ''}
+    </div>`;
+  }).join('');
+
+  document.getElementById('resultSection').classList.remove('hidden');
+}
+
+/* ---------- 绘图 ---------- */
+
+function buildCurves(rows, from, to) {
+  const points = rows.filter(row => row[0] >= from && row[0] <= to);
+  return Z_LINES.map(z => ({
+    z,
+    points: points.map(row => ({ x: row[0], y: valueAtZ(row[1], row[2], row[3], z) }))
+  }));
+}
+
+function makeSvg({ curves, current, xLabel, yLabel, decimals }) {
+  const W = 640;
+  const H = 345;
+  const ml = 58;
+  const mr = 16;
+  const mt = 14;
+  const mb = 46;
+  const pw = W - ml - mr;
+  const ph = H - mt - mb;
+
+  const xs = curves[0].points.map(point => point.x);
+  const xMin = xs[0];
+  const xMax = xs[xs.length - 1];
+  let yMin = Infinity;
+  let yMax = -Infinity;
+  for (const curve of curves) {
+    for (const point of curve.points) {
+      if (point.y < yMin) yMin = point.y;
+      if (point.y > yMax) yMax = point.y;
+    }
+  }
+  if (current) {
+    yMin = Math.min(yMin, current.y);
+    yMax = Math.max(yMax, current.y);
+  }
+  const pad = (yMax - yMin) * 0.06 || 1;
+  yMin -= pad;
+  yMax += pad;
+
+  const px = x => ml + ((x - xMin) / (xMax - xMin)) * pw;
+  const py = y => mt + ph - ((y - yMin) / (yMax - yMin)) * ph;
+
+  const parts = [`<rect x="${ml}" y="${mt}" width="${pw}" height="${ph}" fill="#fdfcfa" stroke="#e3ded5"/>`];
+
+  for (let month = Math.ceil(xMin / 24) * 24; month <= xMax; month += 24) {
+    const x = px(month);
+    parts.push(`<line x1="${x.toFixed(1)}" y1="${mt}" x2="${x.toFixed(1)}" y2="${mt + ph}" stroke="#eee9e0"/>`);
+    parts.push(`<text x="${x.toFixed(1)}" y="${mt + ph + 18}" font-size="11" fill="#6e6862" text-anchor="middle">${month / 12}</text>`);
+  }
+  for (let i = 0; i <= 4; i += 1) {
+    const value = yMin + ((yMax - yMin) * i) / 4;
+    const y = py(value);
+    parts.push(`<line x1="${ml}" y1="${y.toFixed(1)}" x2="${ml + pw}" y2="${y.toFixed(1)}" stroke="#eee9e0"/>`);
+    parts.push(`<text x="${ml - 8}" y="${(y + 4).toFixed(1)}" font-size="11" fill="#6e6862" text-anchor="end">${value.toFixed(decimals === 1 ? 0 : 1)}</text>`);
+  }
+
+  for (const curve of curves) {
+    const d = curve.points.map((point, index) => `${index ? 'L' : 'M'}${px(point.x).toFixed(1)} ${py(point.y).toFixed(1)}`).join(' ');
+    const isMedian = curve.z === 0;
+    const isOuter = Math.abs(curve.z) === 3;
+    parts.push(`<path d="${d}" fill="none" stroke="${isMedian ? '#9e221d' : '#b9b2a8'}" stroke-width="${isMedian ? 2 : 1}" ${isOuter ? 'stroke-dasharray="5 4"' : ''}/>`);
+    const last = curve.points[curve.points.length - 1];
+    parts.push(`<text x="${(px(last.x) - 2).toFixed(1)}" y="${(py(last.y) - 4).toFixed(1)}" font-size="10" fill="#8b847c" text-anchor="end">${curve.z > 0 ? '+' : ''}${curve.z}</text>`);
+  }
+
+  if (current) {
+    const cx = px(current.x);
+    const cy = py(current.y);
+    parts.push(`<line x1="${cx.toFixed(1)}" y1="${mt}" x2="${cx.toFixed(1)}" y2="${mt + ph}" stroke="#9e221d" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>`);
+    parts.push(`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="5" fill="#9e221d" stroke="#fff" stroke-width="2"/>`);
+  }
+
+  parts.push(`<text x="${ml + pw / 2}" y="${H - 8}" font-size="11" fill="#6e6862" text-anchor="middle">${xLabel}</text>`);
+  parts.push(`<text x="14" y="${mt + ph / 2}" font-size="11" fill="#6e6862" text-anchor="middle" transform="rotate(-90 14 ${mt + ph / 2})">${yLabel}</text>`);
+
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${yLabel}生长曲线">${parts.join('')}</svg>`;
+}
+
+function renderCharts(calc) {
+  const standard = STANDARDS[selectedStandard];
+  for (const [key, config] of Object.entries(INDICATORS)) {
+    const container = document.getElementById(config.chart);
+    const info = document.getElementById(config.info);
+    const result = calc.results[key];
+    const [from, to] = standard.indicators[key];
+    if (result.state !== 'ok') {
+      container.innerHTML = result.state === 'out-of-range'
+        ? `<p class="chart-empty">${standard.label}只提供 ${from / 12}–${to / 12} 岁的${config.name}，本次年龄超出这个范围，因此没有曲线可画。${key === 'wfa' ? '10 岁以后 WHO 用年龄别 BMI 代替年龄别体重，请看下面那张图；需要看年龄别体重可切换到中国参照标准。' : '请切换另一套参照标准。'}</p>`
+        : '<p class="chart-empty">这一项还没填写测量值。</p>';
+      info.textContent = result.state === 'out-of-range' ? `${standard.label}覆盖 ${from / 12}–${to / 12} 岁` : '未填写';
+      continue;
+    }
+    const curves = buildCurves(calc.rows[key], from, to);
+    container.innerHTML = makeSvg({
+      curves,
+      current: { x: calc.month, y: result.value },
+      xLabel: '年龄（岁）',
+      yLabel: config.yLabel,
+      decimals: config.decimals
+    });
+    info.textContent = `${standard.label} · ${from / 12}–${to / 12} 岁`;
+  }
+  document.getElementById('chartSection').classList.remove('hidden');
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('printBtn').addEventListener('click', () => window.print());
+document.getElementById('resetBtn').addEventListener('click', () => {
+  ['ageYears', 'ageMonths', 'height', 'weight'].forEach(id => { document.getElementById(id).value = ''; });
+  lastCalc = null;
+  showAlert('');
+  updateAgeEcho();
+  document.getElementById('resultSection').classList.add('hidden');
+  document.getElementById('chartSection').classList.add('hidden');
+  document.getElementById('ageYears').focus();
+});
+
+renderStandardHint();
+updateAgeEcho();
+</script>
+</body>
+</html>

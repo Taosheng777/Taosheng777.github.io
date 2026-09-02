@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#9e221d">
-  <meta name="description" content="生长发育工具板块：基于 WHO 官方标准的儿童体格生长本地计算，输入值不上传、不留存。">
+  <meta name="description" content="生长发育工具板块：WHO 0–3 岁生长曲线，以及 4–18 岁中国参照标准与 WHO 参照可切换的生长曲线，输入值不上传、不留存。">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
   <link rel="stylesheet" href="/assets/site.css">
@@ -37,6 +37,7 @@
     <div class="section-note" role="note" data-label="使用边界">
       <p><strong>使用边界：</strong>这里的工具用于生长评估的快速计算和对照，不能替代完整的临床评估、诊断或治疗建议。</p>
       <p>单次测量只是一个点，真正有意义的是孩子自己的生长轨迹。结果偏离或你有疑问时，请到正规医疗机构就诊。</p>
+      <p><strong>两套标准不要混用：</strong>4–18 岁工具里的中国参照标准与 WHO 参照基于不同人群，同一个孩子在两套标准下的 Z 分数本来就不同，一次判断只用一套。</p>
     </div>
 
     <div class="tool-grid">
@@ -45,6 +46,13 @@
         <span class="tool-kind">儿童保健 · 本地计算</span>
         <h2>WHO 0–3 岁生长曲线</h2>
         <p>输入性别、月龄和单次测量值，得到体重、身长/身高、头围和体重别身长的 Z 分数、百分位与四张生长曲线。标准表来自 WHO 官方 anthro 数据。</p>
+        <span class="card-action">打开工具 <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="tool-card" data-accent="growth" href="/growth/curve-4-18/">
+        <span class="tool-number" aria-hidden="true">02</span>
+        <span class="tool-kind">儿童青少年 · 本地计算</span>
+        <h2>4–18 岁生长曲线</h2>
+        <p>输入性别、年龄、身高和体重，得到年龄别身高、年龄别体重和年龄别 BMI 的 Z 分数、百分位与三张生长曲线。中国参照标准与 WHO 参照可一键切换对照。</p>
         <span class="card-action">打开工具 <span aria-hidden="true">↗</span></span>
       </a>
       <div class="tool-card placeholder" data-accent="growth">
@@ -59,7 +67,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.3.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.4.0</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>

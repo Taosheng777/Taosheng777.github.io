@@ -57,12 +57,6 @@
             <button class="button secondary" id="installApp" type="button" hidden>安装到设备</button>
           </div>
         </div>
-        <div class="privacy-card" aria-label="隐私特性">
-          <span class="privacy-icon" aria-hidden="true">LOCAL ONLY</span>
-          <strong>本地处理</strong>
-          <p>不登录、不上传、不追踪。所有计算、计分和搜索都只在你的浏览器里完成，安装后没有网络也能用。</p>
-          <a href="/privacy/">查看隐私说明 <span aria-hidden="true">→</span></a>
-        </div>
       </div>
     </section>
 
@@ -91,16 +85,17 @@
           <p>儿童体格生长的本地计算工具。输入的测量值不上传、不留存。</p>
           <ul class="section-contents">
             <li>WHO 0–3 岁生长曲线</li>
+            <li>4–18 岁生长曲线（中国 / WHO 可切换）</li>
           </ul>
           <span class="card-action">进入板块 <span aria-hidden="true">→</span></span>
         </a>
         <a class="section-card" data-accent="mind" href="/mind/" data-tag="MIND">
           <span class="section-index" aria-hidden="true">03</span>
           <h3>心理测评工具</h3>
-          <p>常用心理症状自评量表，浏览器本地计分，当场生成可打印报告。</p>
+          <p>10 份常用量表，浏览器本地计分，当场生成可打印报告。</p>
           <ul class="section-contents">
-            <li>PHQ-9 抑郁症状自评</li>
-            <li>GAD-7 焦虑症状自评</li>
+            <li>本人自评：PHQ-9 / GAD-7 / SAS / SDS 等 7 份</li>
+            <li>家长评定：SNAP-IV / PSC-17 / Conners 共 3 份</li>
           </ul>
           <span class="card-action">进入板块 <span aria-hidden="true">→</span></span>
         </a>
@@ -140,17 +135,21 @@
       </div>
     </section>
 
-    <section class="offline-strip" aria-label="离线使用说明">
+    <section class="offline-strip" aria-label="本地处理与离线使用说明">
       <div>
-        <p class="eyebrow">OFFLINE READY</p>
-        <h2>网络不好，也照常能用</h2>
+        <p class="eyebrow">LOCAL ONLY · OFFLINE READY</p>
+        <h2>本地处理，网络不好也照常能用</h2>
+        <a class="offline-link" href="/privacy/">查看隐私说明 <span aria-hidden="true">→</span></a>
       </div>
-      <p>首次打开后，浏览器会缓存页面和工具代码。你输入的数值、答案和生成的结果不会进入缓存。</p>
+      <div class="offline-copy">
+        <p><strong>不登录、不上传、不追踪</strong>所有计算、计分和搜索都只在你的浏览器里完成，安装后没有网络也能用。</p>
+        <p><strong>输入不进缓存</strong>首次打开后浏览器会缓存页面和工具代码；你输入的数值、答案和生成的结果不会进入缓存。</p>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.3.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.4.0</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>

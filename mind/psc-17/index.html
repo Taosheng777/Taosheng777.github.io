@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#9e221d">
+  <meta name="description" content="PSC-17 儿科症状检查表 PSC-17：17 题 · 由家长填写。不填写个人资料，浏览器本地计分并即时生成报告。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/mental-health.css">
+  <title>PSC-17 儿科症状检查表 PSC-17｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a href="/growth/">生长发育</a>
+      <a aria-current="page" href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page assessment-page" data-mental-health-scale="psc17">
+    <a class="assessment-back" href="/mind/"><span aria-hidden="true">←</span>&nbsp; 返回心理测评工具</a>
+    <header class="assessment-heading">
+      <p class="eyebrow">PSC-17 · 17 题 · 由家长填写</p>
+      <h1>儿科症状检查表 PSC-17</h1>
+      <p>儿童心理社会功能的家长评定筛查表。输出总分与内化、注意、外化三个分量表。页面不询问姓名、年龄或其他个人资料。</p>
+      <div class="audience-note"><strong>适用人群：</strong>适用于 6–17 岁儿童青少年，由家长或主要照顾者评定。</div>
+    </header>
+
+    <section id="questionnaire" class="questionnaire-shell" aria-labelledby="questionnaireTitle">
+      <div class="question-progress" aria-label="作答进度">
+        <div class="progress-row"><span id="progressText">已完成 0 / 17 题</span><span>预计 3 分钟</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+      </div>
+      <div class="question-intro" id="questionnaireTitle"><strong>请根据您对孩子行为的观察，选择最能描述您孩子的一项。</strong><span>请选择最符合实际情况的一项。回顾范围：对孩子的总体观察。</span></div>
+      <form id="assessmentForm" novalidate>
+        <div id="questionList"></div>
+        <div class="submit-panel">
+          <p id="completionHint" aria-live="polite">还差 17 题。</p>
+          <button class="button primary" id="generateReport" type="submit" disabled>生成报告</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="report" class="report-shell" aria-labelledby="reportTitle" hidden>
+      <p class="eyebrow">PERSONAL REPORT · PSC-17</p>
+      <h2 id="reportTitle" tabindex="-1">本次家长评定报告</h2>
+      <div class="result-card" id="resultCard" data-level="minimal">
+        <p class="result-label" id="scoreLabel">总分</p>
+        <p class="result-score" id="scoreValue">0 / 34</p>
+        <p class="result-severity" id="severityLabel"></p>
+        <span class="threshold-label" id="thresholdLabel"></span>
+        <p class="report-guidance" id="reportGuidance"></p>
+      </div>
+      <div class="detail-list" id="resultDetails" hidden></div>
+      <p class="group-note">各项按题组总分计算（不取均分）。总分 ≥ 15 为阳性；任一分量表达到自己的切截点，也建议就该方向进一步评估。</p>
+      <p class="report-disclaimer"><strong>这不是诊断。</strong>分数只反映本次家长评定的结果，不能替代完整的精神科、心理或发育行为专业评估，也不能单独决定治疗。</p>
+      <p class="general-safety">无论分数多少，如果你或孩子最近有伤害自己的想法，请现在就告诉可信任的人或专业人员；也可拨打全国统一心理援助热线 12356。紧急情况下请拨 120 或 110。</p>
+      <details class="answer-details" open><summary>查看本次作答明细</summary><ol class="answer-list" id="answerReview"></ol></details>
+      <details class="source-details"><summary>量表来源与适用说明</summary><div class="details-body">
+        <p>PSC 由 Jellinek 与 Murphy 编制（©1988，Massachusetts General Hospital），PSC-17 由 Gardner 与 Kelleher 于 1999 年编制，官方允许临床免费使用。</p>
+        <p>切截点参考：<a href="https://pubmed.ncbi.nlm.nih.gov/17450052/" rel="external noreferrer">Gardner 等，2007</a>（JAACAP 46(5):611-618）。中文题目为参考译本，<strong>临床使用请以本机构正版量表为准</strong>。</p>
+      </div></details>
+      <div class="report-actions"><button class="button primary" id="printReport" type="button">打印或保存 PDF</button><button class="button secondary" id="restartAssessment" type="button">重新测评</button></div>
+    </section>
+    <noscript><p class="report-disclaimer">此问卷需要浏览器启用 JavaScript 才能计分。</p></noscript>
+  </main>
+
+  <dialog class="audience-dialog" id="audienceDialog" aria-labelledby="audienceTitle">
+    <form method="dialog">
+      <p class="dialog-code">开始前请先确认 · PSC-17</p>
+      <h2 id="audienceTitle">这份量表适合谁？</h2>
+      <p class="dialog-emphasis">这份量表由家长或主要照顾者填写。</p>
+      <p>适用于 6–17 岁。这是一份广谱筛查表，用于发现值得进一步了解的方向，不针对任何单一诊断。</p>
+      <p>总分或任一分量表达到切截点，都建议就该方向做进一步专业评估。</p>
+      <p>量表只用于筛查或计分，不等于诊断；不会要求你填写年龄或任何身份资料。</p>
+      <div class="dialog-actions"><button class="button primary" value="continue" autofocus>我已了解，开始作答</button><a class="button secondary" href="/mind/">暂不作答</a></div>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.4.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/mind/">心理测评</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+  <script type="module" src="/assets/mental-health.js"></script>
+  <script src="/assets/pwa.js" defer></script>
+</body>
+</html>

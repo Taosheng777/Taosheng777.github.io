@@ -54,6 +54,9 @@
   text-decoration: none;
 }
 
+/* 卡片数为奇数时，最后一张通栏，避免空格子露出网格线底色 */
+.assessment-grid > *:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
 .assessment-card:hover { background: var(--plum); color: #ffffff; }
 .assessment-card:hover > p,
 .assessment-card:hover .scale-code,
@@ -456,6 +459,136 @@
   .report-actions .button { width: 100%; }
 }
 
+/* ---------- v1.4.0：题组明细、条件题、快速筛查跳转、T 分数换算 ---------- */
+
+.detail-list {
+  margin: 18px 0 0;
+  border-top: 2px solid var(--line);
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 14px;
+}
+
+.detail-row > span:first-child { color: var(--muted); }
+.detail-row > span:last-child { color: var(--ink); font-weight: 700; text-align: right; }
+.detail-row.flagged > span:last-child { color: var(--brand); }
+
+.detail-row.flagged > span:first-child::before {
+  content: "▲";
+  margin-right: 7px;
+  color: var(--brand);
+  font-size: 10px;
+}
+
+.group-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.report-followup {
+  display: block;
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  border-left: 3px solid var(--plum);
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.report-followup strong { display: block; margin-bottom: 4px; font-weight: 750; }
+.report-followup:hover { border-left-color: var(--brand); }
+
+.question-card.conditional legend span::after {
+  content: "· 仅在前四项出现阳性时出现";
+  margin-left: 8px;
+  color: var(--brand);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.scale-group-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 46px 0 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+}
+
+.scale-group-heading h2 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
+.scale-group-heading p { margin: 0; max-width: 560px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.mental-toolbox-page .assessment-grid { margin-top: 1px; }
+
+.calculator-shell {
+  margin: 26px 0 0;
+  padding: clamp(22px, 4vw, 32px);
+  border: 2px solid var(--line);
+}
+
+.calculator-shell label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 700; }
+.calculator-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
+
+.calculator-row input {
+  flex: 1 1 180px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.calculator-row input:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+.calculator-output {
+  margin: 22px 0 0;
+  padding: 22px;
+  border-top: 4px solid var(--plum);
+  background: var(--surface-soft);
+}
+
+.calculator-output .result-score { margin: 4px 0 0; }
+/* 只压说明段落，别把大号分数一起压小 */
+.calculator-output #tScoreDetail { margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+.calculator-error {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--brand);
+  background: var(--brand-tint);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  .detail-row { grid-template-columns: 1fr; gap: 4px; }
+  .detail-row > span:last-child { text-align: left; }
+  .calculator-row input { flex-basis: 100%; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .detail-row > span:last-child { color: var(--ink); }
+  .detail-row.flagged > span:last-child { color: var(--brand); }
+  .report-followup { background: var(--surface-soft); color: var(--ink); }
+  .calculator-output { background: var(--surface-soft); }
+  .calculator-error { color: var(--ink); }
+}
+
 @media print {
   body { background: #fff; }
   .site-header,
@@ -464,6 +597,7 @@
   .assessment-back,
   #questionnaire,
   .report-actions,
+  .report-followup,
   .source-details { display: none !important; }
   main.assessment-page { width: 100%; max-width: none; padding: 0; }
   .report-shell { margin: 0; }

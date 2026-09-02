@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#9e221d">
-  <meta name="description" content="心理测评工具板块：PHQ-9 抑郁症状自评与 GAD-7 焦虑症状自评，浏览器本地计分并即时生成可打印报告。">
+  <meta name="description" content="心理测评工具板块：PHQ-9、GAD-7、PHQ-2、GAD-2、ASQ、SAS、SDS、SNAP-IV、PSC-17、Conners 父母症状问卷，浏览器本地计分并即时生成可打印报告。">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
   <link rel="stylesheet" href="/assets/site.css">
@@ -32,15 +33,19 @@
     <header class="page-heading">
       <p class="eyebrow">MENTAL HEALTH</p>
       <h1>心理测评工具</h1>
-      <p>常用心理症状自评量表。先选择一份问卷，每份独立作答、独立计分，当场生成你自己的结果报告。</p>
+      <p>常用心理症状量表。先选一份，每份独立作答、独立计分，当场生成可打印的结果报告。答案和结果只在当前页面内存中处理，刷新后清空。</p>
     </header>
 
     <div class="local-only-banner" role="note">
       <span class="local-only-mark" aria-hidden="true">✓</span>
-      <div><strong>不填写个人资料</strong><p>不询问姓名、年龄、性别或联系方式；答案和报告只在当前页面内存中处理，刷新后清空。</p></div>
+      <div><strong>不填写个人资料</strong><p>不询问姓名、年龄、性别或联系方式；不登录、不上传、不写入浏览器存储。</p></div>
     </div>
 
-    <section class="assessment-grid" aria-label="可选心理问卷">
+    <div class="scale-group-heading">
+      <h2>本人自评</h2>
+      <p>由受测者本人作答。青少年与成人量表的适用年龄不同，每份问卷开始前都会先提示。</p>
+    </div>
+    <section class="assessment-grid" aria-label="本人自评量表">
       <a class="assessment-card" href="/mind/phq-9/">
         <span class="scale-code">PHQ-9</span>
         <h2>抑郁症状自评</h2>
@@ -55,15 +60,92 @@
         <span class="age-pill">建议 12 岁及以上本人作答</span>
         <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
       </a>
+      <a class="assessment-card" href="/mind/phq-2/">
+        <span class="scale-code">PHQ-2</span>
+        <h2>抑郁快速筛查</h2>
+        <p>2 题，30 秒完成的最简初筛。达到分界会建议你接着做完整的 PHQ-9。</p>
+        <span class="age-pill">建议 12 岁及以上本人作答</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="assessment-card" href="/mind/gad-2/">
+        <span class="scale-code">GAD-2</span>
+        <h2>焦虑快速筛查</h2>
+        <p>2 题，30 秒完成的最简初筛。达到分界会建议你接着做完整的 GAD-7。</p>
+        <span class="age-pill">建议 12 岁及以上本人作答</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="assessment-card" href="/mind/asq/">
+        <span class="scale-code">ASQ</span>
+        <h2>自杀风险快速筛查</h2>
+        <p>4 题直接询问自杀相关想法，触发阳性时出现第 5 题并给出当场处置建议。</p>
+        <span class="age-pill">建议 10 岁及以上本人作答</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="assessment-card" href="/mind/sas/">
+        <span class="scale-code">SAS</span>
+        <h2>焦虑自评量表</h2>
+        <p>20 题成人焦虑自评，含 5 道反向计分题，出粗分、标准分与分级。</p>
+        <span class="age-pill">建议 16 岁及以上本人作答</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="assessment-card" href="/mind/sds/">
+        <span class="scale-code">SDS</span>
+        <h2>抑郁自评量表</h2>
+        <p>20 题成人抑郁自评，含 10 道反向计分题，出粗分、标准分与分级。</p>
+        <span class="age-pill">建议 16 岁及以上本人作答</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+    </section>
+
+    <div class="scale-group-heading">
+      <h2>家长评定</h2>
+      <p>由家长或主要照顾者评定孩子的表现，不是孩子本人作答。结果是筛查线索，不能替代面诊。</p>
+    </div>
+    <section class="assessment-grid" aria-label="家长评定量表">
+      <a class="assessment-card" href="/mind/snap-iv/">
+        <span class="scale-code">SNAP-IV</span>
+        <h2>SNAP-IV 26 项（父母版）</h2>
+        <p>26 题家长评定，输出注意力、多动/冲动、对立违抗三个题组的原始分与均分。</p>
+        <span class="age-pill">6–18 岁 · 家长填写</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="assessment-card" href="/mind/psc-17/">
+        <span class="scale-code">PSC-17</span>
+        <h2>儿科症状检查表 PSC-17</h2>
+        <p>17 题家长评定，广谱筛查儿童情绪与行为问题，出总分与三个分量表。</p>
+        <span class="age-pill">6–17 岁 · 家长填写</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="assessment-card" href="/mind/conners-psq/">
+        <span class="scale-code">Conners PSQ</span>
+        <h2>Conners 父母症状问卷</h2>
+        <p>48 题家长评定，输出品行、学习、心身、冲动-多动、焦虑五因子与多动指数的均分。</p>
+        <span class="age-pill">3–16 岁 · 家长填写</span>
+        <span class="card-action">开始前先看适用人群 <span aria-hidden="true">→</span></span>
+      </a>
+    </section>
+
+    <div class="scale-group-heading">
+      <h2>换算工具</h2>
+      <p>不做问卷，只做一次数值换算。适合手上已经有正版报告的情况。</p>
+    </div>
+    <section class="assessment-grid" aria-label="换算工具">
+      <a class="assessment-card" href="/mind/conners-t/">
+        <span class="scale-code">CONNERS T</span>
+        <h2>Conners T 分数换算</h2>
+        <p>把正版 Conners 报告上的 T 分数换算成百分位。不复制受保护的题目、常模或解释阈值。</p>
+        <span class="age-pill">需自备正版报告</span>
+        <span class="card-action">打开换算工具 <span aria-hidden="true">→</span></span>
+      </a>
     </section>
 
     <aside class="sources-note">
-      <p>这两份问卷都是症状筛查工具，不等于诊断。青少年已有研究支持使用，但本页采用常用成人分级，12–17 岁结果应由监护人与专业人员结合年龄解释。量表来源与研究链接见各问卷页面及<a href="/licenses/">来源与许可</a>。</p>
+      <p>这些都是筛查或计分工具，<strong>都不等于诊断</strong>。达到分界只说明值得进一步了解，未达到分界也不能排除问题。成人量表（SAS、SDS）没有儿童常模，家长评定量表（SNAP-IV、PSC-17、Conners）的结果需要结合发育史和多来源信息由专业人员解释。各量表的编制者、版本与切截点出处见各自页面底部的「量表来源与适用说明」，以及本站<a href="/licenses/">来源与许可</a>。</p>
     </aside>
   </main>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.3.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.4.0</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>

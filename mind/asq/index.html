@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#9e221d">
+  <meta name="description" content="ASQ 自杀风险快速筛查：4 项筛查 + 1 项当前状态。不填写个人资料，浏览器本地计分并即时生成报告。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/mental-health.css">
+  <title>ASQ 自杀风险快速筛查｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a href="/growth/">生长发育</a>
+      <a aria-current="page" href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page assessment-page" data-mental-health-scale="asq">
+    <a class="assessment-back" href="/mind/"><span aria-hidden="true">←</span>&nbsp; 返回心理测评工具</a>
+    <header class="assessment-heading">
+      <p class="eyebrow">ASQ · 4 项筛查 + 1 项当前状态</p>
+      <h1>自杀风险快速筛查</h1>
+      <p>美国国立精神卫生研究院（NIMH）的 ASQ 工具包量表。前四项任一为“是”或“不愿回答”时，才会出现第 5 项。页面不询问姓名、年龄或其他个人资料。</p>
+      <div class="audience-note"><strong>适用人群：</strong>适用于 10 岁及以上；本页由本人作答。这不是诊断工具，是用来决定“现在要不要立刻找人”的筛查。</div>
+    </header>
+
+    <section id="questionnaire" class="questionnaire-shell" aria-labelledby="questionnaireTitle">
+      <div class="question-progress" aria-label="作答进度">
+        <div class="progress-row"><span id="progressText">已完成 0 / 4 题</span><span>预计 1 分钟</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+      </div>
+      <div class="question-intro" id="questionnaireTitle"><strong>请如实回答下面几个问题。这几题很直接，但正是因为直接才有用。</strong><span>请选择最符合实际情况的一项。回顾范围：过去几周。</span></div>
+      <form id="assessmentForm" novalidate>
+        <div id="questionList"></div>
+        <div class="submit-panel">
+          <p id="completionHint" aria-live="polite">还差 4 题。</p>
+          <button class="button primary" id="generateReport" type="submit" disabled>生成报告</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="report" class="report-shell" aria-labelledby="reportTitle" hidden>
+      <p class="eyebrow">PERSONAL REPORT · ASQ</p>
+      <h2 id="reportTitle" tabindex="-1">本次本人作答报告</h2>
+      <div class="safety-card" id="safetyCard" role="alert" hidden>
+        <h3></h3>
+
+      </div>
+      <div class="result-card" id="resultCard" data-level="minimal">
+        <p class="result-label" id="scoreLabel">阳性条目数</p>
+        <p class="result-score" id="scoreValue">0 / 4</p>
+        <p class="result-severity" id="severityLabel"></p>
+        <span class="threshold-label" id="thresholdLabel"></span>
+        <p class="report-guidance" id="reportGuidance"></p>
+      </div>
+      <div class="detail-list" id="resultDetails" hidden></div>
+      <p class="report-disclaimer"><strong>这不是诊断。</strong>分数只反映本次本人作答的结果，不能替代完整的精神科、心理或发育行为专业评估，也不能单独决定治疗。</p>
+      <p class="general-safety">无论分数多少，如果你或孩子最近有伤害自己的想法，请现在就告诉可信任的人或专业人员；也可拨打全国统一心理援助热线 12356。紧急情况下请拨 120 或 110。</p>
+      <details class="answer-details" open><summary>查看本次作答明细</summary><ol class="answer-list" id="answerReview"></ol></details>
+      <details class="source-details"><summary>量表来源与适用说明</summary><div class="details-body">
+        <p>ASQ（Ask Suicide-Screening Questions）由美国国立精神卫生研究院（NIMH）开发，工具包公开免费使用。中文题目采用 NIMH 官方中文版五项结构。</p>
+        <p>原始验证：<a href="https://pubmed.ncbi.nlm.nih.gov/23027429/" rel="external noreferrer">Horowitz 等，2012</a>。第 5 项只在前四项出现阳性时才需要回答。</p>
+      </div></details>
+      <div class="report-actions"><button class="button primary" id="printReport" type="button">打印或保存 PDF</button><button class="button secondary" id="restartAssessment" type="button">重新测评</button></div>
+    </section>
+    <noscript><p class="report-disclaimer">此问卷需要浏览器启用 JavaScript 才能计分。</p></noscript>
+  </main>
+
+  <dialog class="audience-dialog" id="audienceDialog" aria-labelledby="audienceTitle">
+    <form method="dialog">
+      <p class="dialog-code">开始前请先确认 · ASQ</p>
+      <h2 id="audienceTitle">这份量表适合谁？</h2>
+      <p class="dialog-emphasis">这份筛查会直接问到自杀相关的想法。</p>
+      <p>直接询问自杀想法不会诱发自杀行为，这一点已有研究支持；回避提问才更危险。</p>
+      <p>本页不记录、不上传你的任何回答。若你现在就有伤害自己的打算，请不要独处，直接拨打 12356，或拨 120 / 110。</p>
+      <p>量表只用于筛查或计分，不等于诊断；不会要求你填写年龄或任何身份资料。</p>
+      <div class="dialog-actions"><button class="button primary" value="continue" autofocus>我已了解，开始作答</button><a class="button secondary" href="/mind/">暂不作答</a></div>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.4.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/mind/">心理测评</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+  <script type="module" src="/assets/mental-health.js"></script>
+  <script src="/assets/pwa.js" defer></script>
+</body>
+</html>

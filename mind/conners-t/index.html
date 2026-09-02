@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#9e221d">
+  <meta name="description" content="Conners 正版报告 T 分数换算百分位：浏览器本地按正态分布换算，不复制受保护题目、常模或解释阈值。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/mental-health.css">
+  <title>Conners T 分数换算｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a href="/growth/">生长发育</a>
+      <a aria-current="page" href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page assessment-page" data-conners-calculator>
+    <a class="assessment-back" href="/mind/"><span aria-hidden="true">←</span>&nbsp; 返回心理测评工具</a>
+    <header class="assessment-heading">
+      <p class="eyebrow">CONNERS · 换算工具</p>
+      <h1>Conners T 分数换算</h1>
+      <p>把正版 Conners 报告上已经算好的 T 分数换算成百分位。本页不复制受保护的题目、常模或解释阈值，只做一次正态分布换算。</p>
+      <div class="audience-note"><strong>用法：</strong>你手上要先有一份正版 Conners 报告，把上面某个因子的 T 分数填进来即可。如果你要做的是问卷本身，请用 <a href="/mind/conners-psq/">Conners 父母症状问卷</a>。</div>
+    </header>
+
+    <div class="calculator-shell">
+      <label for="tScoreInput">T 分数（20–100）</label>
+      <div class="calculator-row">
+        <input id="tScoreInput" type="number" step="0.1" min="20" max="100" inputmode="decimal" placeholder="例如 68">
+        <button class="button primary" id="tScoreConvert" type="button">换算百分位</button>
+      </div>
+      <div class="calculator-output" id="tScoreOutput" hidden>
+        <p class="result-label">对应百分位</p>
+        <p class="result-score" id="tScoreValue">—</p>
+        <p id="tScoreDetail"></p>
+      </div>
+      <p class="calculator-error" id="tScoreError" role="alert" hidden></p>
+      <p class="group-note">换算公式：Z =（T − 50）/ 10，百分位取标准正态分布的累积概率。这一步只用到 T 分数自身的定义，与量表版本、常模和年龄分组无关；<strong>百分位高低的临床含义仍须按正版报告的解释说明理解。</strong></p>
+    </div>
+
+    <p class="report-disclaimer"><strong>这不是诊断。</strong>百分位只是同一个 T 分数的另一种表达方式，不增加任何信息，也不能替代完整评估。</p>
+    <p class="general-safety">无论分数多少，如果你或孩子最近有伤害自己的想法，请现在就告诉可信任的人或专业人员；也可拨打全国统一心理援助热线 12356。紧急情况下请拨 120 或 110。</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.4.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/mind/">心理测评</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+  <script type="module" src="/assets/mental-health.js"></script>
+  <script src="/assets/pwa.js" defer></script>
+</body>
+</html>

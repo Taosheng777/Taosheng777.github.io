@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.3.0';
+const CACHE_NAME = 'personal-toolbox-v1.4.0';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -9,9 +9,20 @@ const APP_SHELL = [
   '/ai/prompts/',
   '/growth/',
   '/growth/who-curve/',
+  '/growth/curve-4-18/',
+  '/growth/curve-4-18/dataset.js',
   '/mind/',
   '/mind/phq-9/',
   '/mind/gad-7/',
+  '/mind/phq-2/',
+  '/mind/gad-2/',
+  '/mind/asq/',
+  '/mind/sas/',
+  '/mind/sds/',
+  '/mind/snap-iv/',
+  '/mind/psc-17/',
+  '/mind/conners-psq/',
+  '/mind/conners-t/',
   '/life/',
   '/life/darkest-dungeon/',
   '/privacy/',
