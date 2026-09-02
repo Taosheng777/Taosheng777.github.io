@@ -1,7 +1,9 @@
-/* 心理测评引擎 v1.4.0
+/* 心理测评引擎 v1.5.0
    一份数据 + 一套计分 + 一个渲染器，驱动 /mind/ 下全部量表页面。
    PHQ-9 与 GAD-7 的题目、计分与分级沿用 v1.3.0 已核对版本，本次未改动。
    所有作答只存在当前页面内存，不写入任何浏览器存储。 */
+
+import { CONNERS_NORMS } from './conners-norms.js';
 
 const FREQ_0_3 = Object.freeze([
   { value: 0, label: '完全不会' },
@@ -380,7 +382,7 @@ const SCALES = Object.freeze({
 
   snap26: {
     code: 'SNAP-IV',
-    title: 'SNAP-IV 26 项（父母版）',
+    title: 'ADHD 与对立违抗行为评定',
     route: '/mind/snap-iv/',
     group: 'parent',
     kind: '家长评定',
@@ -443,7 +445,7 @@ const SCALES = Object.freeze({
 
   psc17: {
     code: 'PSC-17',
-    title: '儿科症状检查表 PSC-17',
+    title: '儿科症状检查表',
     route: '/mind/psc-17/',
     group: 'parent',
     kind: '家长评定',
@@ -497,7 +499,7 @@ const SCALES = Object.freeze({
 
   connersPsq: {
     code: 'Conners PSQ',
-    title: 'Conners 父母症状问卷',
+    title: '父母症状问卷',
     route: '/mind/conners-psq/',
     group: 'parent',
     kind: '家长评定',
@@ -510,12 +512,21 @@ const SCALES = Object.freeze({
     audienceLead: '这份问卷由父亲或母亲填写，评的是孩子平时或一贯的表现。',
     audienceNotes: [
       '适用于 3–16 岁儿童。问卷输出六个因子的均分，其中「多动指数」最常用于 ADHD 初筛。',
-      '<strong>本页不计算 T 分数。</strong>T 分数需要按年龄和性别分组的中国常模均值与标准差，本站目前没有拿到完整的分年龄分性别常模表，硬算会给出误导性的结果。如果你手上有正版报告的 T 分数，请用另一个页面做百分位换算。',
+      '本页<strong>会问孩子的年龄和性别</strong>，只用于按中国城市常模换算 T 分数；两项都可以不填，不填就只出均分。它们和答案一样只在本页内存中参与计算，不上传、不写入浏览器存储，刷新即清空。',
+      '常模来自范娟等 2005 年的 14 城市 3576 例样本，只覆盖 4–17 岁；<strong>T 分数是相对同龄同性别城市儿童的位置，不是诊断</strong>。',
     ],
-    cardHint: '48 题家长评定，输出品行、学习、心身、冲动-多动、焦虑五因子与多动指数的均分。',
+    cardHint: '48 题家长评定，输出六因子均分；填了年龄和性别还会按中国城市常模换算 T 分数。',
     agePill: '3–16 岁 · 家长填写',
     maxScore: 144,
     scoring: 'groups',
+    norms: 'conners',
+    context: {
+      ageRange: CONNERS_NORMS.ageRange,
+      legend: '换算 T 分数（可不填）',
+      hint: '填孩子的周岁年龄和性别，六个因子会按同年龄同性别的中国城市常模换算成 T 分数。不填就只出均分。这两项只在本页内存中参与计算，不上传、不保存。',
+      ageLabel: '年龄（周岁）',
+      outOfRangeNote: '常模只覆盖 4–17 岁（原作者剔除了样本过少的 3 岁与 18 岁），超出这个范围不换算 T 分数，只出均分。'
+    },
     options: CONNERS_0_3,
     items: [
       '某种小动作（咬指甲、吸手指、拉头发、拉衣服上的布毛）',
@@ -575,10 +586,11 @@ const SCALES = Object.freeze({
       { label: '焦虑', items: [12, 16, 24, 47] },
       { label: '多动指数', items: [4, 7, 11, 13, 14, 25, 31, 33, 37, 38], cutoff: 1.5 },
     ],
-    groupNote: '各因子按「均分 = 因子总分 ÷ 条目数」计算。多动指数 ≥ 1.5 是原始量表建议的筛查阈值；大样本调查通常改用同年龄同性别的第 90 百分位，需要常模表才能计算。',
+    groupNote: '各因子按「均分 = 因子总分 ÷ 条目数」计算。填了年龄和性别时，按同年龄同性别的中国城市常模换算 T 分数，T ≥ 70（约等于均值 + 2SD）标记为偏高；多动指数另按原始量表建议的 ≥ 1.5 标记。两者都是筛查线索，不是诊断阈值。',
     sources: [
       'Conners 父母症状问卷（PSQ）为 Conners 1978 年修订版，中文版由徐韬园等引入，中国城市常模由苏林雁等（2001）与范娟等（2005）建立。本页题目取自公开流通的中文版。',
-      '<strong>本页只输出原始分与因子均分，不输出 T 分数。</strong>T 分数需要按年龄和性别分组的常模均值与标准差；本站尚未取得完整的分年龄分性别常模表，因此不做换算。有正版报告 T 分数时，可用 <a href="/mind/conners-t/">Conners T 分数换算</a>查百分位。',
+      'T 分数常模取自<strong>范娟, 杜亚松, 王立伟《Conners 父母用症状问卷的中国城市常模和信度研究》，上海精神医学 2005, 17(6): 321-323</strong> 的表 2（全国 14 城市 3576 例，2000 年调查），按整岁 4–17 岁 × 性别 × 六因子的均分与标准差换算：<code>T = 50 + 10 × (X − μ) / σ</code>。原作者已剔除样本过少的 3 岁（n=3）与 18 岁（n=10），本站对这两个年龄不换算、不外推。<strong>该常模数值由扫描件经三方交叉核对录入，正式用于报告前建议对照期刊原文复核。</strong>',
+      '常用判读：T ≥ 70 相当于同龄同性别常模的均值加 2 个标准差，本站按此标记；多动指数另按原始量表建议的 ≥ 1.5 标记。两者都是筛查线索，不是诊断阈值。有正版报告 T 分数时，可用 <a href="/mind/conners-t/">Conners T 分数换算</a>查百分位。',
       '<strong>题目措辞在不同译本间存在差异（徐韬园早期译本与现行流通版），临床使用请以本机构正版量表为准。</strong>',
     ],
   },
@@ -650,29 +662,64 @@ function scoreZung(scale, answers) {
   };
 }
 
-function scoreGroups(scale, answers) {
+/** T ≥ 70 约等于同龄同性别常模的均值 + 2SD，是 Conners 常用的偏高标记线。 */
+const T_SCORE_ELEVATED = 70;
+
+/**
+ * 取常模。只在量表声明了 norms、且上下文给全年龄与性别、且年龄落在常模覆盖区间时才返回。
+ * 覆盖区间外一律返回 null——不外推、不退回总体常模。
+ */
+function lookupNorms(scale, context) {
+  if (scale.norms !== 'conners' || !context) return null;
+  const { ageYears, sex } = context;
+  if (sex !== 'M' && sex !== 'F') return null;
+  if (!Number.isInteger(ageYears)) return null;
+  const [min, max] = CONNERS_NORMS.ageRange;
+  if (ageYears < min || ageYears > max) return null;
+  const table = CONNERS_NORMS.norms[sex]?.[ageYears];
+  return table ? { table, sampleSize: CONNERS_NORMS.sampleSizes[sex][ageYears] } : null;
+}
+
+function scoreGroups(scale, answers, context) {
   const total = answers.reduce((sum, value) => sum + value, 0);
+  const normEntry = lookupNorms(scale, context);
   let anyFlagged = false;
-  const details = scale.groups.map(group => {
+  const details = scale.groups.map((group, groupIndex) => {
     const sum = group.items.reduce((acc, number) => acc + answers[number - 1], 0);
     const mean = sum / group.items.length;
     const useSum = group.mode === 'sum';
     const compared = useSum ? sum : mean;
-    const flagged = group.cutoff !== undefined && compared >= group.cutoff;
-    if (flagged) anyFlagged = true;
+    let flagged = group.cutoff !== undefined && compared >= group.cutoff;
     const shown = useSum
       ? `${sum} / ${group.items.length * scale.options[scale.options.length - 1].value}`
       : `均分 ${mean.toFixed(2)}（总分 ${sum} / ${group.items.length} 题）`;
     const cutoffText = group.cutoff === undefined
       ? ''
       : ` · 切截点 ${group.cutoff} · ${flagged ? '已达到' : '未达到'}`;
-    return { label: group.label, value: `${shown}${cutoffText}`, flagged };
+
+    let tScoreText = '';
+    const norm = normEntry?.table[groupIndex];
+    if (norm) {
+      const [mu, sigma] = norm;
+      const tScore = 50 + 10 * ((mean - mu) / sigma);
+      if (tScore >= T_SCORE_ELEVATED) flagged = true;
+      tScoreText = ` · T ${tScore.toFixed(1)}（${formatPercentileFromT(tScore)}）`;
+    }
+
+    if (flagged) anyFlagged = true;
+    return { label: group.label, value: `${shown}${tScoreText}${cutoffText}`, flagged };
   });
   const positive = scale.positiveAt !== undefined ? total >= scale.positiveAt : anyFlagged;
   return {
     total,
     totalText: String(total),
     maxScore: scale.maxScore,
+    normsApplied: Boolean(normEntry),
+    normsNote: scale.norms !== 'conners'
+      ? ''
+      : normEntry
+        ? `T 分数按 ${context.ageYears} 岁${context.sex === 'M' ? '男' : '女'}童常模换算（该组样本 ${normEntry.sampleSize} 人）。`
+        : '未换算 T 分数：需要填写年龄与性别，且年龄落在常模覆盖的 4–17 岁。',
     band: {
       label: anyFlagged ? '有题组达到常用切截点' : '各题组均未达到常用切截点',
       token: anyFlagged ? 'moderate' : 'minimal',
@@ -719,18 +766,18 @@ function scoreAsq(scale, answers) {
   };
 }
 
-function scoreScale(scaleKey, answers) {
+function scoreScale(scaleKey, answers, context) {
   const scale = SCALES[scaleKey];
   if (!scale) throw new Error(`未知量表：${scaleKey}`);
   validateAnswers(scale, answers);
   if (scale.scoring === 'sum') return scoreSum(scale, answers);
   if (scale.scoring === 'zung') return scoreZung(scale, answers);
-  if (scale.scoring === 'groups') return scoreGroups(scale, answers);
+  if (scale.scoring === 'groups') return scoreGroups(scale, answers, context);
   if (scale.scoring === 'asq') return scoreAsq(scale, answers);
   throw new Error(`未知计分方式：${scale.scoring}`);
 }
 
-/* ---------- Conners T 分数 → 百分位 ---------- */
+/* ---------- 正态换算：T 分数 ↔ 百分位 ---------- */
 
 function erf(value) {
   const sign = value < 0 ? -1 : 1;
@@ -738,6 +785,18 @@ function erf(value) {
   const t = 1 / (1 + 0.3275911 * x);
   const y = 1 - (((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t) * Math.exp(-x * x);
   return sign * y;
+}
+
+function percentileFromT(tScore) {
+  const z = (tScore - 50) / 10;
+  return 100 * 0.5 * (1 + erf(z / Math.SQRT2));
+}
+
+function formatPercentileFromT(tScore) {
+  const percentile = percentileFromT(tScore);
+  if (percentile < 0.1) return '< P0.1';
+  if (percentile > 99.9) return '> P99.9';
+  return `P${percentile.toFixed(1)}`;
 }
 
 function convertTScore(input) {
@@ -782,6 +841,48 @@ function activeIndexes(scale, form) {
     return checked && Number(checked.value) !== 0;
   });
   return triggered ? Array.from({ length: count }, (_, index) => index) : firstFour;
+}
+
+/**
+ * 读取「换算 T 分数」那一小块的年龄与性别。两项都可以不填；
+ * 值只从 DOM 读一次交给计分函数，不写入任何存储。
+ */
+function readContext(scale) {
+  if (!scale.context) return undefined;
+  const ageInput = document.querySelector('#contextAge');
+  const sexButton = document.querySelector('.context-sex[aria-pressed="true"]');
+  if (!ageInput) return undefined;
+  const raw = ageInput.value.trim();
+  const ageYears = raw === '' ? null : Number(raw);
+  return {
+    ageYears: Number.isInteger(ageYears) ? ageYears : null,
+    sex: sexButton ? sexButton.dataset.sex : null
+  };
+}
+
+function initContextControls(scale) {
+  if (!scale.context) return;
+  const buttons = [...document.querySelectorAll('.context-sex')];
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const alreadyOn = button.getAttribute('aria-pressed') === 'true';
+    buttons.forEach(other => other.setAttribute('aria-pressed', String(!alreadyOn && other === button)));
+  }));
+
+  const ageInput = document.querySelector('#contextAge');
+  const ageHint = document.querySelector('#contextAgeHint');
+  if (!ageInput || !ageHint) return;
+  const [min, max] = scale.context.ageRange;
+  ageInput.addEventListener('input', () => {
+    const raw = ageInput.value.trim();
+    if (raw === '') {
+      ageHint.textContent = '';
+      return;
+    }
+    const value = Number(raw);
+    ageHint.textContent = Number.isInteger(value) && value >= min && value <= max
+      ? ''
+      : scale.context.outOfRangeNote;
+  });
 }
 
 function initAssessment() {
@@ -829,6 +930,7 @@ function initAssessment() {
   }
 
   updateProgress();
+  initContextControls(scale);
   form.addEventListener('change', updateProgress);
 
   form.addEventListener('submit', event => {
@@ -845,7 +947,7 @@ function initAssessment() {
       return checked ? Number(checked.value) : -1;
     });
 
-    const result = scoreScale(scaleKey, answers);
+    const result = scoreScale(scaleKey, answers, readContext(scale));
     const scoreLabel = document.querySelector('#scoreLabel');
     if (scoreLabel) scoreLabel.textContent = scale.scoring === 'zung' ? '标准分' : scale.scoring === 'asq' ? '阳性条目数' : '总分';
     document.querySelector('#scoreValue').textContent = `${result.totalText} / ${result.maxScore}`;
@@ -862,6 +964,13 @@ function initAssessment() {
         const body = result.safetyBody || scale.safety?.body || [];
         safetyCard.innerHTML = `<h3>${escapeHtml(title)}</h3>${body.map(text => `<p>${text}</p>`).join('')}`;
       }
+    }
+
+    const normsNote = document.querySelector('#normsNote');
+    if (normsNote) {
+      normsNote.hidden = !result.normsNote;
+      normsNote.textContent = result.normsNote || '';
+      normsNote.dataset.applied = String(Boolean(result.normsApplied));
     }
 
     const detailBox = document.querySelector('#resultDetails');
@@ -888,6 +997,12 @@ function initAssessment() {
 
   document.querySelector('#restartAssessment').addEventListener('click', () => {
     form.reset();
+    const ageInput = document.querySelector('#contextAge');
+    if (ageInput) {
+      ageInput.value = '';
+      document.querySelector('#contextAgeHint').textContent = '';
+      document.querySelectorAll('.context-sex').forEach(button => button.setAttribute('aria-pressed', 'false'));
+    }
     report.hidden = true;
     questionnaire.hidden = false;
     document.body.classList.remove('report-visible');

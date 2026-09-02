@@ -589,6 +589,119 @@
   .calculator-error { color: var(--ink); }
 }
 
+/* ---------- v1.5.0：常模换算需要的年龄与性别（可不填） ---------- */
+
+.context-panel {
+  margin: 0 0 1px;
+  padding: 24px 24px 22px;
+  border: 0;
+  border-bottom: 2px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.context-panel legend {
+  padding: 0;
+  color: var(--plum);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.context-hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.context-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.context-field { flex: 0 1 200px; }
+
+.context-field label,
+.context-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.context-field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.context-sex-group { display: flex; gap: 8px; }
+
+.context-sex {
+  flex: 1;
+  min-height: 48px;
+  border: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.context-sex[aria-pressed="true"] {
+  border-color: var(--plum);
+  background: var(--plum);
+  color: #ffffff;
+}
+
+.context-age-hint {
+  margin: 12px 0 0;
+  color: var(--brand);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.context-age-hint:empty { display: none; }
+
+.norms-note {
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--plum);
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.norms-note[data-applied="false"] {
+  border-left-color: var(--muted);
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .context-panel { padding: 20px 16px; }
+  .context-field { flex-basis: 100%; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .context-panel { background: var(--surface-soft); }
+  .context-field input { background: var(--bg); color: var(--ink); }
+  .context-sex { background: var(--bg); color: var(--ink); }
+  .context-sex[aria-pressed="true"] { color: var(--on-invert); }
+  .norms-note { background: var(--surface-soft); color: var(--ink); }
+}
+
 @media print {
   body { background: #fff; }
   .site-header,
@@ -596,6 +709,7 @@
   .assessment-heading,
   .assessment-back,
   #questionnaire,
+  .context-panel,
   .report-actions,
   .report-followup,
   .source-details { display: none !important; }
