@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.7.0';
+const CACHE_NAME = 'personal-toolbox-v1.7.1';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -32,7 +32,6 @@ const APP_SHELL = [
   '/assets/site.css',
   '/assets/banner.jpg',
   '/assets/avatar.jpg',
-  '/assets/site.js',
   '/assets/tool-shell.css',
   '/assets/mental-health.css',
   '/assets/mental-health.js',

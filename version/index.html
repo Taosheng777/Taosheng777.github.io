@@ -27,20 +27,21 @@
     </nav>
   </header>
   <main id="main" class="inner-page document-page">
-    <header class="page-heading"><p class="eyebrow">VERSION</p><h1>版本信息</h1><p>当前公开版本：<strong>1.7.0</strong> · 发布日期：2026-09-03</p></header>
+    <header class="page-heading"><p class="eyebrow">VERSION</p><h1>版本信息</h1><p>当前公开版本：<strong>1.7.1</strong> · 发布日期：2026-09-03</p></header>
     <section><h2>四个板块与工具</h2><ul><li><a href="/ai/">AI 工具</a>：12 个常用 Prompt</li><li><a href="/growth/">生长发育工具</a>：WHO 0–3 岁与中国／WHO 4–18 岁生长曲线</li><li><a href="/mind/">心理测评工具</a>：10 份量表与 1 个 T 分数换算工具</li><li><a href="/life/">个人生活工具</a>：《暗黑地牢》奇物交互速查</li></ul></section>
+    <section><h2>1.7.1 更新内容</h2><p>去掉首页的「安装到设备」按钮。这个按钮只在少数浏览器里才会出现，位置又和「关于我」「全部工具」并排，容易误以为是主要入口。安装能力本身不变：浏览器菜单里的「添加到主屏幕」「安装应用」照常可用，装上后仍然可以离线打开。</p></section>
     <section><h2>1.7.0 更新内容</h2><p>Conners 常模的来源说明改写：数值已与知网官方存档的期刊原文逐格核对一致（表 2 的 168 个数值点与 28 个样本量、表 1 全部数值零分歧），核对经三轮相互独立的识别。原来的「建议对照期刊原文复核」提示随之替换为这一事实陈述，并补上结论边界——一致不等于必然正确，期刊印刷本身的错误无法通过再识别发现。</p><p>知网官方存档已随源码入库，其 SHA-256 公开在来源页可供复核。</p></section>
     <section><h2>1.6.0 更新内容</h2><p>4–18 岁生长曲线新增超重与肥胖判定：中国参照用李辉等 2009 年 BMI 篇表 3 的分年龄分性别界值（每半岁一行，18 岁与成人 24 / 28 接轨），WHO 参照按其 5–19 岁官方口径的 Z 分数切点。两套依据不同，同一个孩子可能落在不同档。国家标准 WS/T 586—2018 只适用于 6–18 岁，4–5 岁沿用表 3 界值仅供参考。</p><p>界值表原始 CSV 曾缺 9.0、10.5、11.5 三行，已按论文原文补全为 33 行并与原有 30 行逐格对账。</p></section>
     <section><h2>1.5.0 更新内容</h2><p>Conners 父母症状问卷接入范娟等 2005 年中国城市常模；年龄和性别均可不填，填写后按同龄同性别常模换算六因子 T 分数，超出 4–17 岁不换算、不外推。</p><p>4–18 岁中国生长参照已用李辉等 2009 年两篇《中华儿科杂志》原文附表做独立复核并补充中文出处。（1.6.0 起已加入超重肥胖判定，见上。）</p></section>
     <section><h2>1.4.0 更新内容</h2><p>新增中国／WHO 可切换的 4–18 岁生长曲线；心理测评由 PHQ-9、GAD-7 扩展为 10 份量表加 1 个换算工具；首页横幅改为渐变压图，并把本地处理说明移到页尾。</p></section>
     <section><h2>1.3.0 更新内容</h2><p>全站视觉改造。配色改为暖白纸底、近黑正文和单一朱红强调色；朱红专用于医学边界与安全提示，四个板块各自的标记色只出现在板块编号和板块页顶部色带上。版式改为规则线分隔的网格，取消圆角和阴影，层级只靠字号。首页新增横幅图与站点头像。</p><p>工具本身的算法、题目、计分口径、WHO 内嵌标准表和 PHQ-9 第 9 题安全提示均未改动；全部页面地址、旧地址跳转和离线能力保持不变。图片素材出处见<a href="/licenses/">来源与许可</a>。</p></section>
     <section><h2>1.2.0 更新内容</h2><p>网站从平铺的工具箱改成个人主页加四个板块：首页换成身份与板块入口，新增<a href="/about/">关于</a>页和四个板块首页，全站加入跟随系统的深色模式。</p><p>工具地址随之调整：<code>/tools/ai-thinking/</code> 改为 <code>/ai/prompts/</code>，<code>/tools/who-growth/</code> 改为 <code>/growth/who-curve/</code>，<code>/tools/mental-health/</code> 及其两份问卷改为 <code>/mind/</code>，<code>/tools/darkest-dungeon/</code> 改为 <code>/life/darkest-dungeon/</code>。旧地址保留为跳转页，收藏和已安装的应用不会失效。工具本身的算法、题目和计分口径未改动。</p></section>
-    <section><h2>运行方式</h2><p>原生 HTML、CSS 和 JavaScript；无框架、数据库、第三方运行依赖或分析服务。离线缓存名称为 <code>personal-toolbox-v1.7.0</code>。</p></section>
+    <section><h2>运行方式</h2><p>原生 HTML、CSS 和 JavaScript；无框架、数据库、第三方运行依赖或分析服务。离线缓存名称为 <code>personal-toolbox-v1.7.1</code>。</p></section>
     <section><h2>发布归属</h2><p>当前免费站点由用户的 GitHub 账号 <strong>Taosheng777</strong> 通过公开产物仓库 <a href="https://github.com/Taosheng777/Taosheng777.github.io" rel="external noreferrer"><code>Taosheng777/Taosheng777.github.io</code></a> 发布；GitHub 仅提供 Pages 托管。公开仓库只含构建产物，私有源码仓库仍是维护事实源。</p></section>
     <section><h2>来源与许可</h2><p>WHO 与中国生长参照、10 份心理量表、中国城市常模、游戏 Wiki 资料和非官方边界见<a href="/licenses/">来源与许可</a>。本站对上游名称和内容不主张所有权。</p></section>
   </main>
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.7.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.7.1</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>
