@@ -153,6 +153,7 @@ svg{display:block;width:100%;height:auto;min-height:285px}
           <li>落在 ±2 SD 之间是同龄同性别的常见范围，落在范围外先复核测量值和测量方式，再结合病史判断。</li>
           <li>一次测量只是一个点。判断生长问题看的是<strong>同一个孩子沿着自己那条线的走向</strong>，而不是单点高低。</li>
           <li>切换上方的参照标准，三张图会同时换成另一套；<strong>同一次判断只用一套标准。</strong></li>
+          <li>BMI 卡片上的<strong>超重 / 肥胖判定按所选标准各自的官方口径</strong>：中国查分年龄性别界值表，WHO 按 BMI 的 Z 分数切点。两套可能给出不同结论。</li>
         </ul>
       </div>
     </div>
@@ -160,16 +161,16 @@ svg{display:block;width:100%;height:auto;min-height:285px}
 
   <div class="footer">
     <div class="source-box">
-      <strong>中国参照标准：</strong>宗心南、李辉、张亚钦等，<em>Construction of a New Growth References for China Based on Urban Chinese Children</em>，<a href="https://doi.org/10.1371/journal.pone.0059569" rel="external noreferrer">PLoS ONE 2013;8(4):e59569</a>（开放获取）。数据来源为 2005 年第四次全国九市城区 7 岁以下儿童体格发育调查与 2005 年中国学生体质与健康调研，94,302 名城区健康儿童。<strong>中文出处：</strong>李辉, 季成叶, 宗心南, 等. 中国0～18岁儿童、青少年身高、体重的标准化生长曲线 / 体块指数的生长曲线[J]. 中华儿科杂志, 2009, 47(7): 487-492 / 493-498——两者同源，本工具已用中文原文附表逐点复核（BMI 的 L/M/S 直接对账，身高体重用 P3/P50/P97 反算 Z 分数），4–18 岁段一致。本工具直接使用论文附表的 L、M、S 参数，来源网格为 48 月龄起每 6 个月一个点，中间月龄按 L、M、S 线性插值。<strong>本工具不内置超重与肥胖判定</strong>；国家标准 WS/T 586—2018 适用于 6–18 岁学龄儿童青少年，4–5 岁不适用该标准，正式筛查应按相应年龄标准由专业人员评估。
+      <strong>中国参照标准：</strong>宗心南、李辉、张亚钦等，<em>Construction of a New Growth References for China Based on Urban Chinese Children</em>，<a href="https://doi.org/10.1371/journal.pone.0059569" rel="external noreferrer">PLoS ONE 2013;8(4):e59569</a>（开放获取）。数据来源为 2005 年第四次全国九市城区 7 岁以下儿童体格发育调查与 2005 年中国学生体质与健康调研，94,302 名城区健康儿童。<strong>中文出处：</strong>李辉, 季成叶, 宗心南, 等. 中国0～18岁儿童、青少年身高、体重的标准化生长曲线 / 体块指数的生长曲线[J]. 中华儿科杂志, 2009, 47(7): 487-492 / 493-498——两者同源，本工具已用中文原文附表逐点复核（BMI 的 L/M/S 直接对账，身高体重用 P3/P50/P97 反算 Z 分数），4–18 岁段一致。本工具直接使用论文附表的 L、M、S 参数，来源网格为 48 月龄起每 6 个月一个点，中间月龄按 L、M、S 线性插值。<strong>本工具超重与肥胖判定</strong>用同一篇 BMI 论文的表 3：2–18 岁每半岁一行的分性别 BMI 界值，18 岁与中国成人超重 24、肥胖 28 kg/m² 接轨；年龄向下取整到半岁查表，不插值。<strong>注意适用范围：</strong>现行国家标准 WS/T 586—2018《学龄儿童青少年超重与肥胖筛查》只适用于 6–18 岁，与本表同源；4–5 岁不在该国标范围内，本工具此段沿用表 3 的界值，仅供参考，正式筛查应按相应年龄的标准由专业人员评估。
     </div>
     <div class="source-box">
-      <strong>WHO 参照：</strong>48–60 月龄取 <a href="https://www.who.int/toolkits/child-growth-standards" rel="external noreferrer">WHO Child Growth Standards</a>（0–5 岁），61 月龄起取 <a href="https://www.who.int/tools/growth-reference-data-for-5to19-years" rel="external noreferrer">WHO Growth reference 5–19 years</a>（2007），衔接点与 WHO 自身规则一致。整数月龄换算天数采用 WHO <code>anthro</code> 的 30.4375 日/月规则。<strong>WHO 的年龄别体重只发布到 120 月龄（10 岁）</strong>，10 岁以上 WHO 不提供年龄别体重参照，本工具据实显示「不适用」，请改看年龄别 BMI。
+      <strong>WHO 参照：</strong>48–60 月龄取 <a href="https://www.who.int/toolkits/child-growth-standards" rel="external noreferrer">WHO Child Growth Standards</a>（0–5 岁），61 月龄起取 <a href="https://www.who.int/tools/growth-reference-data-for-5to19-years" rel="external noreferrer">WHO Growth reference 5–19 years</a>（2007），衔接点与 WHO 自身规则一致。整数月龄换算天数采用 WHO <code>anthro</code> 的 30.4375 日/月规则。WHO 侧的体重状况按其 5–19 岁参照的官方口径判定：BMI-for-age Z &gt; +1SD 为超重、&gt; +2SD 为肥胖、&lt; −2SD 为消瘦、&lt; −3SD 为重度消瘦。<strong>WHO 的年龄别体重只发布到 120 月龄（10 岁）</strong>，10 岁以上 WHO 不提供年龄别体重参照，本工具据实显示「不适用」，请改看年龄别 BMI。
     </div>
     <div class="source-box">
       <strong>计算口径：</strong>两套标准均采用原始 LMS Z 分数（<code>Z = ((X/M)^L − 1) / (L·S)</code>，L 接近 0 时取 <code>ln(X/M)/S</code>），<strong>不做 WHO Anthro 对 |Z|&gt;3 的调整</strong>——中国参照标准未规定该调整，为保证两套口径可比，WHO 侧也不做。本站 <a href="/growth/who-curve/">0–3 岁工具</a>沿用 WHO <code>anthro</code> 的调整规则，因此两个工具在极端值上会有差异。|Z|&gt;5 时按超出参照范围提示。
     </div>
     <div class="source-box">
-      <strong>用途限制：</strong>本工具用于门诊单次生长评估与对照，不建立档案、不保存历史记录、不处理早产儿矫正月龄。单次测量只是一个点，真正有意义的是孩子自己的生长轨迹。<strong>两套标准不能混着用在同一次判断上</strong>：中国参照基于 2005 年全国调查，WHO 参照基于国际多中心数据与 1977 NCHS 数据重构，同一个孩子在两套标准下的 Z 分数本来就不同。本工具不能替代完整临床评估、诊断或治疗建议。
+      <strong>用途限制：</strong>本工具用于门诊单次生长评估与对照，不建立档案、不保存历史记录、不处理早产儿矫正月龄。单次测量只是一个点，真正有意义的是孩子自己的生长轨迹。<strong>两套标准不能混着用在同一次判断上</strong>：中国参照基于 2005 年全国调查，WHO 参照基于国际多中心数据与 1977 NCHS 数据重构，同一个孩子在两套标准下的 Z 分数本来就不同；超重肥胖的判定依据也不同（中国查界值表，WHO 按 Z 分数切点），因此同一个孩子在两套标准下可能落在不同档，这是口径差异不是计算错误。本工具不能替代完整临床评估、诊断或治疗建议。
     </div>
     <div class="tool-site-note"><strong>隐私：</strong>性别、年龄和测量值只在当前页面内存中计算，不会上传、写入浏览器存储或进入离线缓存。刷新或关闭页面即清除。<a href="/privacy/">查看隐私说明</a></div>
   </div>
@@ -265,6 +266,39 @@ function zTag(z) {
 
 function rowsFor(standard, sex, indicator) {
   return GROWTH_4_18[standard]?.[sex]?.[indicator] || null;
+}
+
+/**
+ * 体重状况判定。两套标准各按自己的官方口径，不混用：
+ *  - 中国：李辉 2009 BMI 篇表 3 的分年龄分性别 BMI 界值，年龄向下取整到半岁查表，不插值。
+ *  - WHO：5–19 岁参照的官方口径，BMI-for-age Z > +1SD 超重、> +2SD 肥胖、
+ *         < −2SD 消瘦、< −3SD 重度消瘦。
+ * 两者依据不同、切点不同，同一个孩子可能落在不同档，这一点写在页面上。
+ */
+function classifyWeight(standard, sex, month, bmi, z) {
+  if (bmi === null || bmi === undefined) return null;
+  if (standard === 'cn') {
+    const table = GROWTH_4_18.cnCutoffs?.[sex];
+    if (!table) return null;
+    const band = Math.floor((month / 12) * 2) / 2;
+    let row = null;
+    for (const candidate of table) {
+      if (candidate[0] <= band + 1e-9) row = candidate; else break;
+    }
+    if (!row) return null;
+    const [bandAge, overweight, obese] = row;
+    const basis = `${bandAge.toFixed(1)} 岁组界值：超重 ${overweight}、肥胖 ${obese} kg/m²`;
+    if (bmi >= obese) return { label: '肥胖', token: 'bad', basis };
+    if (bmi >= overweight) return { label: '超重', token: 'warn', basis };
+    return { label: '未达超重界值', token: 'ok', basis };
+  }
+  if (z === null || z === undefined) return null;
+  const basis = 'WHO 5–19 岁参照：&gt; +1SD 超重、&gt; +2SD 肥胖、&lt; −2SD 消瘦';
+  if (z > 2) return { label: '肥胖', token: 'bad', basis };
+  if (z > 1) return { label: '超重', token: 'warn', basis };
+  if (z < -3) return { label: '重度消瘦', token: 'bad', basis };
+  if (z < -2) return { label: '消瘦', token: 'warn', basis };
+  return { label: '在正常范围', token: 'ok', basis };
 }
 
 /* ---------- 交互 ---------- */
@@ -398,11 +432,13 @@ function renderResults(calc) {
     }
     const tag = zTag(result.z);
     const extreme = Math.abs(result.z) > 5;
+    const weight = key === 'bfa' ? classifyWeight(selectedStandard, selectedSex, calc.month, result.value, result.z) : null;
     return `<div class="result">
       <div class="name">${config.name}</div>
       <div class="value">Z = ${result.z.toFixed(2)}</div>
       <div class="sub">${result.value.toFixed(config.decimals)} ${config.unit} · ${formatPercentile(result.z)} · 同龄同性别中位数 ${result.lms.m.toFixed(config.decimals)} ${config.unit}</div>
       <span class="tag ${tag.cls}">${tag.text}</span>
+      ${weight ? `<span class="tag ${weight.token}">${weight.label}</span><div class="sub">${weight.basis}</div>` : ''}
       ${extreme ? '<div class="sub">|Z| &gt; 5，已超出参照范围，请先复核测量值。</div>' : ''}
     </div>`;
   }).join('');
