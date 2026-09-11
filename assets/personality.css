@@ -1,0 +1,486 @@
+/* 16 型人格测试 · 页面样式 v1.9.0
+   延续站点纪律：圆角 0、无阴影、层级只靠字号与规则线，朱红只留给医学边界与安全提示。
+   唯一的例外是七级刻度的圆圈——它是单选控件本身的形状，不是装饰块。
+
+   五个维度不引入新颜色，直接复用站点已有的四个板块色加墨色，
+   由 data-dim 映射到 --dim，因此深色模式跟着 site.css 的令牌一起翻转。
+   小程序侧用的是参考页面的实测配色，两边视觉不同，题目与计分完全一致。 */
+
+/* 七个圆圈本身没有可见文字，每个圆的含义靠 .quiz-option-text 供读屏软件读出，
+   鼠标悬停时由 title 给出提示。 */
+.visually-hidden,
+.quiz-option-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.personality-page { max-width: 980px; }
+
+/* 站内已有的两个绿色（林绿与暗青）不排在相邻两行，中间隔一行墨色，五条坐标轴才分得开。 */
+[data-dim="mind"] { --dim: var(--violet); }
+[data-dim="energy"] { --dim: var(--gold); }
+[data-dim="nature"] { --dim: var(--teal); }
+[data-dim="tactics"] { --dim: var(--ink); }
+[data-dim="identity"] { --dim: var(--plum); }
+
+/* ---------- 进度区 ---------- */
+
+.quiz-shell,
+.result-shell { margin-bottom: 72px; }
+
+.quiz-progress {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin-bottom: 6px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.quiz-progress-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-segments {
+  display: flex;
+  gap: 4px;
+  margin: 10px 0;
+}
+
+.progress-seg {
+  flex: 1;
+  height: 6px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+
+.progress-seg[data-current="true"] { box-shadow: inset 0 0 0 1px var(--plum); }
+
+.progress-seg-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--plum);
+  transition: width 180ms ease;
+}
+
+.quiz-progress-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 20px;
+}
+
+.quiz-prev {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.quiz-prev:hover { color: var(--brand); }
+.quiz-prev[hidden] { display: none; }
+
+.quiz-step {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 题目 ---------- */
+
+.quiz-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quiz-item {
+  padding: 30px 0 30px 20px;
+  border-top: 1px solid var(--line-soft);
+  border-left: 3px solid transparent;
+  /* 进度区是 sticky 的，滚动定位到某一题时要给它让出位置，不然题号会被压在下面 */
+  scroll-margin-top: 116px;
+}
+
+.quiz-item:first-child { border-top: 0; }
+.quiz-item[data-active="true"] { border-left-color: var(--plum); }
+
+.quiz-number {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+}
+
+.quiz-statement {
+  margin: 8px 0 24px;
+  max-width: 46ch;
+  font-size: clamp(18px, 2.2vw, 21px);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+}
+
+.quiz-item[data-state="done"] .quiz-statement { color: var(--muted); }
+
+.quiz-scale {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* --unit 是中立档圆圈的直径，其余六档按 1.23 / 1.46 / 1.77 倍放大，
+   七个圆圈加间隙的总宽在 320px 屏上仍然放得下，不换行也不产生横向滚动。 */
+.quiz-options {
+  --unit: clamp(24px, 6.8vw, 34px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  max-width: 620px;
+}
+
+/* 圆圈本身可以小到 24px，但可点区域按 44px 高度给足；
+   宽度受限于一行七个，只能等于圆圈直径。 */
+.quiz-option {
+  position: relative;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* z-index 不能省：圆圈虽然在 DOM 里排在 input 之后且未定位，实测仍会盖住 input 的命中区，
+   自动化点击与读屏定位都会落到圆圈上。抬一层让 input 自己接住点击。 */
+.quiz-option input {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.quiz-option[data-tone="agree"] { color: var(--plum); }
+.quiz-option[data-tone="disagree"] { color: var(--gold); }
+
+.quiz-option[data-step="3"] { --circle: calc(var(--unit) * 1.77); }
+.quiz-option[data-step="2"] { --circle: calc(var(--unit) * 1.46); }
+.quiz-option[data-step="1"] { --circle: calc(var(--unit) * 1.23); }
+.quiz-option[data-step="0"] { --circle: var(--unit); }
+
+.quiz-circle {
+  display: grid;
+  place-items: center;
+  width: var(--circle);
+  height: var(--circle);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 180ms ease, border-width 120ms ease;
+}
+
+.quiz-circle::after {
+  content: "";
+  width: 36%;
+  height: 18%;
+  margin-top: -14%;
+  border-left: 2px solid var(--bg);
+  border-bottom: 2px solid var(--bg);
+  opacity: 0;
+  transform: rotate(-45deg);
+  transition: opacity 180ms ease;
+}
+
+.quiz-option:hover .quiz-circle { border-width: 3px; }
+
+.quiz-option:has(input:checked) .quiz-circle { background: currentColor; }
+.quiz-option:has(input:checked) .quiz-circle::after { opacity: 1; }
+.quiz-option:has(input:focus-visible) .quiz-circle { outline: 3px solid var(--brand); outline-offset: 3px; }
+
+.quiz-ends {
+  display: flex;
+  justify-content: space-between;
+  max-width: 620px;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.quiz-end-agree { color: var(--plum); }
+.quiz-end-disagree { color: var(--gold); }
+
+.quiz-actions {
+  margin-top: 26px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.quiz-hint {
+  min-height: 20px;
+  margin: 0 0 13px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.quiz-actions .button { width: min(100%, 360px); }
+
+/* ---------- 结果 ---------- */
+
+.result-shell > .eyebrow { margin-bottom: 10px; }
+
+.result-code {
+  margin: 0;
+  font-size: clamp(54px, 12vw, 124px);
+  font-weight: 850;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.result-summary {
+  margin: 20px 0 0;
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.result-section-heading {
+  margin: 44px 0 0;
+  padding-top: 18px;
+  border-top: 2px solid var(--line);
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.result-section-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.62;
+}
+
+.facet-list {
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facet {
+  padding: 20px 0 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.facet:first-child { border-top: 1px solid var(--line-soft); }
+
+.facet-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.facet-title { font-size: 15px; font-weight: 700; }
+
+.facet-value {
+  color: var(--dim);
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.facet-axis {
+  position: relative;
+  height: 14px;
+  margin: 15px 0 9px;
+}
+
+.facet-axis::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--line-soft);
+}
+
+.facet-mid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--line-soft);
+}
+
+.facet-bar {
+  position: absolute;
+  top: 4px;
+  height: 5px;
+  min-width: 1px;
+  background: var(--dim);
+}
+
+.facet-marker {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 14px;
+  margin-left: -1.5px;
+  background: var(--dim);
+}
+
+.facet-ends {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.facet-report {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.facet-report:first-of-type { border-top: 1px solid var(--line-soft); }
+
+.facet-report-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.facet-letter {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  background: var(--dim);
+  color: var(--bg);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.facet-report h4 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.facet-report-sub {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.facet-balanced {
+  margin: 16px 0 0;
+  padding: 2px 0 2px 14px;
+  border-left: 3px solid var(--dim);
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.facet-report-summary {
+  margin: 16px 0 0;
+  font-size: 15.5px;
+  line-height: 1.62;
+}
+
+.facet-points {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facet-points li {
+  position: relative;
+  margin-top: 9px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.facet-points li::before {
+  content: "";
+  position: absolute;
+  top: 0.66em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: var(--dim);
+}
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* ---------- 响应式 ---------- */
+
+@media (max-width: 640px) {
+  .quiz-item { padding: 26px 0 26px 14px; }
+  .quiz-progress { padding: 12px 13px; }
+  .facet-letter { width: 40px; height: 40px; font-size: 19px; }
+}
+
+@media print {
+  .site-header,
+  .site-footer,
+  .assessment-back,
+  .assessment-heading,
+  .quiz-shell,
+  .result-actions { display: none !important; }
+  main.personality-page { width: 100%; max-width: none; padding: 0; }
+  .result-shell { margin: 0; }
+  .facet,
+  .facet-report { break-inside: avoid; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-seg-fill,
+  .quiz-circle,
+  .quiz-circle::after { transition: none; }
+}

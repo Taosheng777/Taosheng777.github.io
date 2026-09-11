@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.7.1';
+const CACHE_NAME = 'personal-toolbox-v1.9.0';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -7,6 +7,7 @@ const APP_SHELL = [
   '/tools/',
   '/ai/',
   '/ai/prompts/',
+  '/ai/skills/',
   '/growth/',
   '/growth/who-curve/',
   '/growth/curve-4-18/',
@@ -23,6 +24,7 @@ const APP_SHELL = [
   '/mind/psc-17/',
   '/mind/conners-psq/',
   '/mind/conners-t/',
+  '/mind/personality/',
   '/life/',
   '/life/darkest-dungeon/',
   '/privacy/',
@@ -36,6 +38,8 @@ const APP_SHELL = [
   '/assets/mental-health.css',
   '/assets/mental-health.js',
   '/assets/conners-norms.js',
+  '/assets/personality.css',
+  '/assets/personality.js',
   '/assets/pwa.js',
   '/manifest.webmanifest',
   '/og.png',

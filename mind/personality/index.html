@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#9e221d">
+  <meta name="description" content="16 型人格测试：60 道题的本人自评，浏览器本地计分，给出四字母类型与五个维度的偏向。非临床工具，不筛查也不诊断，不填写任何个人资料。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/mental-health.css">
+  <link rel="stylesheet" href="/assets/personality.css">
+  <title>16 型人格测试｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a href="/growth/">生长发育</a>
+      <a aria-current="page" href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page assessment-page personality-page" data-personality>
+    <a class="assessment-back" href="/mind/"><span aria-hidden="true">←</span>&nbsp; 返回心理测评工具</a>
+    <header class="assessment-heading">
+      <p class="eyebrow">16 型人格 · 本人自评</p>
+      <h1>16 型人格测试</h1>
+      <p>60 道题，约 10 分钟，每题在「认同」到「不认同」之间选一个位置。作答完给出一个四字母类型加 A／T 后缀，以及五个维度各自偏向哪一端、偏了多少。页面不询问姓名、年龄或任何身份资料。</p>
+      <div class="audience-note"><strong>这不是临床量表：</strong>它描述的是日常偏好，不筛查、不评估，也不诊断任何心理或精神问题。题目、计分与解读文字全部由本站自行撰写，与任何商业人格测试的题库和算法无关，结果也不能和别处的类型互相换算或比较。</div>
+    </header>
+
+    <section id="quiz" class="quiz-shell" aria-labelledby="quizTitle">
+      <h2 id="quizTitle" class="visually-hidden">作答</h2>
+      <div class="quiz-progress">
+        <div class="quiz-progress-row"><span id="progressCount">已作答 0 / 60</span><span id="progressTime">约还需 10 分钟</span></div>
+        <div class="progress-segments" id="progressSegments" aria-hidden="true"></div>
+        <div class="quiz-progress-foot">
+          <button class="quiz-prev" id="prevStep" type="button" hidden><span aria-hidden="true">←</span> 上一组题</button>
+          <span class="quiz-step" id="stepLabel">第 1 / 6 部分</span>
+        </div>
+      </div>
+      <ol class="quiz-list" id="questionList"></ol>
+      <div class="quiz-actions">
+        <p class="quiz-hint" id="stepHint" aria-live="polite"></p>
+        <button class="button primary" id="nextStep" type="button">下一组题</button>
+      </div>
+    </section>
+
+    <section id="result" class="result-shell" aria-labelledby="resultTitle" hidden>
+      <p class="eyebrow">PERSONAL REPORT · 16 型人格</p>
+      <h2 id="resultTitle" tabindex="-1">本次测试结果</h2>
+      <p class="result-code" id="resultCode">—</p>
+      <p class="result-summary" id="resultSummary"></p>
+
+      <h3 class="result-section-heading">五个维度</h3>
+      <p class="result-section-note">每条横轴左端是第一极、右端是第二极，色条从中线画向你本次偏的那一端，长度就是偏离的程度。落在中线附近说明两端接近，这一项换一天作答可能会翻过去。</p>
+      <ol class="facet-list" id="resultAxes"></ol>
+
+      <h3 class="result-section-heading">逐项解读</h3>
+      <p class="result-section-note">每个维度按本次偏向的那一极给一段说明，最后一条都是这个偏好要留意的地方。</p>
+      <div id="resultReports"></div>
+
+      <div class="result-actions">
+        <button class="button primary" id="printResult" type="button">打印或保存 PDF</button>
+        <button class="button secondary" id="restartQuiz" type="button">重新测一次</button>
+      </div>
+
+      <p class="report-disclaimer"><strong>这不是诊断，也不是筛查。</strong>结果只反映你本次作答的偏好，换一个时间、换一种心境都可能不同。它描述的是倾向，不是能力，更不是心理或精神问题的判断依据。</p>
+      <p class="general-safety">如果你或孩子最近有伤害自己的想法，请现在就告诉可信任的人或专业人员；也可拨打全国统一心理援助热线 12356。紧急情况下请拨 120 或 110。同一板块里的 <a href="/mind/phq-9/">PHQ-9</a>、<a href="/mind/gad-7/">GAD-7</a> 才是筛查用的量表，这份人格测试不承担那个作用。</p>
+      <p class="report-disclaimer">答案与结果只在当前页面内存中计算，不联网、不上传、不写入浏览器存储，刷新或离开页面即清空。</p>
+    </section>
+    <noscript><p class="report-disclaimer">这份测试需要浏览器启用 JavaScript 才能作答和计分。</p></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.9.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/mind/">心理测评</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+  <script type="module" src="/assets/personality.js"></script>
+  <script src="/assets/pwa.js" defer></script>
+</body>
+</html>

@@ -1,13 +1,17 @@
-/* 心理测评引擎 v1.7.1
+/* 心理测评引擎 v1.9.0
    一份数据 + 一套计分 + 一个渲染器，驱动 /mind/ 下全部量表页面。
    PHQ-9 与 GAD-7 的题目、计分与分级沿用 v1.3.0 已核对版本，本次未改动。
    所有作答只存在当前页面内存，不写入任何浏览器存储。 */
 
 import { CONNERS_NORMS } from './conners-norms.js';
 
+/* 第 1 档原写「好几天」。英文原档是 Several days，本意「有那么几天」，是最轻的一档
+   有症状选项；中文「好几天」带「天数不算少」的强调，作答者因此退回「完全不会」，
+   会把分数系统性压低（多位试填者反馈「怎么没有偶尔这个选项」）。v1.9.0 起改为
+   「有几天（偶尔）」，分值、计分、切点与分档一律未动。 */
 const FREQ_0_3 = Object.freeze([
   { value: 0, label: '完全不会' },
-  { value: 1, label: '好几天' },
+  { value: 1, label: '有几天（偶尔）' },
   { value: 2, label: '一半以上的日子' },
   { value: 3, label: '几乎每天' },
 ]);
@@ -19,10 +23,12 @@ const ZUNG_1_4 = Object.freeze([
   { value: 4, label: '绝大部分或全部时间' },
 ]);
 
+/* 第 2 档原写「不少」。英文原档是 Quite a bit，「不少」作程度词太弱，家长分不清
+   它与「很多」的界线，中间两档会塌成一档。v1.9.0 起改为「比较多」，分值不变。 */
 const SNAP_0_3 = Object.freeze([
   { value: 0, label: '完全没有' },
   { value: 1, label: '有一点' },
-  { value: 2, label: '不少' },
+  { value: 2, label: '比较多' },
   { value: 3, label: '很多' },
 ]);
 
