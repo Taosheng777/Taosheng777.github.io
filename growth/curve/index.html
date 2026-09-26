@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#9e221d">
+  <meta name="description" content="出生至18岁，按年龄自动匹配参照，支持骨龄投点、体重选填和遗传靶身高。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/mental-health.css">
+  <link rel="stylesheet" href="/assets/clinical-tools.css">
+  <title>生长曲线助手｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a aria-current="page" href="/growth/">生长发育</a>
+      <a href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page clinical-page">
+    <a class="assessment-back" href="/growth/">← 返回生长发育工具</a>
+    <header class="page-heading"><p class="eyebrow">GROWTH</p><h1>生长曲线助手</h1><p>填写年龄与身高，查看本次测量在同龄参照中的位置。</p></header>
+    <form id="growthForm" class="growth-form" novalidate autocomplete="off">
+      <fieldset class="choice-row"><legend>性别</legend><label><input type="radio" name="sex" value="M" checked> 男</label><label><input type="radio" name="sex" value="F"> 女</label></fieldset>
+      <fieldset class="choice-row"><legend>年龄填写方式</legend><label><input type="radio" name="ageInputMode" value="birth" checked> 出生年月</label><label><input type="radio" name="ageInputMode" value="manual"> 手工年龄</label></fieldset>
+      <div id="birthFields"><div class="input-grid"><label><span id="birthLabel">出生年月</span><input id="birthDate" name="birthDate" type="month"></label><label>测量日期<input name="measurementDate" id="measurementDate" type="date"></label></div><label class="precision-control"><input id="exactBirth" type="checkbox"> 知道完整日期，补填出生日</label></div>
+      <div id="manualFields" class="input-grid" hidden><label>整岁<input name="ageYears" type="number" min="0" max="18" step="1" inputmode="numeric" placeholder="不足1岁填0"></label><label>余月（0–11）<input name="ageMonths" type="number" min="0" max="11" step="1" inputmode="numeric" placeholder="0"></label></div>
+      <p id="ageHint" class="field-help" aria-live="polite">4岁以下自动采用 WHO，4岁起采用中国参照。</p>
+      <div class="input-grid"><label><span id="heightLabel">身长 / 身高（cm）</span><input name="height" type="number" step="0.1" inputmode="decimal" placeholder="必填"></label><label>体重（kg，可不填）<input name="weight" type="number" step="0.01" inputmode="decimal" placeholder="选填"></label><label id="headField" hidden>头围（cm，可不填）<input name="head" type="number" step="0.1" inputmode="decimal" placeholder="选填"></label></div>
+      <details id="boneFields" class="bone-fields" hidden><summary>加入骨龄对照（可选）</summary><label>骨龄（小数岁）<input name="boneAgeYears" type="number" min="0" max="18" step="0.1" inputmode="decimal" placeholder="例如 9.5"></label><p class="field-help">把同一次实测身高放到骨龄位置。复用年龄别参照，不是骨龄常模或成年身高预测。</p></details>
+      <div class="form-actions"><button class="button primary" type="submit">查看生长结果</button><button class="button secondary" type="reset">清空重填</button></div>
+      <p id="growthError" class="form-error" role="alert"></p>
+    </form>
+    <section id="growthResult" hidden aria-labelledby="growthResultTitle"><h2 id="growthResultTitle" tabindex="-1">本次生长结果</h2><p id="referenceCaption"></p><p class="print-boundary">本次单次生长评估与参考，不替代完整临床评估。</p><p id="measurementNote" class="field-help"></p><div id="growthCards" class="metric-grid"></div><div id="boneResult" class="bone-result" hidden></div>
+      <div class="chart-controls"><fieldset class="choice-row"><legend>参考线</legend><label><input type="radio" name="lineMode" value="percentile" checked> 百分位 P</label><label><input type="radio" name="lineMode" value="sd"> 标准差 SD</label></fieldset><fieldset class="choice-row"><legend>显示范围</legend><label><input type="radio" name="viewport" value="full" checked> 全龄段</label><label><input type="radio" name="viewport" value="near"> 附近放大</label></fieldset></div>
+      <div id="growthCharts"></div><button class="button secondary" id="printGrowth" type="button">打印或保存 PDF</button>
+    </section>
+    <section class="parent-tool" data-target-height data-shared-sex>
+    <h2>遗传靶身高</h2><p>填写父母成年稳定身高，计算一个家族目标参考值。</p>
+    <form class="parent-form" novalidate autocomplete="off">
+      <p class="field-help">沿用上方选择的性别，不需重复填写。</p>
+      <div class="input-grid"><label>父亲身高（cm）<input name="fatherHeight" type="number" min="100" max="230" step="0.1" inputmode="decimal" placeholder="例如 180"></label><label>母亲身高（cm）<input name="motherHeight" type="number" min="100" max="230" step="0.1" inputmode="decimal" placeholder="例如 157"></label></div>
+      <div class="form-actions"><button class="button primary" type="submit">计算遗传靶身高</button><button class="button secondary" type="reset">清空父母身高</button></div>
+      <p class="form-error" data-target-error role="alert"></p>
+    </form>
+    <div data-target-result class="target-result" aria-live="polite" hidden></div>
+    <details class="source-details"><summary>方法与适用说明</summary><div class="details-body"><p>Luo 回归参考法：父母成年身高平均值为 MPH，男 45.99 + 0.78 × MPH，女 37.85 + 0.75 × MPH。<a href="https://www.nature.com/articles/pr1998502" target="_blank" rel="noopener noreferrer">Luo 等，1998，原期刊摘要</a>。</p><p>来自瑞典历史样本，未验证当代中国个体的误差；本页不给个体预测区间。它不是遗传上限或保证，也不是按骨龄计算的成年身高预测。</p></div></details>
+  </section>
+    <details class="source-details"><summary>参照来源与读图说明</summary><div class="details-body"><p>4岁以下采用 <a href="https://www.who.int/tools/child-growth-standards/standards/length-height-for-age" target="_blank" rel="noopener noreferrer">WHO 生长标准</a>，4–18岁采用宗心南、李辉等 PLoS ONE 2013 的中国参照。来源不同，不把两段称为同一套中国标准。</p><p>中国6–18岁 BMI 判读使用 WS/T 586—2018 超重肥胖表和 WS/T 456—2014 消瘦表，先保留一位小数再比较。4–5岁采用李辉2009历史超重界值，仅作参考，尚未评价消瘦。LMS与Z分保留原有精度。</p><p>红色实心点是实际年龄与实测身高，蓝色空心圆是同一身高按骨龄投点；重合时显示红心蓝环。图右端的 P/SD 标签对应右端年龄，本次年龄的具体参考值另列在图下。缩放只改变视窗，不改变数值。</p><p>仅知道出生年月时保留可能月龄范围，跨4岁边界须补日，分档有差异时不作单一判读。单次测量不能代表生长速度或成年结局。</p></div></details>
+    <p class="report-disclaimer">生长评估的计算与对照工具，不替代完整临床评估。输入和结果只在页面内存中，刷新或离开即清空，不上传或保存。</p>
+  <noscript><p>请启用 JavaScript 后使用本地计算。</p></noscript></main>
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.10.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/tools/">全部工具</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+
+  <script type="module" src="/assets/growth-ui.js"></script><script src="/assets/pwa.js" defer></script>
+</body></html>

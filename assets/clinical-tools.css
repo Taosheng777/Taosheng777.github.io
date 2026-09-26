@@ -1,0 +1,80 @@
+.clinical-page { max-width: 1000px; }
+.print-boundary { display: none; }
+.clinical-page [hidden] { display: none !important; }
+.clinical-page h1 { font-size: clamp(2rem, 6vw, 3.4rem); }
+.clinical-page input:not([type=radio]):not([type=checkbox]) { display: block; width: 100%; min-width: 0; margin-top: 8px; padding: 11px 12px; min-height: 46px; border: 1px solid var(--line); border-radius: 0; background: var(--bg); color: var(--ink); font: inherit; box-sizing: border-box; }
+.growth-form, .parent-tool { border-top: 2px solid var(--ink); padding: 24px 0; margin-bottom: 24px; }
+.input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin: 18px 0; }
+.input-grid > label, .context-age { font-weight: 600; min-width: 0; }
+.choice-row { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; border: 0; margin: 0 0 20px; }
+.choice-row legend { margin-bottom: 10px; font-weight: 600; }
+.choice-row label { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 78px; padding: 8px 14px; border: 1px solid var(--line); cursor: pointer; }
+.choice-row label:has(input:checked) { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.choice-row input, .precision-control input { accent-color: var(--brand); width: 16px; height: 16px; }
+.precision-control { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.field-help, .chart-range { color: var(--muted); font-size: .88rem; line-height: 1.7; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 12px; }
+.form-actions .button { min-height: 44px; }
+.form-error { color: var(--brand); font-weight: 600; }
+.form-error:empty { display: none; }
+.bone-fields { padding: 16px 0; border-block: 1px solid var(--line); margin-top: 20px; }
+.bone-fields summary { cursor: pointer; min-height: 32px; font-weight: 600; }
+.bone-fields label { display: block; max-width: 360px; margin-top: 12px; }
+.metric-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin: 24px 0; }
+.metric-card { border: 1px solid var(--line); padding: 18px; overflow-wrap: anywhere; }
+.metric-card:first-child { grid-column: 1/-1; border-top: 3px solid var(--ink); }
+.metric-card h3 { margin: 8px 0; font-size: 1.15rem; }
+.metric-card p { margin: 6px 0; }
+.metric-card[data-level=attention], .metric-card[data-level=high] { border-top-color: var(--brand); }
+.metric-value { font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+.metric-name { color: var(--muted); }
+.bone-result { border-left: 3px solid #2679ad; padding: 14px 18px; margin-bottom: 24px; }
+.chart-controls { display: flex; flex-wrap: wrap; gap: 24px; border-top: 1px solid var(--line); padding-top: 24px; }
+.growth-chart { margin: 16px 0 36px; min-width: 0; }
+.growth-chart canvas { display: block; width: 100%; height: 360px; background: white; border: 1px solid var(--line); box-sizing: border-box; }
+.chart-marker-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.marker-button { border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: .86rem; text-align: left; line-height: 1.6; min-height: 44px; padding: 10px; cursor: pointer; }
+.marker-button::before { content: '●'; color: #9e221d; padding-right: 6px; }
+.marker-button.bone::before { content: '○'; color: #2679ad; }
+.reference-values table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .84rem; }
+.reference-values th, .reference-values td { padding: 8px 2px; text-align: center; border-bottom: 1px solid var(--line); }
+.reference-values .median { font-weight: 800; }
+.parent-tool { margin-top: 40px; border: 2px solid var(--brand); padding: 24px; }
+.parent-tool h2 { color: var(--brand); font-size: 1.8rem; margin: 0 0 12px; }
+.target-result { border-top: 1px solid var(--line); padding-top: 12px; }
+.target-value { font-size: 2.6rem; font-weight: 650; margin: 4px 0 18px; }
+.target-result li { margin: 8px 0; }
+.extra-progress { margin: 24px 0; font-weight: 600; }
+.extra-question { min-width: 0; padding: 20px 0; margin: 0; border: 0; border-bottom: 1px solid var(--line); }
+.extra-question legend { width: 100%; padding: 12px 0 0; font-weight: 600; line-height: 1.8; }
+.extra-options { display: flex; flex-wrap: wrap; gap: 10px; }
+.extra-options label { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 14px; border: 1px solid var(--line); cursor: pointer; }
+.extra-options input { accent-color: var(--brand); flex-shrink: 0; width: 17px; height: 17px; }
+.extra-options label:has(input:checked) { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.question-section { margin-top: 36px; font-size: 1.35rem; }
+.clinical-page .context-age { display: block; max-width: 320px; margin-top: 24px; }
+.clinical-page .detail-row { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.clinical-page .flagged { color: var(--brand); }
+.clinical-page .safety-alert { border: 2px solid var(--brand); padding: 18px; margin-bottom: 20px; }
+#extraAnswers li { margin: 12px 0; line-height: 1.7; }
+@media (max-width: 480px) {
+  .input-grid { gap: 14px; }
+  .parent-tool { padding: 16px; }
+  .parent-tool .input-grid { grid-template-columns: 1fr; }
+  .metric-grid { grid-template-columns: 1fr; }
+  .choice-row label { padding: 8px 10px; min-width: 60px; }
+  .reference-values table { font-size: 11px; }
+  .extra-options { gap: 8px; }
+  .extra-options label { flex: 1 1 40%; padding: 10px; }
+}
+@media print {
+  .growth-form, .chart-controls, .form-actions, #printGrowth, .assessment-back, .chart-marker-actions { display: none !important; }
+  .growth-chart, .metric-card, .target-result { break-inside: avoid; }
+  .clinical-page { max-width: none; }
+  .clinical-page canvas { max-width: 100%; height: auto; }
+  .parent-form { display: none; }
+  .parent-tool:has([data-target-result][hidden]), .growth-form ~ .source-details { display: none; }
+  .clinical-page > .report-disclaimer { margin: 10px 0; padding: 8px 12px; font-size: 10px; }
+  .clinical-page:has(#growthForm) > .report-disclaimer { display: none; }
+  .print-boundary { display: block; font-size: 10px; margin: 6px 0; }
+}

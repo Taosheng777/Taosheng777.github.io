@@ -27,8 +27,10 @@
     </nav>
   </header>
   <main id="main" class="inner-page document-page">
-    <header class="page-heading"><p class="eyebrow">VERSION</p><h1>版本信息</h1><p>当前公开版本：<strong>1.9.0</strong> · 发布日期：2026-09-11</p></header>
-    <section><h2>四个板块与工具</h2><ul><li><a href="/ai/">AI 工具</a>：12 个常用 Prompt、<a href="/ai/skills/">涛生的 skills</a>（开源项目索引）</li><li><a href="/growth/">生长发育工具</a>：WHO 0–3 岁与中国／WHO 4–18 岁生长曲线</li><li><a href="/mind/">心理测评工具</a>：10 份量表、1 个 T 分数换算工具与 1 份非临床的 16 型人格测试</li><li><a href="/life/">个人生活工具</a>：《暗黑地牢》奇物交互速查</li></ul></section>
+    <header class="page-heading"><p class="eyebrow">VERSION</p><h1>版本信息</h1><p>当前构建版本：<strong>1.10.0</strong> · 发布日期：2026-09-26</p></header>
+    <section><h2>四个板块与工具</h2><ul><li><a href="/ai/">AI 工具</a>：12 个常用 Prompt、<a href="/ai/skills/">涛生的 skills</a>（开源项目索引）</li><li><a href="/growth/">生长发育工具</a>：生长曲线助手、骨龄对照、遗传靶身高及两份分标准工具</li><li><a href="/mind/">心理测评工具</a>：15 份量表、1 个 T 分数换算工具与 1 份非临床的 16 型人格测试</li><li><a href="/life/">个人生活工具</a>：《暗黑地牢》奇物交互速查</li></ul></section>
+    <p>另有<a href="/respiratory/">呼吸评估</a>：ACT 与 C-ACT 哮喘控制评估。</p>
+    <section><h2>1.10.0 更新内容</h2><p>同步小程序1.5.1本地定版功能：<a href="/growth/curve/">生长曲线助手</a>合并年龄入口、按年龄自动匹配参照、支持体重选填、骨龄空心圆和放大读图；新增<a href="/growth/target-height/">遗传靶身高</a>独立工具。</p><p>新增DSRSC、SCARED、PAS、两个分龄家长版SDQ及12岁以下快捷筛选；新增<a href="/respiratory/">ACT与C-ACT呼吸评估</a>。人格报告按偏向强度解释，中点不强行显示确定类型，补充三类生活场景建议。</p><p>生长曲线助手的中国6–18岁BMI使用WS/T586—2018与WS/T456—2014，临界分档可能与保留的2009历史工具不同。成年身高预测尚未纳入。全部输入和结果仍只在页面内存中。</p></section>
     <section><h2>1.9.0 更新内容</h2><p>心理测评板块新增<a href="/mind/personality/">16 型人格测试</a>：60 道题，约 10 分钟，给出一个四字母类型加 A／T 后缀，以及五个维度各偏向哪一端、偏了多少，另有逐项解读。这是<strong>非临床</strong>工具，不筛查、不评估、不诊断；题目、计分与解读文字全部自行撰写，与任何商业人格测试的题库和算法无关，结果也不能和别处的类型互相换算。</p><p>这份测试与同名的微信小程序版本同源：题库、题序、反向题、选项分值与计分口径逐项一致，两边作答同样的 60 题会得到同样的结果；界面是按本站版式另做的，和小程序不一样。</p><p>两处作答选项的中文措辞跟着改正，分值、计分、切点与分档一律未动：PHQ-9、GAD-7、PHQ-2、GAD-2 的第 1 档由「好几天」改为「有几天（偶尔）」——英文原档是 Several days，本意是「有那么几天」，中文「好几天」带上了「天数不算少」的强调，作答者因此退回「完全不会」，分数被系统性压低；SNAP-IV 的第 2 档由「不少」改为「比较多」，原来的说法作程度词太弱，和「很多」分不清界线。</p></section>
     <section><h2>1.8.0 更新内容</h2><p>AI 板块新增<a href="/ai/skills/">涛生的 skills</a>：我发布在 GitHub 上的几个 Claude Code / Codex skill 的索引，每个给出用途简介和仓库链接，全部 MIT 开源。</p><p>这一页是外部项目索引，不是本站工具：它本身照常离线可用，但页面上的链接会跳到 GitHub。其中两个是 A 股研究工具，页面已写明只做研究提示、不下单、不构成投资建议。</p></section>
     <section><h2>1.7.1 更新内容</h2><p>去掉首页的「安装到设备」按钮。这个按钮只在少数浏览器里才会出现，位置又和「关于我」「全部工具」并排，容易误以为是主要入口。安装能力本身不变：浏览器菜单里的「添加到主屏幕」「安装应用」照常可用，装上后仍然可以离线打开。</p></section>
@@ -38,12 +40,12 @@
     <section><h2>1.4.0 更新内容</h2><p>新增中国／WHO 可切换的 4–18 岁生长曲线；心理测评由 PHQ-9、GAD-7 扩展为 10 份量表加 1 个换算工具；首页横幅改为渐变压图，并把本地处理说明移到页尾。</p></section>
     <section><h2>1.3.0 更新内容</h2><p>全站视觉改造。配色改为暖白纸底、近黑正文和单一朱红强调色；朱红专用于医学边界与安全提示，四个板块各自的标记色只出现在板块编号和板块页顶部色带上。版式改为规则线分隔的网格，取消圆角和阴影，层级只靠字号。首页新增横幅图与站点头像。</p><p>工具本身的算法、题目、计分口径、WHO 内嵌标准表和 PHQ-9 第 9 题安全提示均未改动；全部页面地址、旧地址跳转和离线能力保持不变。图片素材出处见<a href="/licenses/">来源与许可</a>。</p></section>
     <section><h2>1.2.0 更新内容</h2><p>网站从平铺的工具箱改成个人主页加四个板块：首页换成身份与板块入口，新增<a href="/about/">关于</a>页和四个板块首页，全站加入跟随系统的深色模式。</p><p>工具地址随之调整：<code>/tools/ai-thinking/</code> 改为 <code>/ai/prompts/</code>，<code>/tools/who-growth/</code> 改为 <code>/growth/who-curve/</code>，<code>/tools/mental-health/</code> 及其两份问卷改为 <code>/mind/</code>，<code>/tools/darkest-dungeon/</code> 改为 <code>/life/darkest-dungeon/</code>。旧地址保留为跳转页，收藏和已安装的应用不会失效。工具本身的算法、题目和计分口径未改动。</p></section>
-    <section><h2>运行方式</h2><p>原生 HTML、CSS 和 JavaScript；无框架、数据库、第三方运行依赖或分析服务。离线缓存名称为 <code>personal-toolbox-v1.9.0</code>。</p></section>
+    <section><h2>运行方式</h2><p>原生 HTML、CSS 和 JavaScript；无框架、数据库、第三方运行依赖或分析服务。离线缓存名称为 <code>personal-toolbox-v1.10.0</code>。</p></section>
     <section><h2>发布归属</h2><p>当前免费站点由用户的 GitHub 账号 <strong>Taosheng777</strong> 通过公开产物仓库 <a href="https://github.com/Taosheng777/Taosheng777.github.io" rel="external noreferrer"><code>Taosheng777/Taosheng777.github.io</code></a> 发布；GitHub 仅提供 Pages 托管。公开仓库只含构建产物，私有源码仓库仍是维护事实源。</p></section>
     <section><h2>来源与许可</h2><p>WHO 与中国生长参照、10 份心理量表、中国城市常模、游戏 Wiki 资料和非官方边界见<a href="/licenses/">来源与许可</a>。本站对上游名称和内容不主张所有权。</p></section>
   </main>
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.9.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.10.0</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>

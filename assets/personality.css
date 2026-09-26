@@ -484,3 +484,8 @@
   .quiz-circle,
   .quiz-circle::after { transition: none; }
 }
+/* 与小程序1.5.1同步的分档报告，沿用站点颜色。 */
+.scene-report { padding: 18px 0; border-top: 1px solid var(--line-soft); }
+.scene-report summary { cursor: pointer; font-weight: 700; min-height: 44px; }
+.scene-report p { line-height: 1.8; }
+#resultCode { overflow-wrap: anywhere; font-size: clamp(1.65rem, 5vw, 3rem); }

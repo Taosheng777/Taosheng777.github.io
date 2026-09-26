@@ -35,7 +35,7 @@
     <header class="assessment-heading">
       <p class="eyebrow">16 型人格 · 本人自评</p>
       <h1>16 型人格测试</h1>
-      <p>60 道题，约 10 分钟，每题在「认同」到「不认同」之间选一个位置。作答完给出一个四字母类型加 A／T 后缀，以及五个维度各自偏向哪一端、偏了多少。页面不询问姓名、年龄或任何身份资料。</p>
+      <p>60 道题，约 10 分钟，每题在「认同」到「不认同」之间选一个位置。查看五个维度的偏向、分档解读与生活场景建议。倾向明确时显示类型，两端接近时保留不确定性。页面不询问姓名、年龄或任何身份资料。</p>
       <div class="audience-note"><strong>这不是临床量表：</strong>它描述的是日常偏好，不筛查、不评估，也不诊断任何心理或精神问题。题目、计分与解读文字全部由本站自行撰写，与任何商业人格测试的题库和算法无关，结果也不能和别处的类型互相换算或比较。</div>
     </header>
 
@@ -60,15 +60,19 @@
       <p class="eyebrow">PERSONAL REPORT · 16 型人格</p>
       <h2 id="resultTitle" tabindex="-1">本次测试结果</h2>
       <p class="result-code" id="resultCode">—</p>
+      <p id="resultNickname"></p><p id="resultIdentityNote"></p>
       <p class="result-summary" id="resultSummary"></p>
 
       <h3 class="result-section-heading">五个维度</h3>
-      <p class="result-section-note">每条横轴左端是第一极、右端是第二极，色条从中线画向你本次偏的那一端，长度就是偏离的程度。落在中线附近说明两端接近，这一项换一天作答可能会翻过去。</p>
+      <p class="result-section-note">每条横轴左端是第一极、右端是第二极，色条从中线画向你本次偏的那一端，长度就是偏离的程度。百分比是本次原始分的线性换算，不是人群百分位、能力分或人格概率。</p>
       <ol class="facet-list" id="resultAxes"></ol>
 
       <h3 class="result-section-heading">逐项解读</h3>
-      <p class="result-section-note">每个维度按本次偏向的那一极给一段说明，最后一条都是这个偏好要留意的地方。</p>
+      <p class="result-section-note">按两端接近、略有偏向、偏向较明显和偏向鲜明四档解释。</p>
       <div id="resultReports"></div>
+      <h3 class="result-section-heading">放到生活里看看</h3><div id="resultScenes"></div>
+      <p class="result-section-note" id="resultMidpointNote"></p>
+      <details class="source-details"><summary>这些百分比怎么算？</summary><p id="resultScoringNote"></p></details>
 
       <div class="result-actions">
         <button class="button primary" id="printResult" type="button">打印或保存 PDF</button>
@@ -83,7 +87,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.9.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.10.0</p>
     <nav aria-label="页脚导航">
       <a href="/mind/">心理测评</a>
       <a href="/privacy/">隐私说明</a>

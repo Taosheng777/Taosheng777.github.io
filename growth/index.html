@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#9e221d">
-  <meta name="description" content="生长发育工具板块：WHO 0–3 岁生长曲线，以及 4–18 岁中国参照标准与 WHO 参照可切换的生长曲线，输入值不上传、不留存。">
+  <meta name="description" content="生长曲线助手、骨龄对照、遗传靶身高及分标准对照工具，输入值不上传、不留存。">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
   <link rel="stylesheet" href="/assets/site.css">
@@ -41,33 +41,40 @@
     </div>
 
     <div class="tool-grid">
-      <a class="tool-card" data-accent="growth" href="/growth/who-curve/">
+      <a class="tool-card" data-accent="growth" href="/growth/curve/">
         <span class="tool-number" aria-hidden="true">01</span>
+        <span class="tool-kind">出生至18岁 · 自动匹配参照</span>
+        <h2>生长曲线助手</h2>
+        <p>出生年月或手工年龄，只填一次身高；自动匹配参照，体重可不填。支持骨龄空心圆对照、百分位与SD线、附近放大。</p>
+        <span class="card-action">打开工具 <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="tool-card" data-accent="growth" href="/growth/target-height/">
+        <span class="tool-number" aria-hidden="true">02</span>
+        <span class="tool-kind">家族参考 · 本地计算</span>
+        <h2>遗传靶身高</h2>
+        <p>填写父母成年稳定身高，按Luo回归参考法计算家族目标。它不是遗传上限，也不是骨龄成年身高预测。</p>
+        <span class="card-action">打开工具 <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="tool-card" data-accent="growth" href="/growth/who-curve/">
+        <span class="tool-number" aria-hidden="true">03</span>
         <span class="tool-kind">儿童保健 · 本地计算</span>
-        <h2>WHO 0–3 岁生长曲线</h2>
+        <h2>WHO 0–3 岁生长曲线（分标准工具）</h2>
         <p>输入性别、月龄和单次测量值，得到体重、身长/身高、头围和体重别身长的 Z 分数、百分位与四张生长曲线。标准表来自 WHO 官方 anthro 数据。</p>
         <span class="card-action">打开工具 <span aria-hidden="true">↗</span></span>
       </a>
       <a class="tool-card" data-accent="growth" href="/growth/curve-4-18/">
-        <span class="tool-number" aria-hidden="true">02</span>
+        <span class="tool-number" aria-hidden="true">04</span>
         <span class="tool-kind">儿童青少年 · 本地计算</span>
-        <h2>4–18 岁生长曲线</h2>
+        <h2>4–18 岁生长曲线（分标准工具）</h2>
         <p>输入性别、年龄、身高和体重，得到年龄别身高、年龄别体重和年龄别 BMI 的 Z 分数、百分位与三张生长曲线。中国参照标准与 WHO 参照可一键切换对照。</p>
         <span class="card-action">打开工具 <span aria-hidden="true">↗</span></span>
       </a>
-      <div class="tool-card placeholder" data-accent="growth">
-        <span class="tool-number" aria-hidden="true">+</span>
-        <span class="tool-kind">规划中</span>
-        <h2>更多生长发育工具</h2>
-        <p>生长速度、靶身高与青春期发育评估，规划中。</p>
-        <span class="card-action">暂未开放</span>
-      </div>
     </div>
 
   </main>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.9.0</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.10.0</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>

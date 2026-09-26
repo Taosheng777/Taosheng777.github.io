@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#9e221d">
+  <meta name="description" content="3–6岁 · 家长填写，本地计分，不保存作答。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/mental-health.css">
+  <link rel="stylesheet" href="/assets/clinical-tools.css">
+  <title>PAS 幼儿焦虑量表｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a href="/growth/">生长发育</a>
+      <a aria-current="page" href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page clinical-page">
+      <a class="assessment-back" href="/mind/">← 返回心理测评工具</a>
+      <header class="assessment-heading"><p class="eyebrow">PAS · 28题 · 家长评定</p><h1>幼儿焦虑量表</h1><p class="age-pill">3–6岁 · 家长填写</p><p>现场作答，即时查看本次结果。</p></header>
+      <div class="audience-note"><strong>开始前请确认：</strong>请根据每种情形在孩子身上发生的程度作答。请尽量回答所有描述，即使有一些好像并不合适你的孩子。<p>本页使用原表第1–28项计分题，不收集不计分的创伤经历及附加题。</p></div>
+      <section id="extraQuiz" data-extra-scale="pas"><form id="extraForm" novalidate autocomplete="off">
+        <label class="context-age">年龄（周岁，3–6）<input id="extraAge" type="number" min="3" max="6" step="1" inputmode="numeric" placeholder="3–6"></label><p class="field-help">只用于核对适用范围，刷新后清空。</p>
+        <p id="extraProgress" class="extra-progress" aria-live="polite">已完成 0 / 28 题</p><div id="extraQuestions"></div><p id="extraError" class="form-error" role="alert"></p><button class="button primary" type="submit">生成结果</button>
+      </form></section>
+      <section id="extraReport" class="report-shell" hidden><h2 id="extraReportTitle" tabindex="-1">本次结果</h2><div id="extraSafety" class="safety-alert" role="alert" hidden></div><div id="extraScore" class="result-card"></div><div id="extraDetails" class="detail-list"></div><p>参照作者的澳大利亚3–6岁社区样本；总分或分量表达到均值加1个标准差提示进一步了解，未套用中国常模。</p><p class="report-disclaimer">这是筛查线索，不是诊断。总分未达到界线，也不能排除具体困难。</p><details class="answer-details"><summary>查看本次作答明细</summary><ol id="extraAnswers"></ol></details><div class="form-actions"><button id="extraEdit" class="button secondary" type="button">返回修改</button><button id="extraRestart" class="button secondary" type="button">重新填写</button><button id="extraPrint" class="button primary" type="button">打印或保存 PDF</button></div></section>
+      <details class="source-details"><summary>来源与计分说明</summary><div class="details-body"><p>Spence与Rapee，1999；简体中文译本：Wei Wang，2005，作者站原表。</p><p>评分：作者公布的第1–28项及五分量表规则；总分0–112。</p><p>偏高参照：作者公布的澳大利亚3–6岁社区样本均值加1个标准差；不是中国常模，也不是诊断界线。</p></div></details><p class="report-disclaimer">不填写姓名、联系方式或其他身份资料。答案与结果仅在当前页面内存中处理，不上传、不写入浏览器存储，刷新后清空。</p>
+      <p class="general-safety">如果已有伤害自己的想法，请立即告诉可信任的人并寻求帮助。心理援助 12356，紧急情况拨 120 或 110。</p>
+    <noscript><p>请启用 JavaScript 后使用本地计算。</p></noscript></main>
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.10.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/tools/">全部工具</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+
+  <script type="module" src="/assets/extra-scales-ui.js"></script><script src="/assets/pwa.js" defer></script>
+</body></html>

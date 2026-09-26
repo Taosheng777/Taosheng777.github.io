@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.9.0';
+const CACHE_NAME = 'personal-toolbox-v1.10.0';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -44,7 +44,44 @@ const APP_SHELL = [
   '/manifest.webmanifest',
   '/og.png',
   '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/icons/icon-512.png',
+  '/growth/curve/',
+  '/growth/target-height/',
+  '/respiratory/',
+  '/respiratory/act/',
+  '/respiratory/cact/',
+  '/mind/dsrsc/',
+  '/mind/scared/',
+  '/mind/pas/',
+  '/mind/sdq23/',
+  '/mind/sdq417/',
+  '/assets/mini/age.js',
+  '/assets/mini/bmi-overweight-data.js',
+  '/assets/mini/bmi-thinness-data.js',
+  '/assets/mini/bone-age.js',
+  '/assets/mini/child-scale-data.js',
+  '/assets/mini/child-scales.js',
+  '/assets/mini/conners-norms.js',
+  '/assets/mini/growth-4-18-data.js',
+  '/assets/mini/growth-4-18.js',
+  '/assets/mini/growth-chart.js',
+  '/assets/mini/growth-interpretation.js',
+  '/assets/mini/personality-data.js',
+  '/assets/mini/personality-report.js',
+  '/assets/mini/personality.js',
+  '/assets/mini/respiratory-data.js',
+  '/assets/mini/scale-data.js',
+  '/assets/mini/scales.js',
+  '/assets/mini/target-height.js',
+  '/assets/mini/who-reference.js',
+  '/assets/mini/who.js',
+  '/assets/clinical-tools.css',
+  '/assets/mini-tools.js',
+  '/assets/growth-assessment.js',
+  '/assets/growth-ui.js',
+  '/assets/target-height-ui.js',
+  '/assets/extra-scales-ui.js',
+  '/assets/mind-filter.js'
 ];
 
 self.addEventListener('install', event => {

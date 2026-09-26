@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#9e221d">
+  <meta name="description" content="用父母成年稳定身高计算 Luo 家族靶值，本地计算、不留存。">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/mental-health.css">
+  <link rel="stylesheet" href="/assets/clinical-tools.css">
+  <title>遗传靶身高｜涛生</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="涛生 个人主页">
+      <span class="brand-mark" aria-hidden="true">涛</span>
+      <span class="brand-text"><span>涛生</span><small>TAOSHENG</small></span>
+    </a>
+    <nav class="site-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/ai/">AI</a>
+      <a aria-current="page" href="/growth/">生长发育</a>
+      <a href="/mind/">心理测评</a>
+      <a href="/life/">生活</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </header>
+
+  <main id="main" class="inner-page clinical-page"><a class="assessment-back" href="/growth/">← 返回生长发育工具</a><header class="page-heading"><p class="eyebrow">FAMILY TARGET</p><h1>遗传靶身高</h1><p>了解成年家族目标的参考位置。</p></header><section class="parent-tool" data-target-height>
+    <h2>填写父母身高</h2><p>填写父母成年稳定身高，计算一个家族目标参考值。</p>
+    <form class="parent-form" novalidate autocomplete="off">
+      <fieldset class="choice-row"><legend>性别</legend><label><input type="radio" name="targetSex" value="M" checked> 男</label><label><input type="radio" name="targetSex" value="F"> 女</label></fieldset>
+      <div class="input-grid"><label>父亲身高（cm）<input name="fatherHeight" type="number" min="100" max="230" step="0.1" inputmode="decimal" placeholder="例如 180"></label><label>母亲身高（cm）<input name="motherHeight" type="number" min="100" max="230" step="0.1" inputmode="decimal" placeholder="例如 157"></label></div>
+      <div class="form-actions"><button class="button primary" type="submit">计算遗传靶身高</button><button class="button secondary" type="reset">清空父母身高</button></div>
+      <p class="form-error" data-target-error role="alert"></p>
+    </form>
+    <div data-target-result class="target-result" aria-live="polite" hidden></div>
+    <details class="source-details"><summary>方法与适用说明</summary><div class="details-body"><p>Luo 回归参考法：父母成年身高平均值为 MPH，男 45.99 + 0.78 × MPH，女 37.85 + 0.75 × MPH。<a href="https://www.nature.com/articles/pr1998502" target="_blank" rel="noopener noreferrer">Luo 等，1998，原期刊摘要</a>。</p><p>来自瑞典历史样本，未验证当代中国个体的误差；本页不给个体预测区间。它不是遗传上限或保证，也不是按骨龄计算的成年身高预测。</p></div></details>
+  </section><p class="report-disclaimer">当前身高与家族靶值的差不能解释为剩余生长量。输入和结果仅在页面内存中，不上传、不保存。</p><noscript><p>请启用 JavaScript 后使用本地计算。</p></noscript></main>
+  <footer class="site-footer">
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.10.0</p>
+    <nav aria-label="页脚导航">
+      <a href="/tools/">全部工具</a>
+      <a href="/privacy/">隐私说明</a>
+      <a href="/licenses/">来源与许可</a>
+      <a href="/version/">版本信息</a>
+    </nav>
+  </footer>
+
+  <script type="module" src="/assets/target-height-ui.js"></script><script src="/assets/pwa.js" defer></script>
+</body></html>
