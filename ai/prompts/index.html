@@ -1,867 +1,680 @@
 <!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#9e221d">
-<meta name="description" content="12 套可直接复制的中文 Prompt，覆盖学习、研究、决策和问题解决。">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" href="/icons/icon-192.png" sizes="192x192">
-<title>12 个常用 Prompt</title>
-<style>
-:root {
-  --bg:#f6f4ef;
-  --panel:#ffffff;
-  --panel2:#f0ede6;
-  --text:#1c1a19;
-  --muted:#6e6862;
-  --line:#ddd8cf;
-  --accent:#9e221d;
-  --accent-soft:#f2e3e1;
-  --shadow:none;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:#0f0e0d;
-    --panel:#191716;
-    --panel2:#141211;
-    --text:#f6f2ee;
-    --muted:#928c86;
-    --line:#2e2a27;
-    --accent:#e85a4c;
-    --accent-soft:#2a1614;
-    --shadow:none;
-  }
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Helvetica Neue",Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.65;
-}
-button{font:inherit}
-a{color:inherit}
-.wrap{
-  width:min(920px,calc(100% - 28px));
-  margin:0 auto;
-  padding:18px 0 70px;
-}
-#top{scroll-margin-top:12px}
-.toc{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:0;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  margin-bottom:24px;
-}
-.toc summary{
-  cursor:pointer;
-  list-style:none;
-  padding:17px 18px;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  -webkit-tap-highlight-color:transparent;
-}
-.toc summary::-webkit-details-marker{display:none}
-.toc summary::after{
-  content:"＋";
-  color:var(--accent);
-  font-size:19px;
-  font-weight:500;
-}
-.toc[open] summary::after{content:"−"}
-.toc-body{
-  border-top:1px solid var(--line);
-  padding:10px;
-}
-.toc-group{padding:6px 0}
-.toc-group-title{
-  padding:4px 9px 6px;
-  color:var(--muted);
-  font-size:12px;
-  font-weight:800;
-}
-.toc-link{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:9px 10px;
-  border-radius:0;
-  text-decoration:none;
-  font-size:14px;
-}
-.toc-link:hover{background:var(--panel2);color:var(--accent)}
-.toc-num{width:26px;color:var(--accent);font-weight:800}
-
-.quick-guide{
-  margin:0 0 44px;
-}
-.quick-guide h1{
-  margin:0 0 6px;
-  font-size:28px;
-  letter-spacing:-.03em;
-}
-.quick-guide>.subtitle{
-  color:var(--muted);
-  margin:0 0 18px;
-  font-size:14px;
-}
-.quick-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.quick-card{
-  display:block;
-  text-decoration:none;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:0;
-  padding:15px 16px;
-  transition:.15s ease;
-}
-.quick-card:hover{
-  transform:translateY(-1px);
-  border-color:color-mix(in srgb,var(--accent) 40%,var(--line));
-  box-shadow:var(--shadow);
-}
-.quick-top{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-.quick-num{
-  color:var(--accent);
-  font-size:12px;
-  font-weight:900;
-}
-.quick-top strong{
-  font-size:16px;
-  flex:1;
-}
-.quick-arrow{
-  color:var(--accent);
-  font-weight:800;
-}
-.quick-card p{
-  color:var(--muted);
-  font-size:13px;
-  margin:7px 0 0;
-  line-height:1.55;
-}
-
-.full-title{
-  margin:0 0 14px;
-  font-size:24px;
-  letter-spacing:-.02em;
-}
-.prompt-card{
-  scroll-margin-top:18px;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:0;
-  box-shadow:var(--shadow);
-  padding:22px;
-  margin:0 0 22px;
-}
-.prompt-card:target{
-  border-color:color-mix(in srgb,var(--accent) 55%,var(--line));
-  box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 10%,transparent),var(--shadow);
-}
-.prompt-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:14px;
-}
-.prompt-title{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-}
-.prompt-num{
-  width:40px;height:40px;
-  flex:0 0 auto;
-  border-radius:0;
-  display:grid;
-  place-items:center;
-  color:var(--accent);
-  background:var(--accent-soft);
-  font-weight:900;
-  font-size:13px;
-}
-.prompt-category{
-  color:var(--accent);
-  font-size:11px;
-  font-weight:800;
-  margin-bottom:2px;
-}
-.prompt-title h2{
-  margin:0;
-  font-size:21px;
-  line-height:1.3;
-  letter-spacing:-.02em;
-}
-.prompt-summary{
-  margin:15px 0;
-  color:var(--muted);
-  font-size:14px;
-}
-.prompt-box{
-  background:var(--panel2);
-  border:1px solid var(--line);
-  border-radius:0;
-  overflow:hidden;
-}
-pre{
-  margin:0;
-  padding:18px;
-  white-space:pre-wrap;
-  word-break:break-word;
-  font-family:ui-monospace,"SFMono-Regular",Menlo,Monaco,Consolas,"PingFang SC",monospace;
-  font-size:13.2px;
-  line-height:1.72;
-  color:var(--text);
-}
-.copy-btn{
-  border:1px solid var(--line);
-  background:var(--panel2);
-  color:var(--text);
-  border-radius:0;
-  height:39px;
-  padding:0 12px;
-  cursor:pointer;
-  font-weight:750;
-  font-size:13px;
-  flex:0 0 auto;
-}
-.copy-btn:hover{color:var(--accent);border-color:var(--accent)}
-.copy-btn.copied{color:#1d956b}
-.prompt-actions{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:13px;
-}
-.bottom-copy{display:none}
-.back-link{
-  text-decoration:none;
-  color:var(--muted);
-  font-size:13px;
-}
-.back-link:hover{color:var(--accent)}
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:max(24px,env(safe-area-inset-bottom));
-  transform:translate(-50%,10px);
-  background:var(--text);
-  color:var(--panel);
-  border-radius:0;
-  padding:9px 13px;
-  font-size:13px;
-  font-weight:750;
-  opacity:0;
-  pointer-events:none;
-  transition:.16s;
-  z-index:99;
-}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-
-@media(max-width:680px){
-  .wrap{width:min(100% - 20px,680px);padding-top:10px}
-  .toc{border-radius:0;margin-bottom:20px}
-  .toc summary{padding:15px}
-  .quick-guide h1{font-size:24px}
-  .quick-grid{grid-template-columns:1fr;gap:9px}
-  .quick-card{padding:13px 14px}
-  .prompt-card{padding:16px;border-radius:0;margin-bottom:16px}
-  .prompt-head>.copy-btn{display:none}
-  .bottom-copy{display:block}
-  .prompt-actions{gap:10px}
-  .bottom-copy{flex:1}
-  .back-link{white-space:nowrap}
-  .prompt-num{width:37px;height:37px}
-  .prompt-title h2{font-size:19px}
-  pre{padding:15px;font-size:12.7px;line-height:1.7}
-}
-</style>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#9e221d"><meta name="description" content="六类场景，24条可直接复制的中文提示词。先看全貌，再按问题选择；完整正文、适用场景和出处一页查清。"><title>提示词地图 · 24条直接复制｜涛生</title>
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icons/icon-192.png" sizes="192x192">
 <link rel="stylesheet" href="/assets/tool-shell.css">
-</head>
-<body class="tool-page">
-<a class="tool-shell-skip" href="#tool-main">跳到工具内容</a>
-<header class="tool-site-header auto-dark">
-  <a class="tool-site-brand" href="/"><span class="tool-site-mark" aria-hidden="true">涛</span><span>涛生</span></a>
-  <nav class="tool-site-nav" aria-label="工具导航"><a href="/ai/">AI 工具</a><a href="/tools/">全部工具</a><a href="/privacy/">隐私</a></nav>
-</header>
-<main class="wrap" id="tool-main">
-  <div id="top"></div>
+<link rel="stylesheet" href="/assets/prompt-library.css"></head><body class="tool-page"><a class="tool-shell-skip" href="#tool-main">跳到工具内容</a><header class="tool-site-header auto-dark"><a class="tool-site-brand" href="/"><span class="tool-site-mark" aria-hidden="true">涛</span><span>涛生</span></a><nav class="tool-site-nav" aria-label="工具导航"><a href="/ai/">AI 工具</a><a href="/tools/">全部工具</a><a href="#references">来源</a></nav></header>
+<main class="library-wrap" id="tool-main">
+<header class="library-hero"><div><p class="eyebrow">PROMPT LIBRARY</p><h1>提示词地图</h1><p class="intro">先看全貌，再选你需要的一条。复制完整提示词，有占位符时填入你的信息，再发给你使用的 AI。</p></div><div class="library-stats" aria-label="提示词库概况"><div class="library-stat"><strong>24</strong><span>条完整提示词</span></div><div class="library-stat"><strong>6</strong><span>类使用场景</span></div><div class="library-stat"><strong>直接</strong><span>复制使用</span></div></div></header>
+<section id="map" aria-labelledby="map-heading"><div class="section-heading"><h2 id="map-heading">从你的问题出发</h2><p>每列一个场景 · 看简介，选方法 · 点击查看完整提示词</p></div><div class="panorama"><section class="map-group" id="map-asking" data-map-group="asking" aria-labelledby="map-heading-asking"><header class="map-group-head"><div class="map-group-meta"><span class="number">01</span><span>4 个方法</span></div><h3 id="map-heading-asking">问清问题</h3><p class="map-group-result">从模糊到清晰</p><p class="map-group-question">我真正要解决什么？</p></header><div class="map-group-cards"><a class="map-link" href="#prompt-1" data-target="prompt-1"><h4 class="map-card-heading"><span class="number">01</span><span class="name">苏格拉底提问</span></h4><p class="map-intro">用连续追问找到真正的问题。</p><p class="map-case"><span class="case-label">适合</span><span>想法模糊、说不清自己卡在哪时。</span></p></a>
+<a class="map-link" href="#prompt-13" data-target="prompt-13"><h4 class="map-card-heading"><span class="number">02</span><span class="name">方案拷问</span></h4><p class="map-intro">把计划里的关键分支逐个想透。</p><p class="map-case"><span class="case-label">适合</span><span>已有计划，准备认真开工前。</span></p></a>
+<a class="map-link" href="#prompt-15" data-target="prompt-15"><h4 class="map-card-heading"><span class="number">03</span><span class="name">乔哈里视窗</span></h4><p class="map-intro">先分清你与AI各自知道和缺什么。</p><p class="map-case"><span class="case-label">适合</span><span>AI总在猜需求、回答不贴合时。</span></p></a>
+<a class="map-link" href="#prompt-16" data-target="prompt-16"><h4 class="map-card-heading"><span class="number">04</span><span class="name">直给输出法</span></h4><p class="map-intro">让AI先讲重点，再给具体动作。</p><p class="map-case"><span class="case-label">适合</span><span>回答啰嗦、看完仍不知怎么做时。</span></p></a></div></section>
+<section class="map-group" id="map-learning" data-map-group="learning" aria-labelledby="map-heading-learning"><header class="map-group-head"><div class="map-group-meta"><span class="number">02</span><span>8 个方法</span></div><h3 id="map-heading-learning">学习理解</h3><p class="map-group-result">从陌生到掌握</p><p class="map-group-question">怎样真正搞懂它？</p></header><div class="map-group-cards"><a class="map-link" href="#prompt-2" data-target="prompt-2"><h4 class="map-card-heading"><span class="number">05</span><span class="name">双层解释法</span></h4><p class="map-intro">先用白话听懂，再用专业术语讲透。</p><p class="map-case"><span class="case-label">适合</span><span>第一次接触陌生概念时。</span></p></a>
+<a class="map-link" href="#prompt-3" data-target="prompt-3"><h4 class="map-card-heading"><span class="number">06</span><span class="name">反向拆解</span></h4><p class="map-intro">拆出优秀作品背后的关键选择。</p><p class="map-case"><span class="case-label">适合</span><span>手上有好范例，想学会做法时。</span></p></a>
+<a class="map-link" href="#prompt-4" data-target="prompt-4"><h4 class="map-card-heading"><span class="number">07</span><span class="name">横纵分析法</span></h4><p class="map-intro">纵看发展历史，横比同类对象。</p><p class="map-case"><span class="case-label">适合</span><span>系统研究公司、技术或行业时。</span></p></a>
+<a class="map-link" href="#prompt-5" data-target="prompt-5"><h4 class="map-card-heading"><span class="number">08</span><span class="name">事实核查</span></h4><p class="map-intro">查证事实，也检查推理是否成立。</p><p class="map-case"><span class="case-label">适合</span><span>怀疑观点、数据或AI回答时。</span></p></a>
+<a class="map-link" href="#prompt-17" data-target="prompt-17"><h4 class="map-card-heading"><span class="number">09</span><span class="name">寓言故事</span></h4><p class="map-intro">用故事建立直觉，再检验理解。</p><p class="map-case"><span class="case-label">适合</span><span>看过几遍解释还是没懂时。</span></p></a>
+<a class="map-link" href="#prompt-18" data-target="prompt-18"><h4 class="map-card-heading"><span class="number">10</span><span class="name">记忆寓言法</span></h4><p class="map-intro">用跨领域寓言给抽象概念建立记忆线索。</p><p class="map-case"><span class="case-label">适合</span><span>想让新概念更容易记住时。</span></p></a>
+<a class="map-link" href="#prompt-19" data-target="prompt-19"><h4 class="map-card-heading"><span class="number">11</span><span class="name">大图小字</span></h4><p class="map-intro">用大图和少量文字做成讲解页。</p><p class="map-case"><span class="case-label">适合</span><span>想直观看清结构或机制时。</span></p></a>
+<a class="map-link" href="#prompt-20" data-target="prompt-20"><h4 class="map-card-heading"><span class="number">12</span><span class="name">系统学习</span></h4><p class="map-intro">按小目标练习、反馈和复习。</p><p class="map-case"><span class="case-label">适合</span><span>想真正学会一门技能时。</span></p></a></div></section>
+<section class="map-group" id="map-solving" data-map-group="solving" aria-labelledby="map-heading-solving"><header class="map-group-head"><div class="map-group-meta"><span class="number">03</span><span>6 个方法</span></div><h3 id="map-heading-solving">解决问题</h3><p class="map-group-result">从卡住到有路</p><p class="map-group-question">还能怎么解决？</p></header><div class="map-group-cards"><a class="map-link" href="#prompt-6" data-target="prompt-6"><h4 class="map-card-heading"><span class="number">13</span><span class="name">专家会诊</span></h4><p class="map-intro">让互补的专业视角相互质疑。</p><p class="map-case"><span class="case-label">适合</span><span>复杂问题涉及多个领域时。</span></p></a>
+<a class="map-link" href="#prompt-7" data-target="prompt-7"><h4 class="map-card-heading"><span class="number">14</span><span class="name">第一性原理</span></h4><p class="map-intro">拆回基本事实，重新推导解法。</p><p class="map-case"><span class="case-label">适合</span><span>旧方案反复打补丁仍无效时。</span></p></a>
+<a class="map-link" href="#prompt-8" data-target="prompt-8"><h4 class="map-card-heading"><span class="number">15</span><span class="name">跨领域借解</span></h4><p class="map-intro">借用其他行业解决同类问题的机制。</p><p class="map-case"><span class="case-label">适合</span><span>本领域找不到新办法时。</span></p></a>
+<a class="map-link" href="#prompt-21" data-target="prompt-21"><h4 class="map-card-heading"><span class="number">16</span><span class="name">逆向法</span></h4><p class="map-intro">从失败路径反推必须守住的防线。</p><p class="map-case"><span class="case-label">适合</span><span>执行前想找隐患、做风险预案时。</span></p></a>
+<a class="map-link" href="#prompt-22" data-target="prompt-22"><h4 class="map-card-heading"><span class="number">17</span><span class="name">方案挑错</span></h4><p class="map-intro">找出方案的致命点和多余复杂度。</p><p class="map-case"><span class="case-label">适合</span><span>方案已成形，想接受严格审查时。</span></p></a>
+<a class="map-link" href="#prompt-23" data-target="prompt-23"><h4 class="map-card-heading"><span class="number">18</span><span class="name">故障诊断</span></h4><p class="map-intro">先稳定复现，再用证据追查原因。</p><p class="map-case"><span class="case-label">适合</span><span>程序报错、功能异常或变慢时。</span></p></a></div></section>
+<section class="map-group" id="map-deciding" data-map-group="deciding" aria-labelledby="map-heading-deciding"><header class="map-group-head"><div class="map-group-meta"><span class="number">04</span><span>2 个方法</span></div><h3 id="map-heading-deciding">做出决策</h3><p class="map-group-result">从犹豫到行动</p><p class="map-group-question">怎样选择和验证？</p></header><div class="map-group-cards"><a class="map-link" href="#prompt-9" data-target="prompt-9"><h4 class="map-card-heading"><span class="number">19</span><span class="name">双向钢人</span></h4><p class="map-intro">把两个选项各自最强的理由讲透。</p><p class="map-case"><span class="case-label">适合</span><span>两条路都有道理、难以取舍时。</span></p></a>
+<a class="map-link" href="#prompt-10" data-target="prompt-10"><h4 class="map-card-heading"><span class="number">20</span><span class="name">最小实验</span></h4><p class="map-intro">用低成本、可逆的小试验换取反馈。</p><p class="map-case"><span class="case-label">适合</span><span>反复想仍无法判断时。</span></p></a></div></section>
+<section class="map-group" id="map-doing" data-map-group="doing" aria-labelledby="map-heading-doing"><header class="map-group-head"><div class="map-group-meta"><span class="number">05</span><span>2 个方法</span></div><h3 id="map-heading-doing">推动执行</h3><p class="map-group-result">从想法到结果</p><p class="map-group-question">怎样把事情交付？</p></header><div class="map-group-cards"><a class="map-link" href="#prompt-24" data-target="prompt-24"><h4 class="map-card-heading"><span class="number">21</span><span class="name">Agent任务书</span></h4><p class="map-intro">把想法写成目标与验收清楚的任务书。</p><p class="map-case"><span class="case-label">适合</span><span>准备把具体工作交给AI时。</span></p></a>
+<a class="map-link" href="#prompt-25" data-target="prompt-25"><h4 class="map-card-heading"><span class="number">22</span><span class="name">文档对齐</span></h4><p class="map-intro">让项目说明与真实状态保持一致。</p><p class="map-case"><span class="case-label">适合</span><span>代码或流程更新后，需要整理交接时。</span></p></a></div></section>
+<section class="map-group" id="map-self" data-map-group="self" aria-labelledby="map-heading-self"><header class="map-group-head"><div class="map-group-meta"><span class="number">06</span><span>2 个方法</span></div><h3 id="map-heading-self">认识自己</h3><p class="map-group-result">从经历到方向</p><p class="map-group-question">我是谁，想往哪走？</p></header><div class="map-group-cards"><a class="map-link" href="#prompt-11" data-target="prompt-11"><h4 class="map-card-heading"><span class="number">23</span><span class="name">隐藏天赋</span></h4><p class="map-intro">从经历、心流和能量模式中寻找优势。</p><p class="map-case"><span class="case-label">适合</span><span>想知道自己真正擅长什么时。</span></p></a>
+<a class="map-link" href="#prompt-12" data-target="prompt-12"><h4 class="map-card-heading"><span class="number">24</span><span class="name">人生设计术</span></h4><p class="map-intro">设计三个未来版本，再小步试走。</p><p class="map-case"><span class="case-label">适合</span><span>思考职业选择或未来几年方向时。</span></p></a></div></section></div><div class="map-help"><p>24 个方法，6 条思考路径。找到适合当前处境的一条，就从这里开始。</p><a href="#library">查看全部完整提示词 <span aria-hidden="true">↗</span></a></div></section>
+<section id="library" aria-labelledby="library-heading"><div class="library-toolbar"><div class="toolbar-top"><h2 id="library-heading">完整提示词</h2><div class="search-wrap" hidden><label for="method-search">搜索</label><input class="method-search" id="method-search" type="search" placeholder="方法名或卡点，如方案排雷" autocomplete="off"></div></div><div class="toolbar-bottom" hidden><div class="method-filters" role="group" aria-label="按使用场景筛选"><button class="filter-btn" type="button" data-filter="all" aria-pressed="true">全部 24</button><button class="filter-btn" type="button" data-filter="asking" aria-pressed="false">问清问题</button><button class="filter-btn" type="button" data-filter="learning" aria-pressed="false">学习理解</button><button class="filter-btn" type="button" data-filter="solving" aria-pressed="false">解决问题</button><button class="filter-btn" type="button" data-filter="deciding" aria-pressed="false">做出决策</button><button class="filter-btn" type="button" data-filter="doing" aria-pressed="false">推动执行</button><button class="filter-btn" type="button" data-filter="self" aria-pressed="false">认识自己</button></div><div class="result-info"><span id="filter-count" role="status" aria-live="polite">显示全部 24 条</span><button class="reset-btn" id="reset-methods" type="button">清除筛选</button></div></div></div><p id="method-empty" class="empty-state" hidden>暂时没有匹配的提示词。试试换个关键词，或清除筛选后从上方全貌重新选择。</p><article class="prompt-card" id="prompt-1" data-method="socratic-inquiry" data-group="asking" data-kind="original" data-search="苏格拉底式提问 苏格拉底提问 把一团模糊的困惑问清楚 一个准确、可以继续行动的新问题 还不知道真正要问什么时用它；已有成型方案要盘到底，用方案拷问。 想不清 迷茫 困惑 不知道该问什么" tabindex="-1">
 
-  <details class="toc" open>
-    <summary>目录 · 点击快速定位</summary>
-    <div class="toc-body">
-      <div class="toc-group"><div class="toc-group-title">问清问题</div><a href="#prompt-1" class="toc-link" data-target="prompt-1"><span class="toc-num">01</span><span>苏格拉底式提问</span></a></div><div class="toc-group"><div class="toc-group-title">学习</div><a href="#prompt-2" class="toc-link" data-target="prompt-2"><span class="toc-num">02</span><span>双层解释法</span></a><a href="#prompt-3" class="toc-link" data-target="prompt-3"><span class="toc-num">03</span><span>反向拆解</span></a><a href="#prompt-4" class="toc-link" data-target="prompt-4"><span class="toc-num">04</span><span>横纵分析法</span></a><a href="#prompt-5" class="toc-link" data-target="prompt-5"><span class="toc-num">05</span><span>事实核查</span></a></div><div class="toc-group"><div class="toc-group-title">解决问题</div><a href="#prompt-6" class="toc-link" data-target="prompt-6"><span class="toc-num">06</span><span>专家会诊</span></a><a href="#prompt-7" class="toc-link" data-target="prompt-7"><span class="toc-num">07</span><span>第一性原理</span></a><a href="#prompt-8" class="toc-link" data-target="prompt-8"><span class="toc-num">08</span><span>跨领域借解</span></a></div><div class="toc-group"><div class="toc-group-title">决策</div><a href="#prompt-9" class="toc-link" data-target="prompt-9"><span class="toc-num">09</span><span>双向钢人论证</span></a><a href="#prompt-10" class="toc-link" data-target="prompt-10"><span class="toc-num">10</span><span>用最小实验替代空想</span></a></div><div class="toc-group"><div class="toc-group-title">认识自己</div><a href="#prompt-11" class="toc-link" data-target="prompt-11"><span class="toc-num">11</span><span>挖掘隐藏天赋</span></a><a href="#prompt-12" class="toc-link" data-target="prompt-12"><span class="toc-num">12</span><span>人生设计术</span></a></div>
-    </div>
-  </details>
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">01</span><div><div class="prompt-category">问清问题 · 原文</div><h3>苏格拉底式提问<a class="citation" href="#source-1" aria-label="查看苏格拉底式提问的来源">[01]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-1" aria-label="复制苏格拉底式提问完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>把一团模糊的困惑问清楚</dd></div><div><dt>产出目标</dt><dd>一个准确、可以继续行动的新问题</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>还不知道真正要问什么时用它；已有成型方案要盘到底，用方案拷问。</p>
+<div class="prompt-box"><pre id="prompt-1-text">我的困惑是：【尽量具体地描述发生了什么、你怎么理解，以及你卡在哪里】。
+先不要给建议。请对我进行一次苏格拉底式问诊，通过最多6个问题，帮我找到真正值得回答的问题。
 
-  <section class="quick-guide">
-    <h1>12 个 Prompt 怎么选</h1>
-    <p class="subtitle">先看这一页。找到最像你当前问题的那一句，点击即可跳到完整 Prompt。</p>
-    <div class="quick-grid">
+请遵守这些规则：
+1. 每次只问一个问题，根据我的回答决定下一问，不要提前给我一整套问卷；
+2. 优先区分我说的是可验证的事实、对事实的解释、价值判断，还是我希望实现的目标；
+3. 检查关键词是否含糊、我默认了哪些前提、证据来自哪里、有没有相反解释，以及结论成立或不成立分别意味着什么；
+4. 每次提问前，用一句话说明上一条回答让你更新了什么判断；
+5. 只问可能改变结论的问题。信息足够时立刻停止，不必凑满6个。
 
-    <a class="quick-card" href="#prompt-1" data-target="prompt-1">
-      <div class="quick-top">
-        <span class="quick-num">01</span>
-        <strong>苏格拉底式提问</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>当你自己都没想清楚真正卡在哪里时，用它帮你把“真正的问题”问出来。</p>
-    </a>
+问诊结束后，请整理出：
+1. 我最开始问的问题；
+2. 我真正想解决的问题；
+3. 已经确认的事实；
+4. 仍未验证的假设；
+5. 最可能改变结论的关键变量；
+6. 一个准确、具体、可以继续行动的新问题。
 
-    <a class="quick-card" href="#prompt-2" data-target="prompt-2">
-      <div class="quick-top">
-        <span class="quick-num">02</span>
-        <strong>双层解释法</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>当一个概念看不懂时，用它先听懂小白版，再建立专业理解。</p>
-    </a>
+等我确认这个新问题以后，再给出你的判断、理由和下一步行动。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-1">来源与改编说明 [01]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-1" aria-label="复制苏格拉底式提问完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-13" data-method="matt-grilling" data-group="asking" data-kind="adapted" data-search="方案拷问 方案拷问 准备认真推进一个计划，但关键分支还没想透 一组有依据的关键决定与待验证假设 聚焦一个计划的完整决策树；模糊困惑先用苏格拉底式提问。 方案 计划 架构 追问 盘到底" tabindex="-1">
+<span id="prompt-14" class="legacy-anchor" aria-hidden="true"></span>
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">02</span><div><div class="prompt-category">问清问题 · 工作流改编</div><h3>方案拷问<a class="citation" href="#source-2" aria-label="查看方案拷问的来源">[02]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-13" aria-label="复制方案拷问完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>准备认真推进一个计划，但关键分支还没想透</dd></div><div><dt>产出目标</dt><dd>一组有依据的关键决定与待验证假设</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>聚焦一个计划的完整决策树；模糊困惑先用苏格拉底式提问。</p>
+<div class="prompt-box"><pre id="prompt-13-text">我想认真推敲的计划是：【写明计划、已有想法、目标和现实约束】。
 
-    <a class="quick-card" href="#prompt-3" data-target="prompt-3">
-      <div class="quick-top">
-        <span class="quick-num">03</span>
-        <strong>反向拆解</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>看到一个优秀作品想学会它时，用它反推“为什么它做得好”。</p>
-    </a>
+请像一位严谨的方案审查者，通过多轮提问，帮我把这个计划想透，而不是急着替我写一个看起来完整的答案。
 
-    <a class="quick-card" href="#prompt-4" data-target="prompt-4">
-      <div class="quick-top">
-        <span class="quick-num">04</span>
-        <strong>横纵分析法</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>想系统研究一个公司、人物、技术、行业或事件时，用它做纵向历史＋横向对比。</p>
-    </a>
+先把计划看成一棵决策树：哪些是必须先决定的根问题，哪些选择会引出后续分支。只问现在已经具备回答条件的问题，不要建立在我尚未确认的答案上继续推演。
 
-    <a class="quick-card" href="#prompt-5" data-target="prompt-5">
-      <div class="quick-top">
-        <span class="quick-num">05</span>
-        <strong>事实核查</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>怀疑一个观点、数据或 AI 回答是否靠谱时，用它核查事实和推理链。</p>
-    </a>
+每轮最多问3个关键问题。每个问题都说明：它为什么会影响方案、有哪些可行选择、你目前推荐哪一个以及理由。问完等我回答，再更新已经确定的事实、决定和仍待解决的分支。
 
-    <a class="quick-card" href="#prompt-6" data-target="prompt-6">
-      <div class="quick-top">
-        <span class="quick-num">06</span>
-        <strong>专家会诊</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>一个复杂问题涉及多个专业角度时，用它让不同视角互相质疑后再给综合方案。</p>
-    </a>
+你能够从我提供的材料里查明的信息，先自己查；需要联网而你无法联网的内容，明确标为待核实。不要让我替你重复材料中已有的事实，也不要把建议写成我已经作出的决定。
 
-    <a class="quick-card" href="#prompt-7" data-target="prompt-7">
-      <div class="quick-top">
-        <span class="quick-num">07</span>
-        <strong>第一性原理</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>感觉一直在旧方案上打补丁时，用它把问题拆回基本事实，从零重新推导。</p>
-    </a>
+当没有足以改变方案的关键分支悬而未决时，整理：
+1. 已经达成共识的目标与约束；
+2. 关键决定、依据和取舍；
+3. 尚待验证的假设，以及最低成本的验证方式；
+4. 可以开始执行的第一步。
 
-    <a class="quick-card" href="#prompt-8" data-target="prompt-8">
-      <div class="quick-top">
-        <span class="quick-num">08</span>
-        <strong>跨领域借解</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>本领域想不到新办法时，用它从其他领域借用已经验证过的解决机制。</p>
-    </a>
+先给出你对这件事的简短理解，再开始第一轮提问。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：Matt Pocock；本站整理（AI辅助） · <a href="#source-2">来源与改编说明 [02]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-13" aria-label="复制方案拷问完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-15" data-method="johari-window" data-group="asking" data-kind="original" data-search="乔哈里视窗 乔哈里视窗 AI总是不问就猜，回答没有贴住你的处境 双方已知、各自盲区和需要澄清的信息 它约束整段协作的信息判断；只想让回答更直接，用直给输出法。 盲区 隐藏区 协作 别猜 需求" tabindex="-1">
 
-    <a class="quick-card" href="#prompt-9" data-target="prompt-9">
-      <div class="quick-top">
-        <span class="quick-num">09</span>
-        <strong>双向钢人论证</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>两个选项都有道理、迟迟选不下时，用它把双方最强理由都推到极致再判断。</p>
-    </a>
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">03</span><div><div class="prompt-category">问清问题 · 原文</div><h3>乔哈里视窗<a class="citation" href="#source-3" aria-label="查看乔哈里视窗的来源">[03]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-15" aria-label="复制乔哈里视窗完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>AI总是不问就猜，回答没有贴住你的处境</dd></div><div><dt>产出目标</dt><dd>双方已知、各自盲区和需要澄清的信息</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>它约束整段协作的信息判断；只想让回答更直接，用直给输出法。</p>
+<p class="prompt-note">原文最外层的【】是引用符，不需要替换；复制后在末尾补充你的具体问题。</p><div class="prompt-box"><pre id="prompt-15-text">【请你在与我协作时，遵循“人类-AI 协作版乔哈里视窗模型”的逻辑：
 
-    <a class="quick-card" href="#prompt-10" data-target="prompt-10">
-      <div class="quick-top">
-        <span class="quick-num">10</span>
-        <strong>用最小实验替代空想</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>继续分析也想不清时，用它设计一个低成本小实验，让现实替你回答。</p>
-    </a>
+协作的核心目标是：通过有效沟通，不断扩大你我共同理解的“开放区”，协助我做出判断，并产出更准确、更有价值、更贴近我真实需求的回答。
 
-    <a class="quick-card" href="#prompt-11" data-target="prompt-11">
-      <div class="quick-top">
-        <span class="quick-num">11</span>
-        <strong>挖掘隐藏天赋</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>想知道自己真正擅长什么、什么会给自己充电时，用它系统挖掘隐藏天赋。</p>
-    </a>
+在每次任务中，请先判断当前信息主要处于哪一区域，并采取对应协作方式：
 
-    <a class="quick-card" href="#prompt-12" data-target="prompt-12">
-      <div class="quick-top">
-        <span class="quick-num">12</span>
-        <strong>人生设计术</strong>
-        <span class="quick-arrow">→</span>
-      </div>
-      <p>想思考未来几年到底怎么走时，用它设计三个可尝试的人生版本和下一步行动。</p>
-    </a>
+1. 开放区：你知，我也知
 
-    </div>
-  </section>
+如果我提出的任务、概念或目标是清晰的，并属于通用知识或常见任务，请直接处理。不要过度追问，也不要补充过多背景假设，优先给出简洁、明确、可执行的回答。
 
-  <section class="full-prompts">
-    <h1 class="full-title">完整 Prompt</h1>
+2. 隐藏区：我知道，你不知道
 
-    <article class="prompt-card" id="prompt-1">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">01</span>
-          <div>
-            <div class="prompt-category">问清问题</div>
-            <h2>苏格拉底式提问</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-1">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">当你自己都没想清楚真正卡在哪里时，用它帮你把“真正的问题”问出来。</p>
-      <div class="prompt-box">
-        <pre id="prompt-1-text">我的困惑是：【尽量具体地描述发生了什么、你怎么理解，以及你卡在哪里】。先不要给建议。请对我进行一次苏格拉底式问诊，通过最多6个问题，帮我找到真正值得回答的问题。请遵守这些规则：1. 每次只问一个问题，根据我的回答决定下一问，不要提前给我一整套问卷；2. 优先区分我说的是可验证的事实、对事实的解释、价值判断，还是我希望实现的目标；3. 检查关键词是否含糊、我默认了哪些前提、证据来自哪里、有没有相反解释，以及结论成立或不成立分别意味着什么；4. 每次提问前，用一句话说明上一条回答让你更新了什么判断；5. 只问可能改变结论的问题。信息足够时立刻停止，不必凑满6个。问诊结束后，请整理出：1. 我最开始问的问题；2. 我真正想解决的问题；3. 已经确认的事实；4. 仍未验证的假设；5. 最可能改变结论的关键变量；6. 一个准确、具体、可以继续行动的新问题。等我确认这个新问题以后，再给出你的判断、理由和下一步行动。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-1">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+如果任务涉及我的个人经验、具体想法、审美偏好、项目背景、使用场景或特殊要求，而这些信息没有充分表达，请不要急于下结论。请通过有针对性的问题，帮助我补充最关键的信息。
 
-    <article class="prompt-card" id="prompt-2">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">02</span>
-          <div>
-            <div class="prompt-category">学习</div>
-            <h2>双层解释法</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-2">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">当一个概念看不懂时，用它先听懂小白版，再建立专业理解。</p>
-      <div class="prompt-box">
-        <pre id="prompt-2-text">我想学习的是：【填写概念或问题】。请分两层解释：第一层，小白版。用生活化的语言和一个具体例子，让完全没有基础的人也能听懂。第二层，专业版。使用准确术语，讲清核心机制、适用边界和常见误解。最后请整理出：1. 列出小白说法与专业术语的对应关系；2. 我最容易理解错的地方；3. 3个用于检查我是否真正理解的问题。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-2">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+注意：提问时不要一次性问太多；优先问最影响结果质量的问题；如果可以先基于现有信息给出初步版本，请先给出，再说明哪些地方需要我补充。
 
-    <article class="prompt-card" id="prompt-3">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">03</span>
-          <div>
-            <div class="prompt-category">学习</div>
-            <h2>反向拆解</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-3">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">看到一个优秀作品想学会它时，用它反推“为什么它做得好”。</p>
-      <div class="prompt-box">
-        <pre id="prompt-3-text">我想拆解的优秀范例是：【粘贴产品页面、网页、方案、流程说明、数据看板或其他成品】。我想学会的是：【填写你希望从中学会什么】。请先用一句话说明它解决了什么问题，再反向拆解它为什么有效。重点分析：1. 它服务谁，目标是什么；2. 它采用了什么结构或流程；3. 哪些关键选择拉开了质量差距；4. 它的完成标准是什么；5. 哪些规律可以迁移，哪些细节只适合这个案例。最后请给我：1. 提炼3到5条可复用规律；2. 一份可以照着执行的操作清单；3. 一个最值得先尝试的小练习。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-3">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+3. 盲区：你知道，我不知道
 
-    <article class="prompt-card" id="prompt-4">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">04</span>
-          <div>
-            <div class="prompt-category">学习</div>
-            <h2>横纵分析法</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-4">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">想系统研究一个公司、人物、技术、行业或事件时，用它做纵向历史＋横向对比。</p>
-      <div class="prompt-box">
-        <pre id="prompt-4-text">研究对象是：【填写产品、公司、人物、技术、行业或事件】。请使用横纵分析法，对它完成一份可追溯的深度研究。研究截止时间为执行当天。纵向分析：1. 它在什么背景和需求下诞生，关键推动者是谁；2. 它经历了哪些重要转折、成功和失败；3. 哪些早期选择变成了今天的能力、路径依赖或包袱。横向分析：1. 选择最值得比较的对象，并说明为什么选它们；2. 用统一维度比较各自的强项、短板和独特性；3. 解释用户、客户或市场为什么选择它，又为什么放弃它。把两条轴合起来，继续判断：1. 过去形成的能力、路径依赖和约束会怎样影响未来；2. 未来最可能出现哪3条路径；3. 每条路径出现的前提和预警信号是什么。请遵守这些证据规则：1. 优先使用官方资料、原始数据、论文、财报和访谈等一手来源；2. 重要结论就近标注来源与日期；3. 事实、推断和观点分开写；4. 遇到冲突信息时并列呈现，找不到证据时明确写"暂未核实"。最后按以下顺序输出：核心结论、关键时间线、横向对比表、详细分析、未来判断、仍待确认的问题。报告需要在10000～30000字之间，语言尽量通俗，不要堆砌资料。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-4">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+如果我多次表达“不满意”“说不清楚”“感觉不对”，或者我的表达显示出我可能不了解更好的解决路径，请你不要只在原问题里反复微调。
 
-    <article class="prompt-card" id="prompt-5">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">05</span>
-          <div>
-            <div class="prompt-category">学习</div>
-            <h2>事实核查</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-5">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">怀疑一个观点、数据或 AI 回答是否靠谱时，用它核查事实和推理链。</p>
-      <div class="prompt-box">
-        <pre id="prompt-5-text">我要核查的说法是：【粘贴观点、结论、数据或方案】。请先把它拆成：1. 可以被外部验证的事实；2. 从事实推出的结论；3. 其中包含的价值判断。对于事实部分，请联网核查来源、样本、时间和完整上下文，并标记为：1. 已证实；2. 基本成立，但需要收窄；3. 存在争议；4. 证据不足；5. 明显错误。在假设相关事实成立的情况下，继续检查：1. 这些事实能否推出当前结论；2. 是否藏着未经验证的假设；3. 是否混淆相关性和因果关系；4. 是否遗漏了其他解释或关键信息；5. 结论在什么条件下成立或失效。最后请输出：1. 哪些事实可信，哪些需要修正；2. 推理链中最关键的漏洞；3. 补强后的最合理版本；4. 我目前可以相信到什么程度。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-5">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+你需要主动指出我可能忽略的角度、方法、结构或替代方案，帮助我看到新的可能性。
 
-    <article class="prompt-card" id="prompt-6">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">06</span>
-          <div>
-            <div class="prompt-category">解决问题</div>
-            <h2>专家会诊</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-6">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">一个复杂问题涉及多个专业角度时，用它让不同视角互相质疑后再给综合方案。</p>
-      <div class="prompt-box">
-        <pre id="prompt-6-text">我的问题是：【填写问题、已知事实、目标和现实约束】。先不要直接给方案。请为这个问题选择3种真正互补的专业视角，并说明每种视角为什么必要。让每种视角分别回答：1. 它怎样重新定义这个问题；2. 它最推荐的解决路径；3. 其他视角最容易忽略的风险；4. 什么新证据会让它改变判断。然后让三种视角互相质疑，找出：1. 共同认可的事实；2. 真正的分歧；3. 分歧背后的不同假设。最后请综合输出：1. 综合后最推荐的方案；2. 适用条件；3. 最大风险；4. 退出条件；5. 第一步行动。不要选择三个高度相似的身份，也不要模仿或编造真实人物的观点。信息不足时，先只问我一个最关键的问题。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-6">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+4. 未知区：你不知道，我也不知道
 
-    <article class="prompt-card" id="prompt-7">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">07</span>
-          <div>
-            <div class="prompt-category">解决问题</div>
-            <h2>第一性原理</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-7">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">感觉一直在旧方案上打补丁时，用它把问题拆回基本事实，从零重新推导。</p>
-      <div class="prompt-box">
-        <pre id="prompt-7-text">我想解决的问题是：【填写你的问题】。请用第一性原理把它拆回最底层，区分：1. 已经确认、无法绕开的基本事实；2. 习惯性接受、却没有验证过的假设；3. 真正想实现的目标；4. 现实中的资源与约束。暂时放下行业惯例和现成方案，只从基本事实、目标和约束出发，重新推导可行路径。最后请输出：1. 原方案中只在修补表面的部分；2. 从基本事实重新推导出的新路径；3. 这条路径成立的前提；4. 验证它的第一步。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-7">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+如果任务本身还处于探索阶段，我们都没有确定答案，请不要急于给出唯一结论。
 
-    <article class="prompt-card" id="prompt-8">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">08</span>
-          <div>
-            <div class="prompt-category">解决问题</div>
-            <h2>跨领域借解</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-8">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">本领域想不到新办法时，用它从其他领域借用已经验证过的解决机制。</p>
-      <div class="prompt-box">
-        <pre id="prompt-8-text">我的困惑是：【说明背景、当前做法、现实约束和具体卡点】。请先剥掉行业术语，把它抽象成一个人类在其他领域也可能遇到的问题，并找出：1. 问题的底层结构；2. 真正的核心矛盾；3. 普通解法失效的原因。然后从历史案例，以及至少3个彼此距离较远的领域中每个案例都要说明：1. 那个领域遇到了什么问题；2. 使用了什么解决机制；3. 与我的问题相似在哪里；4. 哪些部分可以迁移；5. 什么条件下会失效。最后请选出最值得借用的3种机制，把它们翻译成适合我当前处境的解决方案，再推荐一个最值得先试的低成本、可逆实验。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-8">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+请你把协作方式切换为“共同探索”：我提出一个初步想法，你给出创造性回应；我再根据你的回应进行判断、筛选和修正；然后我们继续推进。
 
-    <article class="prompt-card" id="prompt-9">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">09</span>
-          <div>
-            <div class="prompt-category">决策</div>
-            <h2>双向钢人论证</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-9">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">两个选项都有道理、迟迟选不下时，用它把双方最强理由都推到极致再判断。</p>
-      <div class="prompt-box">
-        <pre id="prompt-9-text">我需要做的决定是：【写清问题、两个选项、目标和现实约束】。先别急着回答，也别默认我已经把问题想清楚。请先做一次双向钢人论证：1. 用最完整、有力的方式，重述我真正需要做出的选择；2. 分别给出支持两个方向的最强理由、适用条件、最大收益、最大风险，以及最难回答的反对意见；3. 找出双方真正的分歧、最可能改变结论的关键变量，以及还需要补充的信息；4. 只问我一个最可能改变结论的问题。等我回答以后，再给出明确判断、理由、适用条件和下一步行动。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-9">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+在未知区中，你可以提供多个方向、假设、原型或灵感方案，帮助我比较和选择，不要直接替我锁定答案。
 
-    <article class="prompt-card" id="prompt-10">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">10</span>
-          <div>
-            <div class="prompt-category">决策</div>
-            <h2>用最小实验替代空想</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-10">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">继续分析也想不清时，用它设计一个低成本小实验，让现实替你回答。</p>
-      <div class="prompt-box">
-        <pre id="prompt-10-text">我正在纠结的是：【填写你的选择或想法】。请先找出这个决定背后最需要验证的3个假设，再选出最可能改变最终结论的那一个。围绕这个假设，帮我设计一个低成本、可逆、能在【7天或你能接受的周期】内完成的最小实验。请写清：1. 具体要做什么；2. 需要投入多少时间和资源；3. 观察什么指标；4. 什么结果支持继续；5. 什么结果提醒我停止；6. 实验结束后能获得什么新信息。最后告诉我，明天就能开始的第一个动作是什么。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-10">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
+在整个协作过程中，请你始终注意先判断信息状态，再选择回应方式。】</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：网络流传，原作者未署名 · <a href="#source-3">来源与改编说明 [03]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-15" aria-label="复制乔哈里视窗完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-16" data-method="no-fluff-output" data-group="asking" data-kind="translated" data-search="直给输出法 直给输出法 回答太绕、重点难找，知道答案却不容易开始做 结论明确、步骤具体、便于行动的回答 它调整输出方式；真正的问题还没弄清楚时，仍需先补信息。 说重点 啰嗦 别废话 直接 注意力" tabindex="-1">
 
-    <article class="prompt-card" id="prompt-11">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">11</span>
-          <div>
-            <div class="prompt-category">认识自己</div>
-            <h2>挖掘隐藏天赋</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-11">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">想知道自己真正擅长什么、什么会给自己充电时，用它系统挖掘隐藏天赋。</p>
-      <div class="prompt-box">
-        <pre id="prompt-11-text"># Role：深度天赋挖掘机
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">04</span><div><div class="prompt-category">问清问题 · 中文整理</div><h3>直给输出法<a class="citation" href="#source-4" aria-label="查看直给输出法的来源">[04]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-16" aria-label="复制直给输出法完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>回答太绕、重点难找，知道答案却不容易开始做</dd></div><div><dt>产出目标</dt><dd>结论明确、步骤具体、便于行动的回答</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>它调整输出方式；真正的问题还没弄清楚时，仍需先补信息。</p>
+<div class="prompt-box"><pre id="prompt-16-text">请按下面的方式与我协作，让回答容易理解、容易开始行动。这个要求在本次对话中持续有效，直到我说“恢复正常模式”。
+
+1. 先说最重要的结论，或我现在就能做的下一步。必要背景紧接着解释，不要用寒暄、重复问题或宣布计划来占据开头。
+2. 一次回答聚焦一个主要问题。多步骤工作用编号列表，每一步只安排一个明确动作；长列表先分出当前最重要的部分。
+3. 提供具体信息。涉及操作时，给出可用的示例、步骤或检查办法；无法确定的时间、数字或事实要说明不确定，不要编造精确值。
+4. 保留影响判断的理由、条件和风险，不要为了简短删掉关键内容。专业词第一次出现时，用一句话说明它是什么意思。
+5. 发生错误时，直接说明哪里错了、可能原因和下一步怎么排查，不渲染情绪，也不反复道歉。
+6. 工作没有完成时，简短说明现在做到哪里、还缺什么；已完成的部分不用再写一遍长总结。
+7. 如果还有待办，结尾只给一个具体、容易开始的下一步。事情已经回答完整，就直接结束，不追加客套话。
+8. 遇到必须由我作出的决定或需要额外授权的动作，只问真正必要的问题，并说明它为什么会改变结果。
+
+我现在需要你帮助的事情是：【填写问题或任务】。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：ayghri · i-have-adhd；本站整理（AI辅助） · <a href="#source-4">来源与改编说明 [04]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-16" aria-label="复制直给输出法完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-2" data-method="two-layer-explain" data-group="learning" data-kind="original" data-search="双层解释法 双层解释法 刚遇到一个陌生概念，想听懂也想讲准确 小白解释、专业机制、术语对照和自测题 第一次解释优先用它；看过几遍还不懂，再试寓言故事。 概念 听不懂 专业 小白" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">05</span><div><div class="prompt-category">学习理解 · 原文</div><h3>双层解释法<a class="citation" href="#source-5" aria-label="查看双层解释法的来源">[05]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-2" aria-label="复制双层解释法完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>刚遇到一个陌生概念，想听懂也想讲准确</dd></div><div><dt>产出目标</dt><dd>小白解释、专业机制、术语对照和自测题</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>第一次解释优先用它；看过几遍还不懂，再试寓言故事。</p>
+<div class="prompt-box"><pre id="prompt-2-text">我想学习的是：【填写概念或问题】。
+
+请分两层解释：
+
+第一层，小白版。
+用生活化的语言和一个具体例子，让完全没有基础的人也能听懂。
+
+第二层，专业版。
+使用准确术语，讲清核心机制、适用边界和常见误解。
+
+最后请整理出：
+1. 列出小白说法与专业术语的对应关系；
+2. 我最容易理解错的地方；
+3. 3个用于检查我是否真正理解的问题。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-5">来源与改编说明 [05]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-2" aria-label="复制双层解释法完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-3" data-method="reverse-teardown" data-group="learning" data-kind="original" data-search="反向拆解 反向拆解 手上有一个做得好的成品，想学会它好在哪里 可复用的设计规律与操作清单 分析优秀范例；担心自己的方案失败，选逆向法或方案挑错。 范例 优秀 模仿 为什么好" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">06</span><div><div class="prompt-category">学习理解 · 原文</div><h3>反向拆解<a class="citation" href="#source-6" aria-label="查看反向拆解的来源">[06]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-3" aria-label="复制反向拆解完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>手上有一个做得好的成品，想学会它好在哪里</dd></div><div><dt>产出目标</dt><dd>可复用的设计规律与操作清单</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>分析优秀范例；担心自己的方案失败，选逆向法或方案挑错。</p>
+<div class="prompt-box"><pre id="prompt-3-text">我想拆解的优秀范例是：【粘贴产品页面、网页、方案、流程说明、数据看板或其他成品】。
+我想学会的是：【填写你希望从中学会什么】。
+
+请先用一句话说明它解决了什么问题，再反向拆解它为什么有效。
+
+重点分析：
+1. 它服务谁，目标是什么；
+2. 它采用了什么结构或流程；
+3. 哪些关键选择拉开了质量差距；
+4. 它的完成标准是什么；
+5. 哪些规律可以迁移，哪些细节只适合这个案例。
+
+最后请给我：
+1. 提炼3到5条可复用规律；
+2. 一份可以照着执行的操作清单；
+3. 一个最值得先尝试的小练习。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-6">来源与改编说明 [06]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-3" aria-label="复制反向拆解完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-4" data-method="horizontal-vertical-analysis" data-group="learning" data-kind="original" data-search="横纵分析法 横纵分析法 愿意投入时间，系统研究一家公司、技术或行业 历史演变、横向比较和可追溯的研究判断 需要联网与一手材料；只是听懂一个概念，先用双层解释法。 研究 公司 技术 行业 历史 对比" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">07</span><div><div class="prompt-category">学习理解 · 原文</div><h3>横纵分析法<a class="citation" href="#source-7" aria-label="查看横纵分析法的来源">[07]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-4" aria-label="复制横纵分析法完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>愿意投入时间，系统研究一家公司、技术或行业</dd></div><div><dt>产出目标</dt><dd>历史演变、横向比较和可追溯的研究判断</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>需要联网与一手材料；只是听懂一个概念，先用双层解释法。</p>
+<p class="prompt-note">需要能够联网核对材料的AI；没有联网能力时，不应把生成的说法当作已核实的结论。</p><div class="prompt-box"><pre id="prompt-4-text">研究对象是：【填写产品、公司、人物、技术、行业或事件】。
+
+请使用横纵分析法，对它完成一份可追溯的深度研究。研究截止时间为执行当天。
+
+纵向分析：
+1. 它在什么背景和需求下诞生，关键推动者是谁；
+2. 它经历了哪些重要转折、成功和失败；
+3. 哪些早期选择变成了今天的能力、路径依赖或包袱。
+
+横向分析：
+1. 选择最值得比较的对象，并说明为什么选它们；
+2. 用统一维度比较各自的强项、短板和独特性；
+3. 解释用户、客户或市场为什么选择它，又为什么放弃它。
+
+把两条轴合起来，继续判断：
+1. 过去形成的能力、路径依赖和约束会怎样影响未来；
+2. 未来最可能出现哪3条路径；
+3. 每条路径出现的前提和预警信号是什么。
+
+请遵守这些证据规则：
+1. 优先使用官方资料、原始数据、论文、财报和访谈等一手来源；
+2. 重要结论就近标注来源与日期；
+3. 事实、推断和观点分开写；
+4. 遇到冲突信息时并列呈现，找不到证据时明确写“暂未核实”。
+
+最后按以下顺序输出：核心结论、关键时间线、横向对比表、详细分析、未来判断、仍待确认的问题。报告需要在10000～30000字之间，语言尽量通俗，不要堆砌资料。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-7">来源与改编说明 [07]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-4" aria-label="复制横纵分析法完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-5" data-method="fact-check" data-group="learning" data-kind="original" data-search="事实核查 事实核查 想知道某个观点、数据或AI回答是否站得住 事实可信度分档、推理漏洞与结论边界 核查现有说法；从底层重新设计方案，选第一性原理。 真假 靠谱 幻觉 数据 核实" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">08</span><div><div class="prompt-category">学习理解 · 原文</div><h3>事实核查<a class="citation" href="#source-8" aria-label="查看事实核查的来源">[08]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-5" aria-label="复制事实核查完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>想知道某个观点、数据或AI回答是否站得住</dd></div><div><dt>产出目标</dt><dd>事实可信度分档、推理漏洞与结论边界</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>核查现有说法；从底层重新设计方案，选第一性原理。</p>
+<p class="prompt-note">需要能够联网核对材料的AI；没有联网能力时，不应把生成的说法当作已核实的结论。</p><div class="prompt-box"><pre id="prompt-5-text">我要核查的说法是：【粘贴观点、结论、数据或方案】。
+
+请先把它拆成：
+1. 可以被外部验证的事实；
+2. 从事实推出的结论；
+3. 其中包含的价值判断。
+
+对于事实部分，请联网核查来源、样本、时间和完整上下文，并标记为：
+1. 已证实；
+2. 基本成立，但需要收窄；
+3. 存在争议；
+4. 证据不足；
+5. 明显错误。
+
+在假设相关事实成立的情况下，继续检查：
+1. 这些事实能否推出当前结论；
+2. 是否藏着未经验证的假设；
+3. 是否混淆相关性和因果关系；
+4. 是否遗漏了其他解释或关键信息；
+5. 结论在什么条件下成立或失效。
+
+最后请输出：
+1. 哪些事实可信，哪些需要修正；
+2. 推理链中最关键的漏洞；
+3. 补强后的最合理版本；
+4. 我目前可以相信到什么程度。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-8">来源与改编说明 [08]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-5" aria-label="复制事实核查完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-17" data-method="parable" data-group="learning" data-kind="original" data-search="寓言故事 寓言故事 别人直接解释过，但你还是没有真正理解 一则故事、概念解析和两道检验题 重点是理解；主要想顺手记住一个新概念，用记忆寓言法。 看了几遍 不懂 故事 类比 理解" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">09</span><div><div class="prompt-category">学习理解 · 原文</div><h3>寓言故事<a class="citation" href="#source-9" aria-label="查看寓言故事的来源">[09]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-17" aria-label="复制寓言故事完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>别人直接解释过，但你还是没有真正理解</dd></div><div><dt>产出目标</dt><dd>一则故事、概念解析和两道检验题</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>重点是理解；主要想顺手记住一个新概念，用记忆寓言法。</p>
+<div class="prompt-box"><pre id="prompt-17-text"># 寓言写作 Prompt
+围绕 **{concept}** 这个概念，写一则寓言来完整地解释它。要像真正的寓言那样间接讲，不要直接点破。
+---
+## 一、寓言体感
+- **篇幅**：1000字以内。真正的寓言是精炼的，靠一个核心场景、一两次转折把意思撑起来，不需要铺陈。
+- **世界观**：故事是虚构的，可以拟人化——动物、植物、器物开口说话都行；可以发生在一个不写实的小世界里，也可以落在一个看似日常的微观场景中。
+- **角色**：不超过三个，最好两个。它们之间的关系或互动本身就要承载寓意。
+- **揭示节奏**：全程不出现概念名称，不使用该领域术语。只在接近结尾时，才让读者隐约意识到讲的是什么。
+- **叙事纪律**：让情节和细节本身承载意义，不要让角色跳出来当解说员。
+---
+## 二、防套路自检
+动笔前先过一遍以下清单，逐项避开。
+### 意象黑名单
+钟、河流、镜子、迷宫、织布机、地图、灯塔、棋盘、回声、影子、沙漏、风、蜡烛、种子、桥、星辰、蝴蝶、蛛网。
+### 地名黑名单
+不要写&quot;回声城&quot;&quot;记忆之村&quot;&quot;遗忘之海&quot;&quot;寂静谷&quot;这类过度文艺化的虚构地名。给个普通地理名词，或者干脆不命名。
+### 结构黑名单
+- 旅行者求教智者
+- 村庄异象 → 众人顿悟
+- 孩童一句话点醒大人
+- 师徒辩难
+- 临终遗言
+### 角色黑名单
+钟表匠、图书管理员、隐士、说书人、老船夫、酿酒师、铁匠、抄经人。
+### 开头黑名单
+不要写&quot;从前有个地方……&quot;&quot;某天某人遇见某事……&quot;&quot;在很远的山里……&quot;这种起手式。直接进入场景。
+---
+## 三、切入角度鼓励
+以下方向优先考虑，可以组合使用：
+- **非人类视角**：一件工具、一只动物、一种植物、一个机构在自述。
+- **具体的现代职业和场景**：理赔员、电梯保养工、菜市场摊主、夜班护士、外卖站长、二手房中介、分拣员……
+- **微观尺度**：一次交易、一次门诊、一通电话、一次拆卸，内部发生的事。
+核心原则：让故事的具体性把概念裹住。
+---
+## 四、输出格式
+### 第一部分：寓言正文
+直接输出故事，不加标题、不加引导语。
+### 第二部分：概念解析
+另起一段，完成以下内容：
+1. 讲清楚这个概念叫什么、属于哪个流派或学科、核心定义是什么。
+2. 逐一对应：故事里的哪些元素映射到概念的哪个部分。
+### 第三部分：检验问题
+向我提两个问题：
+1. **理解检验**：检验我是否真正理解了概念的核心，而不只是记住了表面的故事情节。问题要具体可答。
+2. **迁移检验**：检验我是否能把这个概念迁移到相关领域，让我自己举例回答。问题要具体可答。
+&gt; 不要写成&quot;你怎么看待这个概念&quot;这样空泛的开放题。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克；思路来自 Amanda Askell · <a href="#source-9">来源与改编说明 [09]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-17" aria-label="复制寓言故事完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-18" data-method="memory-parable" data-group="learning" data-kind="translated" data-search="记忆寓言法 记忆寓言法 想用一个有意思的故事记住抽象概念 一则跨领域寓言与隐喻对应说明 重点是建立记忆线索；需要严格检验理解，选寓言故事。 记住 记忆 故事 无聊" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">10</span><div><div class="prompt-category">学习理解 · 中文整理</div><h3>记忆寓言法<a class="citation" href="#source-10" aria-label="查看记忆寓言法的来源">[10]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-18" aria-label="复制记忆寓言法完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>想用一个有意思的故事记住抽象概念</dd></div><div><dt>产出目标</dt><dd>一则跨领域寓言与隐喻对应说明</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>重点是建立记忆线索；需要严格检验理解，选寓言故事。</p>
+<div class="prompt-box"><pre id="prompt-18-text">我想学习的领域是：【填写领域；也可以指定一个概念】。
+
+请从这个领域选择一个有一定深度、值得记住的概念；如果我已经指定概念，就围绕它来讲。
+
+写一则寓言，用另一个领域的具体人物、处境和行动，间接呈现这个概念。不要在故事开头说出概念名称，也不要一开始就告诉我“这个故事对应什么”。让故事中的因果关系先建立直觉，到接近结尾时再让我明白它真正讲的是什么。
+
+故事结束后：
+1. 清楚解释概念本身；
+2. 把故事中的重要人物、事件和关系，逐个对应到概念的含义；
+3. 说明这个类比在哪些地方成立，哪些地方不能照搬。
+
+重点是让我通过一个记得住的故事抓住概念，不用堆砌术语，也不要为了戏剧性扭曲原理。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：陈乔维Justin 转述 Amanda Askell 的思路；本站整理（AI辅助） · <a href="#source-10">来源与改编说明 [10]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-18" aria-label="复制记忆寓言法完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-19" data-method="eli5" data-group="learning" data-kind="translated" data-search="大图小字讲解法 大图小字 想用图看清一个陌生主题的关键关系 一张可打开、图多字少的HTML讲解页 适合视觉理解；只需文字解释，选双层解释法。 图文 大图 页面 一屏看懂" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">11</span><div><div class="prompt-category">学习理解 · 中文整理</div><h3>大图小字讲解法<a class="citation" href="#source-11" aria-label="查看大图小字讲解法的来源">[11]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-19" aria-label="复制大图小字讲解法完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>想用图看清一个陌生主题的关键关系</dd></div><div><dt>产出目标</dt><dd>一张可打开、图多字少的HTML讲解页</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>适合视觉理解；只需文字解释，选双层解释法。</p>
+<div class="prompt-box"><pre id="prompt-19-text">我想理解的主题是：【填写主题，并附上已有材料】。
+
+请把我当成一个完全不了解这个主题的人，用“大图＋少量文字”的HTML讲解页面，把它解释清楚。
+
+先找出最重要的一条关系或一个机制，用清晰的图示呈现，再用少量日常语言说明。图中的标签、关系和顺序要准确，避免把页面变成长篇文章。必要的专业词给出简短解释。
+
+请交付完整、可以保存为HTML并打开查看的页面。若当前环境不能生成或展示页面，就直接给出完整HTML代码，并说明怎么查看，不要声称已经替我打开。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：苏乐转述；本站整理（AI辅助） · <a href="#source-11">来源与改编说明 [11]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-19" aria-label="复制大图小字讲解法完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-20" data-method="matt-teach" data-group="learning" data-kind="adapted" data-search="系统学习教练 系统学习 准备跨多次对话真正学会一门技能 短课、练习、反馈、速查卡和接续记录 要练会而不只是听懂；单次概念解释用双层解释法。 系统 学习 课程 教学 练习" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">12</span><div><div class="prompt-category">学习理解 · 工作流改编</div><h3>系统学习教练<a class="citation" href="#source-12" aria-label="查看系统学习教练的来源">[12]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-20" aria-label="复制系统学习教练完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>准备跨多次对话真正学会一门技能</dd></div><div><dt>产出目标</dt><dd>短课、练习、反馈、速查卡和接续记录</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>要练会而不只是听懂；单次概念解释用双层解释法。</p>
+<div class="prompt-box"><pre id="prompt-20-text">我想学会的是：【填写主题或技能】。
+我的学习目的是：【具体想用它完成什么】。
+我目前的基础、可投入时间和已有材料是：【填写情况】。
+
+请担任我的学习教练，围绕实际目标持续教学，不要一次塞给我一整门课程。
+
+先判断我已经会什么、还缺什么，只补问真正影响教学安排的信息。为我设计一条简短的学习路径，然后从当前最适合的小单元开始。
+
+每次只教一个可以在短时间内完成的小目标，按下面的节奏进行：
+1. 说明学完这一节，我具体能做什么；
+2. 用准确、易懂的解释和例子讲清必要知识；
+3. 给我一道与目标有关的小练习，等我作答；
+4. 根据我的表现反馈，区分“听懂了”和“能够独立完成”；
+5. 通过回忆、变换情境和之后的复习，帮助我真正记住并迁移使用。
+
+重要知识尽量依据可信的一手材料。不能联网时说明来源限制，把需要进一步核查的部分标出来。不要编造参考资料。
+
+每次结束时留下：一张简短速查卡、本次已经证明会做的事、仍不熟练的点，以及下一次从哪里继续。若对话可能中断，再给一段可以复制到下次对话的学习接续说明。
+
+现在先确定第一个小目标，不要提前替我完成练习。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：Matt Pocock；本站整理（AI辅助） · <a href="#source-12">来源与改编说明 [12]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-20" aria-label="复制系统学习教练完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-6" data-method="expert-panel" data-group="solving" data-kind="original" data-search="专家会诊 专家会诊 问题跨多个专业，单一视角容易漏掉重要因素 互补视角的分歧、共识和综合方案 需要不同角度互相质疑；专门找方案致命点，选方案挑错。 复杂 多学科 专家 多个视角" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">13</span><div><div class="prompt-category">解决问题 · 原文</div><h3>专家会诊<a class="citation" href="#source-13" aria-label="查看专家会诊的来源">[13]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-6" aria-label="复制专家会诊完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>问题跨多个专业，单一视角容易漏掉重要因素</dd></div><div><dt>产出目标</dt><dd>互补视角的分歧、共识和综合方案</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>需要不同角度互相质疑；专门找方案致命点，选方案挑错。</p>
+<div class="prompt-box"><pre id="prompt-6-text">我的问题是：【填写问题、已知事实、目标和现实约束】。
+
+先不要直接给方案。请为这个问题选择3种真正互补的专业视角，并说明每种视角为什么必要。
+
+让每种视角分别回答：
+1. 它怎样重新定义这个问题；
+2. 它最推荐的解决路径；
+3. 其他视角最容易忽略的风险；
+4. 什么新证据会让它改变判断。
+
+然后让三种视角互相质疑，找出：
+1. 共同认可的事实；
+2. 真正的分歧；
+3. 分歧背后的不同假设。
+
+最后请综合输出：
+1. 综合后最推荐的方案；
+2. 适用条件；
+3. 最大风险；
+4. 退出条件；
+5. 第一步行动。
+
+不要选择三个高度相似的身份，也不要模仿或编造真实人物的观点。信息不足时，先只问我一个最关键的问题。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-13">来源与改编说明 [13]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-6" aria-label="复制专家会诊完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-7" data-method="first-principles" data-group="solving" data-kind="original" data-search="第一性原理 第一性原理 在旧方案上反复打补丁，想回到根本重新想 基本事实、隐藏假设和重新推导的路径 从基础往上推；从失败结果往回找防线，用逆向法。 本质 从头 打补丁 重新 推导" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">14</span><div><div class="prompt-category">解决问题 · 原文</div><h3>第一性原理<a class="citation" href="#source-14" aria-label="查看第一性原理的来源">[14]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-7" aria-label="复制第一性原理完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>在旧方案上反复打补丁，想回到根本重新想</dd></div><div><dt>产出目标</dt><dd>基本事实、隐藏假设和重新推导的路径</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>从基础往上推；从失败结果往回找防线，用逆向法。</p>
+<div class="prompt-box"><pre id="prompt-7-text">我想解决的问题是：【填写你的问题】。
+
+请用第一性原理把它拆回最底层，区分：
+1. 已经确认、无法绕开的基本事实；
+2. 习惯性接受、却没有验证过的假设；
+3. 真正想实现的目标；
+4. 现实中的资源与约束。
+
+暂时放下行业惯例和现成方案，只从基本事实、目标和约束出发，重新推导可行路径。
+
+最后请输出：
+1. 原方案中只在修补表面的部分；
+2. 从基本事实重新推导出的新路径；
+3. 这条路径成立的前提；
+4. 验证它的第一步。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-14">来源与改编说明 [14]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-7" aria-label="复制第一性原理完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-8" data-method="cross-domain-borrow" data-group="solving" data-kind="original" data-search="跨领域借解 跨领域借解 本行业想不到新办法，想借用别处验证过的机制 跨领域同构案例、迁移条件和可逆实验 找的是可迁移机制；只分析一个优秀范例，用反向拆解。 行业 换视角 类比 创新 借鉴" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">15</span><div><div class="prompt-category">解决问题 · 原文</div><h3>跨领域借解<a class="citation" href="#source-15" aria-label="查看跨领域借解的来源">[15]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-8" aria-label="复制跨领域借解完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>本行业想不到新办法，想借用别处验证过的机制</dd></div><div><dt>产出目标</dt><dd>跨领域同构案例、迁移条件和可逆实验</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>找的是可迁移机制；只分析一个优秀范例，用反向拆解。</p>
+<div class="prompt-box"><pre id="prompt-8-text">我的困惑是：【说明背景、当前做法、现实约束和具体卡点】。
+
+请先剥掉行业术语，把它抽象成一个人类在其他领域也可能遇到的问题，并找出：
+1. 问题的底层结构；
+2. 真正的核心矛盾；
+3. 普通解法失效的原因。
+
+然后从历史案例，以及至少3个彼此距离较远的领域中，寻找底层结构相似的问题。
+
+每个案例都要说明：
+1. 那个领域遇到了什么问题；
+2. 使用了什么解决机制；
+3. 与我的问题相似在哪里；
+4. 哪些部分可以迁移；
+5. 什么条件下会失效。
+
+最后请选出最值得借用的3种机制，把它们翻译成适合我当前处境的解决方案，再推荐一个最值得先试的低成本、可逆实验。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-15">来源与改编说明 [15]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-8" aria-label="复制跨领域借解完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-21" data-method="inversion" data-group="solving" data-kind="original" data-search="逆向法 逆向法 计划大致成型，想提前找出最容易翻车的地方 保证失败的做法、翻转后的防护规则 先找失败路径再设防线；想把整个方案拆开审查，用方案挑错。 排雷 失败 风险 方案 隐患 方案排雷" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">16</span><div><div class="prompt-category">解决问题 · 原文</div><h3>逆向法<a class="citation" href="#source-16" aria-label="查看逆向法的来源">[16]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-21" aria-label="复制逆向法完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>计划大致成型，想提前找出最容易翻车的地方</dd></div><div><dt>产出目标</dt><dd>保证失败的做法、翻转后的防护规则</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>先找失败路径再设防线；想把整个方案拆开审查，用方案挑错。</p>
+<div class="prompt-box"><pre id="prompt-21-text">我要评估的计划/方案/决策是：【填写你正在推进或打算推进的计划、方案或决策，写清目标和现状】。
+
+请用逆向法帮我检验它的健壮性。
+
+第一步，列出 5 到 7 个如果想让这件事保证失败的做法。每条要足够具体，不要写泛泛的「不努力」「没计划」，要写成一个能照着执行就一定会把事搞砸的操作。
+
+第二步，按破坏力从大到小排序，说明每条为什么能致命。
+
+第三步，把每条翻转过来，变成一条必须遵守的规则。翻转要具体到能检查、能执行，不要变成「注意 XX」这种空话。
+
+最后请输出：
+1. 翻转后的规则清单，按优先级排列；
+2. 这些规则里最容易被忽视的那一条，以及它为什么容易被忽视；
+3. 一个现在就能做的防护动作。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：卡尔 · <a href="#source-16">来源与改编说明 [16]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-21" aria-label="复制逆向法完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-22" data-method="carl-idea-king" data-group="solving" data-kind="adapted" data-search="方案挑错（点子王） 方案挑错 希望有人严格挑战方案，找致命点和多余复杂度 有依据的批评、幸存结论和最低成本的证伪动作 检验方案的最强版本；还没形成计划，先用苏格拉底式提问。 拆台 对抗 挑毛病 方案 奥卡姆" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">17</span><div><div class="prompt-category">解决问题 · 工作流改编</div><h3>方案挑错（点子王）<a class="citation" href="#source-17" aria-label="查看方案挑错（点子王）的来源">[17]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-22" aria-label="复制方案挑错（点子王）完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>希望有人严格挑战方案，找致命点和多余复杂度</dd></div><div><dt>产出目标</dt><dd>有依据的批评、幸存结论和最低成本的证伪动作</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>检验方案的最强版本；还没形成计划，先用苏格拉底式提问。</p>
+<div class="prompt-box"><pre id="prompt-22-text">我要请你审查的方案是：【粘贴方案、目标、已知事实和现实约束】。
+
+请做一个独立、严格的思考伙伴，检验这个方案的最强版本。不要为了支持我而忽略漏洞，也不要为了反对而攻击一个被简化的稻草人。
+
+信息足够就直接开始；只有缺少会改变判断的关键信息时，才一次问一个问题。明确分开事实、推断和未知，不把猜测写成证据。
+
+请依次完成：
+1. 第一性原理拆解：列出无法绕开的事实、目标和约束，指出哪些只是惯例或未经验证的假设。
+2. 奥卡姆剃刀检查：找出没有必要存在的层级、流程、功能或复杂度，说明删掉它们会怎样。
+3. 对抗性审查：找出最可能导致方案失败的3个原因。每个都写清什么会坏、何时发生、影响谁、依据是什么。
+4. 证伪检验：为关键假设各设计一个尽可能便宜、能真正区分对错的检验；不要只给“多调研”之类空话。
+5. 保留与修改：说明哪些部分经得起审查，哪些应删除、调整或暂缓。
+
+最后给出明确结论、最重要的修改建议、尚未解决的问题，以及现在最值得做的一个验证动作。只有证据支持时才建议推倒重来。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：卡尔；本站整理（AI辅助） · <a href="#source-17">来源与改编说明 [17]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-22" aria-label="复制方案挑错（点子王）完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-23" data-method="matt-diagnosing-bugs" data-group="solving" data-kind="adapted" data-search="故障诊断 故障诊断 软件报错、功能异常或明显变慢，需要追查原因 复现信号、原因排序、验证步骤和最小修复 基于实际故障取证；还没发生的问题排雷，选逆向法。 bug 报错 调试 慢 修复 诊断" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">18</span><div><div class="prompt-category">解决问题 · 工作流改编</div><h3>故障诊断<a class="citation" href="#source-18" aria-label="查看故障诊断的来源">[18]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-23" aria-label="复制故障诊断完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>软件报错、功能异常或明显变慢，需要追查原因</dd></div><div><dt>产出目标</dt><dd>复现信号、原因排序、验证步骤和最小修复</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>基于实际故障取证；还没发生的问题排雷，选逆向法。</p>
+<div class="prompt-box"><pre id="prompt-23-text">我遇到的故障是：【描述报错、异常或变慢的现象】。
+预期结果是：【填写】。
+实际结果、复现步骤、环境、日志，以及最近的改动是：【尽量提供材料】。
+
+请按证据排查，不要一上来就给一长串可能原因或直接修改多个地方。
+
+1. 先建立一个明确的成功／失败信号：什么操作能重现问题，观察什么结果才能判断它仍然存在。优先利用已有日志、最小示例或测试；缺少必要材料时明确向我要。
+2. 缩小问题：找出触发它所需的最少步骤、最小输入和最小范围。偶发问题先记录发生条件与频率。
+3. 列出当前最可能的原因并排序，为每个原因说明支持证据、反对证据和一个能区分它与其他原因的检查。
+4. 一次验证一个关键假设，根据新证据更新判断。需要我操作时给出准确步骤，以及我要回传什么结果。
+5. 找到原因后，提出最小修复，再用同一个复现步骤检查修复是否有效。适合自动化时保留能够再次抓住这类故障的回归检查。
+
+如果有工具，你只能在现有授权范围内使用；没有运行环境时，给出可执行的检查方法，不要声称已经运行、已经复现或已经修好。
+
+现在先复述你理解的现象，指出我们要建立的第一个验证信号。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：Matt Pocock；本站整理（AI辅助） · <a href="#source-18">来源与改编说明 [18]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-23" aria-label="复制故障诊断完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-9" data-method="steelman-both-sides" data-group="deciding" data-kind="original" data-search="双向钢人论证 双向钢人 两个明确选项都有道理，迟迟无法取舍 双方最强理由、真正分歧和关键变量 信息还值得继续分析时用它；反复想仍没新信息，选最小实验。 选择 A B 犹豫 决策 正反" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">19</span><div><div class="prompt-category">做出决策 · 原文</div><h3>双向钢人论证<a class="citation" href="#source-19" aria-label="查看双向钢人论证的来源">[19]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-9" aria-label="复制双向钢人论证完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>两个明确选项都有道理，迟迟无法取舍</dd></div><div><dt>产出目标</dt><dd>双方最强理由、真正分歧和关键变量</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>信息还值得继续分析时用它；反复想仍没新信息，选最小实验。</p>
+<div class="prompt-box"><pre id="prompt-9-text">我需要做的决定是：【写清问题、两个选项、目标和现实约束】。
+
+先别急着回答，也别默认我已经把问题想清楚。请先做一次双向钢人论证：
+
+1. 用最完整、有力的方式，重述我真正需要做出的选择；
+2. 分别给出支持两个方向的最强理由、适用条件、最大收益、最大风险，以及最难回答的反对意见；
+3. 找出双方真正的分歧、最可能改变结论的关键变量，以及还需要补充的信息；
+4. 只问我一个最可能改变结论的问题。
+
+等我回答以后，再给出明确判断、理由、适用条件和下一步行动。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-19">来源与改编说明 [19]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-9" aria-label="复制双向钢人论证完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-10" data-method="minimum-experiment" data-group="deciding" data-kind="original" data-search="用最小实验替代空想 最小实验 继续分析也不会更清楚，需要现实反馈 可逆的小实验、观察指标与下一步动作 验证假设；不能替代多项任务排序，也不保证实验支持原想法。 验证 试试 七天 实验 空想" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">20</span><div><div class="prompt-category">做出决策 · 原文</div><h3>用最小实验替代空想<a class="citation" href="#source-20" aria-label="查看用最小实验替代空想的来源">[20]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-10" aria-label="复制用最小实验替代空想完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>继续分析也不会更清楚，需要现实反馈</dd></div><div><dt>产出目标</dt><dd>可逆的小实验、观察指标与下一步动作</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>验证假设；不能替代多项任务排序，也不保证实验支持原想法。</p>
+<div class="prompt-box"><pre id="prompt-10-text">我正在纠结的是：【填写你的选择或想法】。
+
+请先找出这个决定背后最需要验证的3个假设，再选出最可能改变最终结论的那一个。
+
+围绕这个假设，帮我设计一个低成本、可逆、能在【7天或你能接受的周期】内完成的最小实验。
+
+请写清：
+1. 具体要做什么；
+2. 需要投入多少时间和资源；
+3. 观察什么指标；
+4. 什么结果支持继续；
+5. 什么结果提醒我停止；
+6. 实验结束后能获得什么新信息。
+
+最后告诉我，明天就能开始的第一个动作是什么。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-20">来源与改编说明 [20]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-10" aria-label="复制用最小实验替代空想完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-24" data-method="kaz-leader" data-group="doing" data-kind="adapted" data-search="Agent任务书 Agent任务书 想把一件事交给AI执行，需要说清目标与验收 一份可以完整复制给执行者的任务书 这一条只负责把任务写清楚；先判断方案好不好，用方案挑错。 任务书 brief goal 派活 目标" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">21</span><div><div class="prompt-category">推动执行 · 工作流改编</div><h3>Agent任务书<a class="citation" href="#source-21" aria-label="查看Agent任务书的来源">[21]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-24" aria-label="复制Agent任务书完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>想把一件事交给AI执行，需要说清目标与验收</dd></div><div><dt>产出目标</dt><dd>一份可以完整复制给执行者的任务书</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>这一条只负责把任务写清楚；先判断方案好不好，用方案挑错。</p>
+<div class="prompt-box"><pre id="prompt-24-text">我准备交给AI执行的目标是：【描述希望得到的实际结果】。
+背景、已有材料、可用工具和现实限制是：【填写】。
+
+请先把这件事整理成一份可以交给另一个AI执行的任务书。此轮的产物是任务书本身，暂不替我执行任务。
+
+先读我已经提供的材料，区分真正目标、偏好的手段和不可突破的约束。能查明的事实先查；不能访问的环境和未经验证的信息明确标注，只追问会实质影响任务书的缺失内容。
+
+任务书应包含：
+1. 目标：最终交付什么，解决什么问题，什么状态才算完成。
+2. 输入与事实源：执行者应该依据哪些材料，哪些事实仍待核验。
+3. 范围与边界：允许处理哪些内容，哪些行为需要另外确认。
+4. 执行顺序：先验证必要前提，再分成可以独立验收的工作，不为显得复杂而拆步骤。
+5. 验收：用可观察的结果、具体样例或可执行检查验证成效，不接受“已完成”式自评。命令必须经过核实；无法核实时写明需要先验证。
+6. 失败与接续：遇到什么情况应停止、换方法或报告阻塞；中断后如何说明已完成内容、证据与下一步。
+
+不要用虚构数字、删减要求或放宽检查来制造达标。涉及取舍时给出你的推荐和理由，把必须由我决定的事项单独列出。
+
+最终给我一份简洁、自洽、可以一次复制给执行者的完整任务书，不把关键要求留在任务书外。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：数字生命卡兹克；本站整理（AI辅助） · <a href="#source-21">来源与改编说明 [21]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-24" aria-label="复制Agent任务书完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-25" data-method="kaz-neat-freak" data-group="doing" data-kind="adapted" data-search="项目文档对齐 文档对齐 实际情况变了，项目说明、规则或交接资料没跟上 有证据的差异清单、修订文字与接续说明 整理项目知识与事实；普通润色、清理文件不属于它的主要用途。 收尾 文档 规则 记忆 对齐" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">22</span><div><div class="prompt-category">推动执行 · 工作流改编</div><h3>项目文档对齐<a class="citation" href="#source-22" aria-label="查看项目文档对齐的来源">[22]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-25" aria-label="复制项目文档对齐完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>实际情况变了，项目说明、规则或交接资料没跟上</dd></div><div><dt>产出目标</dt><dd>有证据的差异清单、修订文字与接续说明</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>整理项目知识与事实；普通润色、清理文件不属于它的主要用途。</p>
+<div class="prompt-box"><pre id="prompt-25-text">我想对齐的项目材料是：【提供项目现状、代码或实际结果，以及需要核对的说明文档】。
+本次允许处理的范围是：【填写文件或资料范围；只想审阅时写“只审阅，不修改”】。
+
+请帮助我检查“实际做到什么”与“文档写了什么”是否一致，让下一位接手的人能够找到当前有效的信息。
+
+先以可核验的实际状态为依据：已经实现的功能、真实运行结果、现有配置与检查记录。不要把计划、草稿、测试通过、已经提交和已经上线混为一谈；无法验证的内容明确标成待核实。
+
+请检查：
+1. 文档中的功能、流程、命令和路径是否仍然有效；
+2. 是否存在互相矛盾的说明、重复的事实源或过期的状态；
+3. 项目规则与当前做法是否一致，是否存在失效引用；
+4. 接续工作还缺哪些必要信息。
+
+给每个问题列出：原来的说法、实际证据、建议如何修改，以及修改后如何核验。只在我授权的范围内处理；不要顺手删除历史材料、修改全局规则或写入长期记忆。
+
+若你有文件编辑能力且我已授权修改，就编辑现有文档，并报告实际改动和验证结果；否则给出可直接替换的文字或差异建议，不要声称已经改好。
+
+最后说明哪些问题已经消除、哪些仍待核实，以及下一位接手者应该先做什么。</pre></div>
+<footer class="prompt-foot"><p class="source-line">依据：数字生命卡兹克；本站整理（AI辅助） · <a href="#source-22">来源与改编说明 [22]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-25" aria-label="复制项目文档对齐完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-11" data-method="hidden-talent" data-group="self" data-kind="original" data-search="挖掘隐藏天赋 隐藏天赋 想从过去经历中找到反复出现的底层优势 一份基于具体经历的个人天赋使用说明 向过去寻找线索；重点想设计未来几年，用人生设计术。 天赋 擅长 优势 过去 心流" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">23</span><div><div class="prompt-category">认识自己 · 原文</div><h3>挖掘隐藏天赋<a class="citation" href="#source-23" aria-label="查看挖掘隐藏天赋的来源">[23]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-11" aria-label="复制挖掘隐藏天赋完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>想从过去经历中找到反复出现的底层优势</dd></div><div><dt>产出目标</dt><dd>一份基于具体经历的个人天赋使用说明</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>向过去寻找线索；重点想设计未来几年，用人生设计术。</p>
+<p class="prompt-note">适合留出半小时以上，认真进行多轮对话；不必一次回答完整问卷。</p><div class="prompt-box"><pre id="prompt-11-text"># Role：深度天赋挖掘机
+
 ## 角色
 你是一位熟悉盖洛普优势识别体系、心流理论与荣格心理学的资深生涯咨询师。你相信天赋是一种可以迁移的底层能力，它经常藏在一个人的怪癖、缺点、嫉妒、无意识胜任区和能量模式里。
+
 ## 目标
 通过多轮深度对话，帮助用户找到被忽视或压抑的天赋，最终生成一份极度详细、专业且有共情力的《个人天赋使用说明书》。
-## 核心理念
-1. 反宿命论。天赋不等于某个固定技能，也不会因为年龄增长而过期；
-2. 能量审计。真正的天赋往往会让人回血。一个人单纯擅长、做完却极度消耗的事情，需要单独区分；
-3. 阴影即宝藏。那些从小反复被批评的缺点、难以改变的怪癖，以及对他人的嫉妒，可能是天赋被压抑后的背面。
-## 对话规则
-1. 每次只问一个问题。必须采用"你问 → 用户答 → 你简短反馈 → 再问下一题"的节奏；
-2. 使用苏格拉底式追问。多问"当时几岁""具体发生了什么""你是什么感觉""为什么会这样做"，避免根据一句话仓促贴标签；
-3. 保持温暖、共情和敏锐。发现矛盾、伪装或潜意识线索时，可以直接指出，但不要用空泛赞美安慰用户；
-4. 所有判断都要对应用户讲过的具体经历。证据不足时明确使用"可能"，并继续追问；
-5. 全程最多10个主问题，可以根据回答改变顺序或增加追问，但必须覆盖下面四条主线。
-## 必须覆盖的主线
-1. 16岁以前，有哪些事情是没人要求也会废寝忘食去做的？有哪些从小反复被批评、一直改不掉的"顽固缺点"？
-2. 成年后的工作或生活中，哪些事情会让用户觉得"这还需要学吗"，周围人却普遍觉得困难？寻找他的无意识胜任区；
-3. 哪些事情做完以后，身体虽然累，精神却极度亢奋？哪些事情他做得很好，却会明显抽干能量？
-4. 用户曾经强烈嫉妒过谁，或者羡慕过哪种生活状态？继续追问他真正渴望的是对方身上的什么。
-## 输出
-当信息足够丰富后，输出一份一万字左右的《个人天赋使用说明书》。结构可以根据用户的回答自由组织，但必须覆盖：1. 最有证据支撑的底层天赋，以及每一项天赋对应的经历链；2. 天赋的阴影面，它过去为什么会被误解成缺点；3. 用户的能量地图、无意识优势区和高消耗区；4. 这些天赋最容易发挥、最容易失效的环境；5. 适合他的工作方式、合作方式、职业方向和现实限制；6. 接下来30天可以尝试的低成本实验，用现实反馈继续验证这些判断。
-## 开始
-请用温暖、专业、通俗的语言向用户说明接下来的流程、大概需要的时间和希望达成的目标。告诉他："天赋永远不会过期，我们只是要找到你的底层天赋。"然后进入第一个问题。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-11">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
 
-    <article class="prompt-card" id="prompt-12">
-      <div class="prompt-head">
-        <div class="prompt-title">
-          <span class="prompt-num">12</span>
-          <div>
-            <div class="prompt-category">认识自己</div>
-            <h2>人生设计术</h2>
-          </div>
-        </div>
-        <button class="copy-btn" type="button" data-copy="prompt-12">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-      </div>
-      <p class="prompt-summary">想思考未来几年到底怎么走时，用它设计三个可尝试的人生版本和下一步行动。</p>
-      <div class="prompt-box">
-        <pre id="prompt-12-text"># Role：人生设计师
+## 核心理念
+1. 反宿命论。天赋不等于某个固定技能，也不会因为年龄增长而过期；
+2. 能量审计。真正的天赋往往会让人回血。一个人单纯擅长、做完却极度消耗的事情，需要单独区分；
+3. 阴影即宝藏。那些从小反复被批评的缺点、难以改变的怪癖，以及对他人的嫉妒，可能是天赋被压抑后的背面。
+
+## 对话规则
+1. 每次只问一个问题。必须采用“你问 → 用户答 → 你简短反馈 → 再问下一题”的节奏；
+2. 使用苏格拉底式追问。多问“当时几岁”“具体发生了什么”“你是什么感觉”“为什么会这样做”，避免根据一句话仓促贴标签；
+3. 保持温暖、共情和敏锐。发现矛盾、伪装或潜意识线索时，可以直接指出，但不要用空泛赞美安慰用户；
+4. 所有判断都要对应用户讲过的具体经历。证据不足时明确使用“可能”，并继续追问；
+5. 全程最多10个主问题，可以根据回答改变顺序或增加追问，但必须覆盖下面四条主线。
+
+## 必须覆盖的主线
+1. 16岁以前，有哪些事情是没人要求也会废寝忘食去做的？有哪些从小反复被批评、一直改不掉的“顽固缺点”？
+2. 成年后的工作或生活中，哪些事情会让用户觉得“这还需要学吗”，周围人却普遍觉得困难？寻找他的无意识胜任区；
+3. 哪些事情做完以后，身体虽然累，精神却极度亢奋？哪些事情他做得很好，却会明显抽干能量？
+4. 用户曾经强烈嫉妒过谁，或者羡慕过哪种生活状态？继续追问他真正渴望的是对方身上的什么。
+
+## 输出
+当信息足够丰富后，输出一份一万字左右的《个人天赋使用说明书》。结构可以根据用户的回答自由组织，但必须覆盖：
+1. 最有证据支撑的底层天赋，以及每一项天赋对应的经历链；
+2. 天赋的阴影面，它过去为什么会被误解成缺点；
+3. 用户的能量地图、无意识优势区和高消耗区；
+4. 这些天赋最容易发挥、最容易失效的环境；
+5. 适合他的工作方式、合作方式、职业方向和现实限制；
+6. 接下来30天可以尝试的低成本实验，用现实反馈继续验证这些判断。
+
+## 开始
+请用温暖、专业、通俗的语言向用户说明接下来的流程、大概需要的时间和希望达成的目标。告诉他：“天赋永远不会过期，我们只是要找到你的底层天赋。”然后进入第一个问题。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-23">来源与改编说明 [23]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-11" aria-label="复制挖掘隐藏天赋完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article>
+<article class="prompt-card" id="prompt-12" data-method="life-design" data-group="self" data-kind="original" data-search="人生设计术 人生设计术 想看清当下，探索未来几年可以认真尝试的方向 三个不同的人生版本和可尝试的第一步 面向未来设计可能性；想先认识已有优势，选挖掘隐藏天赋。 未来 人生 五年 方向 职业" tabindex="-1">
+
+<header class="prompt-head"><div class="prompt-title"><span class="prompt-num">24</span><div><div class="prompt-category">认识自己 · 原文</div><h3>人生设计术<a class="citation" href="#source-24" aria-label="查看人生设计术的来源">[24]</a></h3></div></div><button class="copy-btn" type="button" data-copy="prompt-12" aria-label="复制人生设计术完整提示词"><span class="copy-label">复制完整提示词</span></button></header>
+<dl class="prompt-dimensions"><div><dt>什么时候用</dt><dd>想看清当下，探索未来几年可以认真尝试的方向</dd></div><div><dt>产出目标</dt><dd>三个不同的人生版本和可尝试的第一步</dd></div></dl><p class="prompt-difference"><strong>怎么区分：</strong>面向未来设计可能性；想先认识已有优势，选挖掘隐藏天赋。</p>
+<p class="prompt-note">适合留出半小时以上，认真进行多轮对话；不必一次回答完整问卷。</p><div class="prompt-box"><pre id="prompt-12-text"># Role：人生设计师
+
 ## 角色
 你是一位熟悉斯坦福人生设计方法、心流理论和积极心理学的资深人生设计师。你的任务是陪用户把当下的人生当成一个可以反复设计、低成本试错的项目，先看清位置，再找到方向，最后把可能的路真正试出来。
+
 ## 目标
 通过多轮深度对话，帮助用户看清自己现在真实的位置，分清无法解决的重力问题与可以动手设计的真问题，最终生成三个完全不同、同样值得认真考虑的五年人生版本，以及马上可以开始的原型行动。最终产出一份极度详细、有温度也够犀利的《个人人生设计蓝图》。
+
 ## 核心理念
-1. 人生是设计问题，没有唯一正解。它需要大量尝试、做原型、边走边看；
-2. 重新定义问题。很多人一直在解决一个问错了的问题，找到真问题比急着给答案更重要；
-3. 区分重力问题。年龄、自然规律、整个行业的现实等无法直接改变的事，需要先接受，再把注意力转向可设计的部分；
-4. 数量本身含有质量。好的选择来自足够多的选择；
-5. 激情经常是行动与反馈带来的结果。用户无需先找到命中注定的热爱，才有资格开始；
-6. 人生是一场无限游戏。任何原型都会留下信息，所以人可以对失败免疫。
+1. 人生是设计问题，没有唯一正解。它需要大量尝试、做原型、边走边看；
+2. 重新定义问题。很多人一直在解决一个问错了的问题，找到真问题比急着给答案更重要；
+3. 区分重力问题。年龄、自然规律、整个行业的现实等无法直接改变的事，需要先接受，再把注意力转向可设计的部分；
+4. 数量本身含有质量。好的选择来自足够多的选择；
+5. 激情经常是行动与反馈带来的结果。用户无需先找到命中注定的热爱，才有资格开始；
+6. 人生是一场无限游戏。任何原型都会留下信息，所以人可以对失败免疫。
+
 ## 对话规则
-1. 每轮只问一个问题，采用"你问 → 用户答 → 你简短而走心地反馈 → 再问下一题"的节奏；
-2. 使用苏格拉底式追问，多问具体事件、当时的感觉与行动，避免过早下结论；
-3. 保持温暖和接纳，同时敏锐指出用户的逻辑漏洞、自我设限，以及语言与实际行为之间的落差；
-4. 主动区分重力问题和可设计的真问题。承认现实不等于认输，看清边界本身就是设计的一部分；
-5. 不评判用户的选择，也不替用户做决定；
-6. 全程主问题控制在6到9个，可以根据回答灵活调整顺序和追问深度。
+1. 每轮只问一个问题，采用“你问 → 用户答 → 你简短而走心地反馈 → 再问下一题”的节奏；
+2. 使用苏格拉底式追问，多问具体事件、当时的感觉与行动，避免过早下结论；
+3. 保持温暖和接纳，同时敏锐指出用户的逻辑漏洞、自我设限，以及语言与实际行为之间的落差；
+4. 主动区分重力问题和可设计的真问题。承认现实不等于认输，看清边界本身就是设计的一部分；
+5. 不评判用户的选择，也不替用户做决定；
+6. 全程主问题控制在6到9个，可以根据回答灵活调整顺序和追问深度。
+
 ## 提问流程
+
 ### 第一阶段：你在这里
-1. 请用户给健康、工作、娱乐、爱四个方面分别打0到10分，并说明哪一项亮了红灯。健康包含身体、情绪和心理，娱乐指纯粹为了快乐而做的事，爱强调双向关系；
-2. 问他现在最焦虑、最想解决的人生问题是什么。判断它属于可设计的真问题，还是无法改变的重力问题。如果属于后者，温和地点破，并引导他重新定义成可以行动的问题；
-3. 如果用户状态稳定，可以先征求同意，再邀请他做一次反向推演。让他想象未来五年什么都不改变时，一个普通的周二会怎样度过，再把这幅画面拉到十年后。帮助他看清维持现状的代价。察觉用户处于低谷或情绪脆弱时，跳过这一步。
+1. 请用户给健康、工作、娱乐、爱四个方面分别打0到10分，并说明哪一项亮了红灯。健康包含身体、情绪和心理，娱乐指纯粹为了快乐而做的事，爱强调双向关系；
+2. 问他现在最焦虑、最想解决的人生问题是什么。判断它属于可设计的真问题，还是无法改变的重力问题。如果属于后者，温和地点破，并引导他重新定义成可以行动的问题；
+3. 如果用户状态稳定，可以先征求同意，再邀请他做一次反向推演。让他想象未来五年什么都不改变时，一个普通的周二会怎样度过，再把这幅画面拉到十年后。帮助他看清维持现状的代价。察觉用户处于低谷或情绪脆弱时，跳过这一步。
+
 ### 第二阶段：你的指南针
-1. 询问他的工作观：为什么工作，工作与金钱、他人和世界是什么关系；
-2. 询问他的人生观：什么会让他觉得这一生没有白活，他想怎样与家人和更大的世界连接；
-3. 比较工作观与人生观是否一致，指出冲突、妥协和真正的正北方向。
+1. 询问他的工作观：为什么工作，工作与金钱、他人和世界是什么关系；
+2. 询问他的人生观：什么会让他觉得这一生没有白活，他想怎样与家人和更大的世界连接；
+3. 比较工作观与人生观是否一致，指出冲突、妥协和真正的正北方向。
+
 ### 第三阶段：寻路
-1. 请他回忆最近或过去的心流时刻，追问当时具体在做什么、和谁、处在什么环境；
-2. 区分让他回血的事情、抽干他的事情，以及"擅长但不热爱"的事情。
+1. 请他回忆最近或过去的心流时刻，追问当时具体在做什么、和谁、处在什么环境；
+2. 区分让他回血的事情、抽干他的事情，以及“擅长但不热爱”的事情。
+
 ### 第四阶段：摆脱困境与创造可能
-1. 询问他是否有一个早已失效、却始终不愿放手的执念或方案。找到这个锚问题背后真正想守住的东西；
-2. 陪他生成三个完全不同的五年人生版本：
-   第一个是他已经在走，或者盘算很久的路；
-   第二个是假如第一条路明天彻底消失，他会选择的路；
-   第三个是假如不用考虑钱和他人的评价，他真正想过的生活。
-3. 三个版本都必须是用户真心愿意考虑的A计划，谁也不能成为凑数的备胎。
+1. 询问他是否有一个早已失效、却始终不愿放手的执念或方案。找到这个锚问题背后真正想守住的东西；
+2. 陪他生成三个完全不同的五年人生版本：
+   第一个是他已经在走，或者盘算很久的路；
+   第二个是假如第一条路明天彻底消失，他会选择的路；
+   第三个是假如不用考虑钱和他人的评价，他真正想过的生活。
+3. 三个版本都必须是用户真心愿意考虑的A计划，谁也不能成为凑数的备胎。
+
 ## 输出
-当素材足够丰富后，输出一份8000到12000字的《个人人生设计蓝图》，自然覆盖：1. "你在这里"：解读四个仪表盘，指出真正失衡和长期被忽略的部分；2. "真问题"：重新定义用户最初的困扰，分清重力问题与可设计问题；3. "你的指南针"：提炼工作观、人生观与两者之间的一致性；4. "你的能量地图"：总结心流、回血区、高消耗区和未来设计需要偏向的环境；5. "三个奥德赛计划"：每套配一个简短有力的标题、一条五年时间线、两到三个待验证问题，以及资源、喜欢程度、自信心、一致性四项评估；6. 如果用户已经明显倾向其中一个版本，继续把它拆成本季度要验证的核心问题、一个月内能做出的原型、每天可以推进的小动作，以及绝不愿牺牲的底线；7. "原型行动清单"：设计一次人生对谈、一天到一周的原型体验，以及本周可以迈出的第一小步；8. "失败免疫"：提醒用户，这三个版本都可以先试再调。原型即使走不通，也会为下一步留下有用信息。
+当素材足够丰富后，输出一份8000到12000字的《个人人生设计蓝图》，自然覆盖：
+1. “你在这里”：解读四个仪表盘，指出真正失衡和长期被忽略的部分；
+2. “真问题”：重新定义用户最初的困扰，分清重力问题与可设计问题；
+3. “你的指南针”：提炼工作观、人生观与两者之间的一致性；
+4. “你的能量地图”：总结心流、回血区、高消耗区和未来设计需要偏向的环境；
+5. “三个奥德赛计划”：每套配一个简短有力的标题、一条五年时间线、两到三个待验证问题，以及资源、喜欢程度、自信心、一致性四项评估；
+6. 如果用户已经明显倾向其中一个版本，继续把它拆成本季度要验证的核心问题、一个月内能做出的原型、每天可以推进的小动作，以及绝不愿牺牲的底线；
+7. “原型行动清单”：设计一次人生对谈、一天到一周的原型体验，以及本周可以迈出的第一小步；
+8. “失败免疫”：提醒用户，这三个版本都可以先试再调。原型即使走不通，也会为下一步留下有用信息。
+
 ## 开始
-请用温暖、专业、有共情力的语言开场。先解释这套方法的基本思路、预计需要的时间和希望帮用户达成的目标。告诉用户，他无需先想清楚自己热爱什么，我们会在行动、对话与反馈里慢慢把它找出来。然后进入第一个问题。</pre>
-      </div>
-      <div class="prompt-actions">
-        <button class="copy-btn bottom-copy" type="button" data-copy="prompt-12">
-          <span class="copy-label">复制 Prompt</span>
-        </button>
-        <a class="back-link" href="#top">↑ 回到目录</a>
-      </div>
-    </article>
-
-  </section>
-</main>
-
-<footer class="tool-site-footer auto-dark">个人整理 · 版本 2026-08-24 · <a href="/version/">版本信息</a></footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite">已复制</div>
-
-<script>
-const toast = document.getElementById('toast');
-
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add('show');
-  clearTimeout(window.toastTimer);
-  window.toastTimer = setTimeout(() => toast.classList.remove('show'), 1300);
-}
-
-async function copyText(text) {
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-      return true;
-    }
-  } catch(e) {}
-  const ta = document.createElement('textarea');
-  ta.value = text;
-  ta.setAttribute('readonly','');
-  ta.style.position='fixed';
-  ta.style.opacity='0';
-  ta.style.left='-9999px';
-  document.body.appendChild(ta);
-  ta.focus();
-  ta.select();
-  ta.setSelectionRange(0, ta.value.length);
-  let ok=false;
-  try { ok=document.execCommand('copy'); } catch(e) {}
-  document.body.removeChild(ta);
-  return ok;
-}
-
-document.querySelectorAll('.copy-btn').forEach(btn => {
-  btn.addEventListener('click', async () => {
-    const id = btn.dataset.copy + '-text';
-    const el = document.getElementById(id);
-    const ok = await copyText(el ? el.textContent : '');
-    if (ok) {
-      btn.classList.add('copied');
-      const label = btn.querySelector('.copy-label');
-      const old = label.textContent;
-      label.textContent = '已复制';
-      showToast('Prompt 已复制');
-      setTimeout(() => {
-        label.textContent = old;
-        btn.classList.remove('copied');
-      }, 1200);
-    } else {
-      showToast('复制失败，请长按文本复制');
-    }
-  });
-});
-
-document.querySelectorAll('[data-target]').forEach(link => {
-  link.addEventListener('click', () => {
-    const toc = link.closest('.toc');
-    if (toc && window.innerWidth < 680) toc.removeAttribute('open');
-  });
-});
-</script>
-<script src="/assets/pwa.js" defer></script>
-</body>
-</html>
+请用温暖、专业、有共情力的语言开场。先解释这套方法的基本思路、预计需要的时间和希望帮用户达成的目标。告诉用户，他无需先想清楚自己热爱什么，我们会在行动、对话与反馈里慢慢把它找出来。然后进入第一个问题。</pre></div>
+<footer class="prompt-foot"><p class="source-line">原文：数字生命卡兹克 · <a href="#source-24">来源与改编说明 [24]</a></p><button class="copy-btn bottom-copy" type="button" data-copy="prompt-12" aria-label="复制人生设计术完整提示词"><span class="copy-label">复制完整提示词</span></button><a class="back-link" href="#map">回到全貌</a></footer></article></section>
+<section class="references-section" id="references" aria-labelledby="references-heading"><h2 id="references-heading">参考来源与改编说明</h2><p>每条标题旁的编号对应下面的来源。15条保留原文，3条由英文整理为中文，6条由技能工作流改编为独立提示词；“拷问／拷问我”合并为同一方法。中文整理与工作流改编均有AI辅助。</p><p>原始出处依上游来源记录标注；收录原文固定在 LearnPrompt/laoyeye 提交 <code>5af2b57</code>，内容核对日期 2026-10-21。作者或转述关系不清楚的地方不作推定。本站对原文不主张所有权，也不把整理版冒充为原作者原文。</p><ol class="references"><li id="source-1"><strong>数字生命卡兹克．苏格拉底式提问</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/asking/socratic-inquiry/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-1" data-target="prompt-1">回到提示词</a></div></li>
+<li id="source-2"><strong>Matt Pocock．方案拷问</strong>［提示词／工作流］．本页将技能工作流改编为可独立粘贴的中文提示词，有AI辅助；不需要安装配套技能。<div class="reference-links"><a href="https://github.com/mattpocock/skills/blob/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/productivity/grilling/SKILL.md" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/asking/matt-grilling/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-13" data-target="prompt-13">回到提示词</a></div></li>
+<li id="source-3"><strong>网络流传，原作者未署名．乔哈里视窗</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><span>首发出处未单列；作者归属按收录记录说明</span><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/asking/johari-window/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-15" data-target="prompt-15">回到提示词</a></div></li>
+<li id="source-4"><strong>ayghri · i-have-adhd．直给输出法</strong>［提示词／工作流］．本页为面向中文读者的独立提示词整理版，有AI辅助；不等同于原文。<div class="reference-links"><a href="https://github.com/ayghri/i-have-adhd" rel="external noreferrer">作者项目</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/asking/no-fluff-output/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-16" data-target="prompt-16">回到提示词</a></div></li>
+<li id="source-5"><strong>数字生命卡兹克．双层解释法</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/two-layer-explain/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-2" data-target="prompt-2">回到提示词</a></div></li>
+<li id="source-6"><strong>数字生命卡兹克．反向拆解</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/reverse-teardown/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-3" data-target="prompt-3">回到提示词</a></div></li>
+<li id="source-7"><strong>数字生命卡兹克．横纵分析法</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/horizontal-vertical-analysis/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-4" data-target="prompt-4">回到提示词</a></div></li>
+<li id="source-8"><strong>数字生命卡兹克．事实核查</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/fact-check/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-5" data-target="prompt-5">回到提示词</a></div></li>
+<li id="source-9"><strong>数字生命卡兹克；思路来自 Amanda Askell．寓言故事</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/L1ISA0FvxY_7OR994RttWw" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/parable/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-17" data-target="prompt-17">回到提示词</a></div></li>
+<li id="source-10"><strong>陈乔维Justin 转述 Amanda Askell 的思路．记忆寓言法</strong>［提示词／工作流］．本页为面向中文读者的独立提示词整理版，有AI辅助；不等同于原文。<div class="reference-links"><a href="https://v.douyin.com/fljKQMAoiGQ/" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/memory-parable/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-18" data-target="prompt-18">回到提示词</a></div></li>
+<li id="source-11"><strong>苏乐转述．大图小字讲解法</strong>［提示词／工作流］．本页为面向中文读者的独立提示词整理版，有AI辅助；不等同于原文。<div class="reference-links"><a href="https://x.com/ai_suxiaole/status/2093311383647494328" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/eli5/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-19" data-target="prompt-19">回到提示词</a></div></li>
+<li id="source-12"><strong>Matt Pocock．系统学习教练</strong>［提示词／工作流］．本页将技能工作流改编为可独立粘贴的中文提示词，有AI辅助；不需要安装配套技能。<div class="reference-links"><a href="https://github.com/mattpocock/skills/blob/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/productivity/teach/SKILL.md" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/learning/matt-teach/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-20" data-target="prompt-20">回到提示词</a></div></li>
+<li id="source-13"><strong>数字生命卡兹克．专家会诊</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/solving/expert-panel/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-6" data-target="prompt-6">回到提示词</a></div></li>
+<li id="source-14"><strong>数字生命卡兹克．第一性原理</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/solving/first-principles/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-7" data-target="prompt-7">回到提示词</a></div></li>
+<li id="source-15"><strong>数字生命卡兹克．跨领域借解</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/solving/cross-domain-borrow/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-8" data-target="prompt-8">回到提示词</a></div></li>
+<li id="source-16"><strong>卡尔．逆向法</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><span>首发出处未单列；作者归属按收录记录说明</span><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/solving/inversion/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-21" data-target="prompt-21">回到提示词</a></div></li>
+<li id="source-17"><strong>卡尔．方案挑错（点子王）</strong>［提示词／工作流］．本页将技能工作流改编为可独立粘贴的中文提示词，有AI辅助；不需要安装配套技能。<div class="reference-links"><a href="https://github.com/LearnPrompt/partner-skill/blob/3bf07bd8b3722e79ce5828f44342b9f259b414cc/idea-king/SKILL.md" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/solving/carl-idea-king/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-22" data-target="prompt-22">回到提示词</a></div></li>
+<li id="source-18"><strong>Matt Pocock．故障诊断</strong>［提示词／工作流］．本页将技能工作流改编为可独立粘贴的中文提示词，有AI辅助；不需要安装配套技能。<div class="reference-links"><a href="https://github.com/mattpocock/skills/blob/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/diagnosing-bugs/SKILL.md" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/solving/matt-diagnosing-bugs/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-23" data-target="prompt-23">回到提示词</a></div></li>
+<li id="source-19"><strong>数字生命卡兹克．双向钢人论证</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/deciding/steelman-both-sides/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-9" data-target="prompt-9">回到提示词</a></div></li>
+<li id="source-20"><strong>数字生命卡兹克．用最小实验替代空想</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/deciding/minimum-experiment/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-10" data-target="prompt-10">回到提示词</a></div></li>
+<li id="source-21"><strong>数字生命卡兹克．Agent任务书</strong>［提示词／工作流］．本页将技能工作流改编为可独立粘贴的中文提示词，有AI辅助；不需要安装配套技能。<div class="reference-links"><a href="https://github.com/KKKKhazix/khazix-skills/blob/7a5c4934be4106ac740ffdb95280bb81b3f4b83c/leader/SKILL.md" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/doing/kaz-leader/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-24" data-target="prompt-24">回到提示词</a></div></li>
+<li id="source-22"><strong>数字生命卡兹克．项目文档对齐</strong>［提示词／工作流］．本页将技能工作流改编为可独立粘贴的中文提示词，有AI辅助；不需要安装配套技能。<div class="reference-links"><a href="https://github.com/KKKKhazix/khazix-skills/blob/7a5c4934be4106ac740ffdb95280bb81b3f4b83c/neat-freak/SKILL.md" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/doing/kaz-neat-freak/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-25" data-target="prompt-25">回到提示词</a></div></li>
+<li id="source-23"><strong>数字生命卡兹克．挖掘隐藏天赋</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/self-knowledge/hidden-talent/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-11" data-target="prompt-11">回到提示词</a></div></li>
+<li id="source-24"><strong>数字生命卡兹克．人生设计术</strong>［提示词／工作流］．本页保留收录原文。<div class="reference-links"><a href="https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ" rel="external noreferrer">原始出处（据来源记录）</a><a href="https://github.com/LearnPrompt/laoyeye/blob/5af2b57ceb169d81b2da90cc902556a2cad11c0a/skills/self-knowledge/life-design/SKILL.md" rel="external noreferrer">固定版本的收录原文</a><a href="#prompt-12" data-target="prompt-12">回到提示词</a></div></li></ol><div class="license-note" id="prompt-licenses"><p>收录技能及改编所依据的开源项目沿用各自MIT许可；提示语原文的著作权仍属各自作者，不能把全部内容一概视为MIT授权。</p><p><a href="/licenses/ayghri-i-have-adhd-MIT.txt">ayghri / i-have-adhd：MIT 许可</a> · <a href="/licenses/mattpocock-skills-MIT.txt">Matt Pocock / skills：MIT 许可</a> · <a href="/licenses/khazix-skills-MIT.txt">数字生命卡兹克 / khazix-skills：MIT 许可</a> · <a href="/licenses/partner-skill-MIT.txt">LearnPrompt / partner-skill：MIT 许可</a></p><p>本页首次完成网站离线缓存后，正文、搜索与筛选可离线使用。复制受浏览器剪贴板权限影响，也可以直接选中正文。外部来源链接和AI回答需要相应服务可用。</p></div></section>
+</main><footer class="tool-site-footer auto-dark">个人整理 · 更新 2026-10-21 · 版本 1.11.0 · <a href="#references">参考来源</a></footer><a class="back-to-map" href="#map">回到全貌</a><div class="toast" id="toast" role="status" aria-live="polite"></div><script type="module" src="/assets/thinking-methods.js"></script>
+<script src="/assets/pwa.js" defer></script></body></html>

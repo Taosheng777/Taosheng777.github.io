@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.10.0';
+const CACHE_NAME = 'personal-toolbox-v1.11.0';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -31,6 +31,7 @@ const APP_SHELL = [
   '/version/',
   '/licenses/',
   '/licenses/GPL-3.0.txt',
+  '/licenses/ayghri-i-have-adhd-MIT.txt',
   '/assets/site.css',
   '/assets/banner.jpg',
   '/assets/avatar.jpg',
@@ -41,6 +42,11 @@ const APP_SHELL = [
   '/assets/personality.css',
   '/assets/personality.js',
   '/assets/pwa.js',
+  '/assets/thinking-methods.js',
+  '/assets/prompt-library.css',
+  '/licenses/mattpocock-skills-MIT.txt',
+  '/licenses/khazix-skills-MIT.txt',
+  '/licenses/partner-skill-MIT.txt',
   '/manifest.webmanifest',
   '/og.png',
   '/icons/icon-192.png',
