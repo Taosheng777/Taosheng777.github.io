@@ -1,7 +1,7 @@
 /* 涛生 · 个人主页 v1.7.1
    视觉方向：临床索引（瑞士国际主义 / Vignelli）
    色板取自站主提供的两张参考图：暖白纸底 + 近黑墨 + 朱红唯一强调色，
-   四个板块色取自风景图的远山蓝 / 林绿 / 暗青与头像图的暖赭。
+   四个板块色：远山蓝 / 林绿 / 暗青 / 暖赭。
    纪律：圆角 0、无阴影、层级只靠字号与规则线；朱红专属医学边界与安全提示。 */
 
 :root {
@@ -208,56 +208,31 @@ main {
   font-weight: 700;
 }
 
-/* ---------- 首页横幅与身份 ---------- */
+/* ---------- 首页身份区：本人照片 + 文字 ---------- */
 
 .intro { border-bottom: 2px solid var(--line); }
 
-.intro-banner {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 21 / 9;
-  overflow: hidden;
-  background: var(--brand);
+.intro-hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(20px, 4vw, 40px);
+  padding: clamp(36px, 6vw, 72px) 0 clamp(32px, 5vw, 56px);
 }
 
-.intro-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.intro-portrait,
+.about-portrait {
   display: block;
+  width: clamp(140px, 18vw, 220px);
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 45%;
+  border-bottom: 4px solid var(--brand);
 }
 
-/* 身份区直接压在照片上：不用实心墨块，只用一层自下而上的渐变保证白字可读 */
-.intro-block {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  padding: clamp(64px, 12vw, 120px) 28px 22px 22px;
-  background: linear-gradient(
-    to top,
-    rgba(10, 9, 8, 0.88) 0%,
-    rgba(10, 9, 8, 0.74) 34%,
-    rgba(10, 9, 8, 0.42) 64%,
-    rgba(10, 9, 8, 0) 100%
-  );
-  color: #ffffff;
-}
+.about-portrait { width: 160px; margin-bottom: 22px; }
 
-.intro-avatar {
-  flex: 0 0 auto;
-  width: clamp(56px, 8vw, 96px);
-  height: clamp(56px, 8vw, 96px);
-  display: block;
-  object-fit: cover;
-  object-position: 50% 30%;
-}
+.intro-text { min-width: 0; }
 
 .eyebrow {
   margin: 0 0 10px;
@@ -266,8 +241,6 @@ main {
   font-weight: 700;
   letter-spacing: 0.14em;
 }
-
-.intro-block .eyebrow { color: #e8a9a4; }
 
 .intro-name {
   margin: 0;
@@ -284,9 +257,9 @@ main {
   margin: 10px 0 0;
   padding: 0;
   list-style: none;
-  font-size: clamp(12px, 1.3vw, 14px);
+  color: var(--muted);
+  font-size: clamp(13px, 1.4vw, 15px);
   font-weight: 500;
-  opacity: 0.86;
 }
 
 /* 分隔点跟在前一项后面，换行时不会让新行以「·」开头 */
@@ -295,13 +268,9 @@ main {
   margin: 0 8px;
 }
 
-.intro-body { display: block; }
-
-.intro-main { padding: 34px 0 32px; }
-
 .intro-lede {
-  max-width: 600px;
-  margin: 0;
+  max-width: 700px;
+  margin: 22px 0 0;
   font-size: 17px;
   line-height: 1.62;
 }
@@ -504,6 +473,87 @@ main {
 .section-grid > *:last-child:nth-child(odd),
 .tool-grid > *:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
+.page-heading .about-id {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.about-id span { white-space: nowrap; }
+
+/* ---------- 首页代表作：大号数字用板块色，卡片本身不是链接 ---------- */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 24px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.work-card {
+  --accent: var(--brand);
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 22px;
+  background: var(--bg);
+}
+
+.work-card[data-accent="ai"] { --accent: var(--violet); }
+.work-card[data-accent="growth"] { --accent: var(--teal); }
+.work-card[data-accent="mind"] { --accent: var(--plum); }
+
+.work-figure {
+  margin: 0;
+  color: var(--accent);
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.work-figure small {
+  margin-left: 6px;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.work-card h3 {
+  margin: 18px 0 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.work-card p:not(.work-figure) {
+  margin: 10px 0 18px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.work-card .card-action {
+  margin-top: auto;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.work-card a.card-action:hover { color: var(--accent); }
+
+.soon-tag {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border: 1px solid var(--line-soft);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
 /* ---------- 我在做什么 ---------- */
 
 .now-grid {
@@ -537,6 +587,30 @@ main {
   font-size: 14px;
   line-height: 1.6;
 }
+
+.miniprogram-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.miniprogram-contact > p { flex: 1 1 220px; }
+
+.miniprogram-code {
+  flex: 0 0 180px;
+  margin: 0;
+  text-align: center;
+}
+
+.miniprogram-code img {
+  display: block;
+  width: 180px;
+  height: 180px;
+  background: #fff;
+}
+
+.miniprogram-code figcaption { margin-top: 8px; font-size: 13px; }
 
 /* ---------- 页尾：本地处理与离线色带 ---------- */
 
@@ -749,6 +823,7 @@ main {
 .document-page section p:last-child,
 .document-page section ul:last-child { margin-bottom: 0; }
 .document-page section strong { color: var(--ink); }
+.document-page section code { overflow-wrap: anywhere; } /* 长哈希在窄屏上换行 */
 
 .document-page section a {
   color: var(--ink);
@@ -783,16 +858,11 @@ main {
 /* ---------- 响应式 ---------- */
 
 @media (max-width: 900px) {
-  .intro-main { padding: 28px 0; }
+  .work-grid { grid-template-columns: 1fr; }
   .now-card { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
 }
 
 @media (max-width: 860px) {
-  .intro-banner { aspect-ratio: 16 / 10; }
-  .intro-block {
-    align-items: flex-end;
-    padding: clamp(56px, 22vw, 110px) 18px 18px 16px;
-  }
   .section-grid,
   .tool-grid { grid-template-columns: 1fr; }
   .section-card,
@@ -813,6 +883,8 @@ main {
   .site-nav a { padding: 0 5px; font-size: 12px; }
 
   .intro-lede { font-size: 16px; }
+  .intro-hero { grid-template-columns: 1fr; gap: 18px; }
+  .work-card { padding: 22px 18px; }
   .intro-spec div { grid-template-columns: 78px minmax(0, 1fr); gap: 12px; }
   .button { width: 100%; }
 
@@ -842,8 +914,7 @@ main {
 @media print {
   .site-header,
   .site-nav,
-  .skip-link,
-  .intro-banner { display: none !important; }
+  .skip-link { display: none !important; }
   body { background: #fff; color: #000; }
 }
 
