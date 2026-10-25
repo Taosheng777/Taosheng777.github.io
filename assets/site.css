@@ -321,6 +321,57 @@ main {
 
 .text-link:hover { color: var(--brand); }
 
+/* ---------- 视频工作台：沿用纸墨、规则线与 AI 板块色 ---------- */
+
+.video-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  margin-top: 34px;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--violet);
+  background: var(--violet-tint);
+}
+
+.video-feature-copy { min-width: 0; }
+.video-feature .eyebrow { color: var(--violet); }
+.video-feature h2 {
+  margin: 12px 0 18px;
+  font-size: clamp(30px, 3.7vw, 46px);
+  line-height: 1.18;
+  letter-spacing: -0.04em;
+}
+.video-feature-copy > p:not(.eyebrow) {
+  max-width: 580px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.video-feature .intro-actions { margin-top: 26px; align-items: center; }
+.video-feature-guide { align-self: center; min-width: 0; }
+.video-feature-label { margin: 0 0 16px; font-size: 13px; font-weight: 700; }
+.video-feature-guide ol { margin: 0; padding: 0; list-style: none; }
+.video-feature-guide li {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-soft);
+}
+.video-feature-guide li > span { color: var(--violet); font-size: 24px; font-weight: 700; line-height: 1.3; }
+.video-feature-guide h3 { margin: 0; font-size: 18px; }
+.video-feature-guide li p { margin: 3px 0 0; font-size: 13px; color: var(--muted); }
+.video-feature-meta { margin: 20px 0 0; font-size: 12px; line-height: 1.7; color: var(--muted); }
+.video-feature-compact { margin: 26px 0 40px; padding: 28px; }
+.video-feature-compact h2 { font-size: clamp(27px, 3vw, 36px); }
+.video-feature-compact .video-feature-guide > p:not(.video-feature-label) { font-size: 14px; }
+
+@media (max-width: 759px) {
+  .video-feature { grid-template-columns: 1fr; gap: 26px; padding: 24px; }
+  .video-feature .intro-actions { align-items: flex-start; }
+  .video-feature-guide li { padding: 11px 0; }
+}
+
 /* ---------- 区块标题 ---------- */
 
 .home-section { padding: 60px 0 0; }

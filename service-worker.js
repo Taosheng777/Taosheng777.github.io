@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.12.0';
+const CACHE_NAME = 'personal-toolbox-v1.13.0';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -8,6 +8,11 @@ const APP_SHELL = [
   '/ai/',
   '/ai/prompts/',
   '/ai/skills/',
+  '/ai/video-workbench/',
+  '/ai/video-workbench/board.css',
+  '/ai/video-workbench/board.js',
+  '/ai/video-workbench/catalog.js',
+  '/ai/video-workbench/sources.html',
   '/growth/',
   '/growth/who-curve/',
   '/growth/curve-4-18/',
@@ -112,6 +117,8 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
+  // 视频按需播放，不预缓存、不写入工具站的离线缓存；Range 也直接交给网络。
+  if (url.pathname.startsWith('/ai/video-workbench/media/') || request.headers.has('range')) return;
 
   if (request.mode === 'navigate') {
     event.respondWith(
