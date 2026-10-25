@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.13.1';
+const CACHE_NAME = 'personal-toolbox-v1.13.2';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
