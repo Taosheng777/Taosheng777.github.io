@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.13.3';
+const CACHE_NAME = 'personal-toolbox-v1.13.4';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -38,6 +38,9 @@ const APP_SHELL = [
   '/licenses/GPL-3.0.txt',
   '/licenses/ayghri-i-have-adhd-MIT.txt',
   '/assets/site.css',
+  '/assets/skills/laoyeye-guide.jpg',
+  '/assets/skills/research-workflow.jpg',
+  '/assets/skills/human-writing.jpg',
   '/assets/portrait.jpg',
   '/assets/miniprogram-code.jpg',
   '/assets/tool-shell.css',

@@ -17,7 +17,7 @@
   <link rel="canonical" href="https://taosheng777.github.io/">
   <meta property="og:url" content="https://taosheng777.github.io/">
   <meta property="og:site_name" content="涛生">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://taosheng777.github.io/#person","name":"涛生","alternateName":"涛生","description":"医学硕士，儿科与儿童精神心理方向，在某三甲儿童医院工作；一个医生的 AI 实践笔记：做自己的工具、做科普视频、做科研。","knowsAbout":["儿童生长发育","儿童精神心理","AI 工作流"],"url":"https://taosheng777.github.io/about/"},{"@type":"WebSite","@id":"https://taosheng777.github.io/#website","url":"https://taosheng777.github.io/","name":"涛生","inLanguage":"zh-CN","author":{"@id":"https://taosheng777.github.io/#person"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://taosheng777.github.io/#person","name":"涛生","alternateName":"TAOSHENG","description":"医学硕士，儿科与儿童精神心理方向，在某三甲儿童医院工作；一个医生的 AI 实践笔记：做自己的工具、做科普视频、做科研。","knowsAbout":["儿童生长发育","儿童精神心理","AI 工作流"],"url":"https://taosheng777.github.io/about/"},{"@type":"WebSite","@id":"https://taosheng777.github.io/#website","url":"https://taosheng777.github.io/","name":"涛生","inLanguage":"zh-CN","author":{"@id":"https://taosheng777.github.io/#person"}}]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -50,11 +50,34 @@
           </ul>
           <p class="intro-lede">一个医生的 AI 实践笔记：做自己的工具、做科普视频、做科研，每一步你都能照着做。</p>
           <div class="intro-actions">
-            <a class="button" href="/tools/"><span>全部 <span data-count="tools">26</span> 个工具</span></a>
+            <a class="button" href="https://github.com/Taosheng777/taosheng-skills" rel="external noreferrer">获取涛生 Skill <span aria-hidden="true">↗</span></a>
+            <a class="button secondary" href="/tools/"><span>全部 <span data-count="tools">26</span> 个工具</span></a>
             <a class="button secondary" href="/ai/video-workbench/">视频工作台</a>
             <a class="button secondary" href="/about/">关于我</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="skills-feature" aria-labelledby="skills-feature-title">
+      <div>
+        <p class="eyebrow">涛生 SKILL · 开源共享</p>
+        <h2 id="skills-feature-title">把我在用的 AI 能力，<br>装进你的电脑。</h2>
+        <p class="skills-feature-lede">医学科研、科普写作、AI 协作、视频制作——我每天在用的工作方法，整理成了可以直接拿走的 Skills。挑你需要的，让你的 AI 也能照着做。</p>
+        <div class="intro-actions">
+          <a class="button" href="https://github.com/Taosheng777/taosheng-skills" rel="external noreferrer">去 GitHub 获取涛生 Skill <span aria-hidden="true">↗</span></a>
+          <a class="button skill-directory-cta" href="/ai/skills/">浏览涛生 Skill <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="skills-feature-install">
+        <h3>不会安装？复制这句话给 AI</h3>
+        <p>在电脑上的 Claude Code 或 Codex 中粘贴，按提示选择要安装的能力。</p>
+        <details id="home-install-details">
+          <summary>查看安装提示词</summary>
+          <p id="home-install-text">请帮我安装涛生 Skill：https://github.com/Taosheng777/taosheng-skills。先阅读仓库 README，列出可选能力并让我选择，再按我正在使用的 AI 工具和电脑环境完成安装，最后验证是否可用。</p>
+        </details>
+        <button class="button secondary" id="home-install-copy" type="button" hidden>复制安装提示词</button>
+        <p class="skills-copy-status" id="home-install-status" role="status" aria-live="polite"></p>
       </div>
     </section>
 
@@ -65,7 +88,7 @@
         <p>把我的医学科普视频工作流，与收录的动效、艺术画风和短片工具放在一起。先看适合自己的表达，再开始制作。</p>
         <div class="intro-actions">
           <a class="button" href="/ai/video-workbench/">打开视频工作台 <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="/ai/skills/">了解涛生 Skill <span aria-hidden="true">→</span></a>
+          <a class="button skill-directory-cta" href="/ai/skills/">浏览涛生 Skill <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="video-feature-guide">
@@ -178,21 +201,10 @@
       </div>
     </section>
 
-    <section class="offline-strip" aria-label="本地处理与离线使用说明">
-      <div>
-        <p class="eyebrow">LOCAL ONLY · OFFLINE READY</p>
-        <h2>本地处理，网络不好也照常能用</h2>
-        <a class="offline-link" href="/privacy/">查看隐私说明 <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="offline-copy">
-        <p><strong>不登录、不上传、不追踪</strong>所有计算、计分和搜索都只在你的浏览器里完成，安装后没有网络也能用。视频示例与原作者链接按需联网。</p>
-        <p><strong>输入不进缓存</strong>首次打开后浏览器会缓存页面和工具代码；你输入的数值、答案和生成的结果不会进入缓存。</p>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.13.3</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.13.4</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>
@@ -201,6 +213,34 @@
       <a href="/version/">版本信息</a>
     </nav>
   </footer>
+  <script>
+    const installButton = document.getElementById('home-install-copy');
+    installButton.hidden = false;
+    installButton.addEventListener('click', async () => {
+      const text = document.getElementById('home-install-text').textContent;
+      let copied = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          copied = true;
+        }
+      } catch {}
+      if (!copied) {
+        const field = document.createElement('textarea');
+        field.value = text;
+        field.setAttribute('readonly', '');
+        field.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+        document.body.appendChild(field);
+        field.select();
+        try { copied = document.execCommand('copy'); } catch {}
+        field.remove();
+        installButton.focus();
+      }
+      document.getElementById('home-install-status').textContent = copied
+        ? '已复制，粘贴给你的 AI 即可。' : '自动复制未成功，请选中上方提示词手动复制。';
+      if (!copied) document.getElementById('home-install-details').open = true;
+    });
+  </script>
   <script src="/assets/pwa.js" defer></script>
 </body>
 </html>

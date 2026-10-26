@@ -321,6 +321,56 @@ main {
 
 .text-link:hover { color: var(--brand); }
 
+/* 首页两个技能目录入口：实心按钮与明确的点击反馈 */
+.button.skill-directory-cta {
+  min-height: 56px;
+  gap: 22px;
+  padding: 12px 24px;
+  border: 2px solid var(--violet);
+  background: var(--violet);
+  color: var(--bg);
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-align: center;
+  transition: background-color .16s, border-color .16s;
+}
+.skill-directory-cta > span { font-size: 23px; line-height: 1; transition: transform .16s; }
+.button.skill-directory-cta:hover,
+.button.skill-directory-cta:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.skill-directory-cta:hover > span,
+.skill-directory-cta:focus-visible > span { transform: translateX(4px); }
+.button.skill-directory-cta:active { transform: translateY(1px); }
+
+/* ---------- 首页公开技能入口 ---------- */
+.skills-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 1fr);
+  gap: clamp(28px, 5vw, 60px);
+  margin-top: 34px;
+  padding: clamp(24px, 4vw, 40px);
+  border: 2px solid var(--line);
+  background: var(--surface-soft);
+}
+.skills-feature > div { min-width: 0; }
+.skills-feature .eyebrow { color: var(--violet); }
+.skills-feature h2 { margin: 0 0 18px; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.2; letter-spacing: -0.035em; }
+.skills-feature-lede { max-width: 600px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.skills-feature .intro-actions { align-items: center; margin-top: 24px; }
+.skills-feature-install { border-left: 1px solid var(--line-soft); padding-left: 28px; align-self: center; }
+.skills-feature-install h3 { margin: 0 0 10px; font-size: 18px; }
+.skills-feature-install p { font-size: 14px; line-height: 1.7; }
+.skills-feature-install > p { color: var(--muted); }
+.skills-feature-install details { margin: 16px 0; font-size: 14px; }
+.skills-feature-install summary { cursor: pointer; }
+#home-install-text { padding: 14px; background: var(--bg); overflow-wrap: anywhere; user-select: text; }
+.skills-copy-status { min-height: 1.7em; margin: 10px 0 0; }
+.skills-feature .button[hidden] { display: none; }
+@media (max-width: 759px) {
+  .skills-feature { grid-template-columns: 1fr; gap: 24px; }
+  .skills-feature-install { border-left: 0; border-top: 1px solid var(--line-soft); padding: 24px 0 0; }
+}
+
 /* ---------- 视频工作台：沿用纸墨、规则线与 AI 板块色 ---------- */
 
 .video-feature {
