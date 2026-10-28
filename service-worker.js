@@ -1,4 +1,4 @@
-const CACHE_NAME = 'personal-toolbox-v1.14.0';
+const CACHE_NAME = 'personal-toolbox-v1.14.1';
 const CACHE_PREFIX = 'personal-toolbox-';
 const APP_SHELL = [
   '/',
@@ -9,9 +9,11 @@ const APP_SHELL = [
   '/ai/prompts/',
   '/ai/skills/',
   '/ai/video-workbench/',
-  '/ai/video-workbench/board.css',
-  '/ai/video-workbench/board.js',
-  '/ai/video-workbench/catalog.js',
+  '/ai/video-workbench/board.css?v=57b0b0b3fd57',
+  '/ai/video-workbench/board.js?v=1346480a0527',
+  '/ai/video-workbench/catalog.js?v=61e49c424d04',
+  '/ai/video-workbench/presentation.js?v=cda22a264216',
+  '/ai/video-workbench/local-media.js?v=b30665752234',
   '/ai/video-workbench/sources.html',
   '/growth/',
   '/growth/who-curve/',
