@@ -581,6 +581,7 @@ main {
 }
 
 .about-id span { white-space: nowrap; }
+.about-id .about-specialty { white-space: normal; }
 
 /* ---------- 首页代表作：大号数字用板块色，卡片本身不是链接 ---------- */
 
