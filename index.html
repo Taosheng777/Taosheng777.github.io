@@ -12,12 +12,12 @@
   <meta name="twitter:card" content="summary">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icons/icon-192.png" sizes="192x192">
-  <link rel="stylesheet" href="/assets/site.css?v=ea27155603ef">
+  <link rel="stylesheet" href="/assets/site.css?v=d30e11fd8ad0">
   <title>涛生 · 个人主页</title>
   <link rel="canonical" href="https://taosheng777.github.io/">
   <meta property="og:url" content="https://taosheng777.github.io/">
   <meta property="og:site_name" content="涛生">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://taosheng777.github.io/#person","name":"涛生","alternateName":"TAOSHENG","description":"医学硕士，儿科，生长发育、行为发育、儿童心理方向，在某三甲儿童医院工作；一个医生的 AI 实践笔记：做自己的工具、做科普视频、做科研。","knowsAbout":["儿童生长发育","儿童行为发育","儿童心理","AI 工作流"],"url":"https://taosheng777.github.io/about/"},{"@type":"WebSite","@id":"https://taosheng777.github.io/#website","url":"https://taosheng777.github.io/","name":"涛生","inLanguage":"zh-CN","author":{"@id":"https://taosheng777.github.io/#person"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://taosheng777.github.io/#person","name":"涛生","alternateName":"TAOSHENG","sameAs":["https://github.com/Taosheng777"],"description":"医学硕士，儿科，生长发育、行为发育、儿童心理方向，在某三甲儿童医院工作；一个医生的 AI 实践笔记：做自己的工具、做科普视频、做科研。","knowsAbout":["儿童生长发育","儿童行为发育","儿童心理","AI 工作流"],"url":"https://taosheng777.github.io/about/"},{"@type":"WebSite","@id":"https://taosheng777.github.io/#website","url":"https://taosheng777.github.io/","name":"涛生","inLanguage":"zh-CN","author":{"@id":"https://taosheng777.github.io/#person"}}]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -138,7 +138,7 @@
         <article class="work-card" data-accent="mind">
           <p class="work-figure">16<small>道题</small></p>
           <h3>门诊扫码量表</h3>
-          <p>患者扫码填 PHQ-9 和 GAD-7，自动计分；第 9 题只要大于 0 就单独提醒，哪怕总分不高。数据只存在诊室这台电脑上。同样的自动计分，问卷星这类平台要 2999–12000 元/年。</p>
+          <p>患者扫码填 PHQ-9 和 GAD-7，自动计分；第 9 题只要大于 0 就单独提醒，哪怕总分不高。数据只存在诊室这台电脑上。</p>
           <a class="card-action" href="/mind/">网站上的量表在「心理测评」 <span aria-hidden="true">→</span></a>
         </article>
         <article class="work-card" data-accent="growth">
@@ -156,26 +156,24 @@
       </div>
     </section>
 
-    <section class="home-section" aria-labelledby="method-title">
+    <section class="home-section" aria-labelledby="projects-title">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">METHOD</p>
-          <h2 id="method-title">这些是怎么做出来的</h2>
-          <p>每一篇都给能照着做的步骤。</p>
+          <h2 id="projects-title">更多开源项目</h2>
         </div>
       </div>
       <div class="now-grid">
         <article class="now-card">
-          <h3>第 1 篇 <span class="soon-tag">即将发布</span></h3>
-          <p>我是怎么用 AI 做出这些的。</p>
+          <h3><a href="https://github.com/Taosheng777/teach-skill" rel="external noreferrer">Teach Skill</a></h3>
+          <p>把手头的工作或学习材料变成一节短课，在 Codex 里先做题，再看反馈和迁移练习。</p>
         </article>
         <article class="now-card">
-          <h3>接下来</h3>
-          <p>把一份量表做成扫码就能填的工具。</p>
+          <h3><a href="https://github.com/Taosheng777/deepseek-search-mcp" rel="external noreferrer">DeepSeek 搜索 MCP</a></h3>
+          <p>把 DeepSeek 的网页搜索和正文读取接入 Claude Code、Codex 等支持 MCP 的工具。</p>
         </article>
         <article class="now-card">
-          <h3>接下来</h3>
-          <p>AI 给的参考文献，为什么每一条都要查。</p>
+          <h3><a href="https://github.com/Taosheng777/a-share-mainline-os" rel="external noreferrer">A 股主线研究</a></h3>
+          <p>用一页复盘记录市场环境、跟踪的主线和持仓纪律，保留判断依据与数据日期。</p>
         </article>
       </div>
     </section>
@@ -198,13 +196,17 @@
             </figure>
           </div>
         </article>
+        <article class="now-card">
+          <h3>GitHub</h3>
+          <p><a href="https://github.com/Taosheng777" rel="external noreferrer">涛生的 GitHub 主页 <span aria-hidden="true">↗</span></a>，可以浏览公开项目、使用说明和版本记录。</p>
+        </article>
       </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <p>涛生 <span aria-hidden="true">·</span> 版本 1.14.2</p>
+    <p>涛生 <span aria-hidden="true">·</span> 版本 1.14.3</p>
     <nav aria-label="页脚导航">
       <a href="/about/">关于</a>
       <a href="/tools/">全部工具</a>

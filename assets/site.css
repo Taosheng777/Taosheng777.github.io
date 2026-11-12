@@ -645,17 +645,6 @@ main {
 
 .work-card a.card-action:hover { color: var(--accent); }
 
-.soon-tag {
-  margin-left: 6px;
-  padding: 1px 6px;
-  border: 1px solid var(--line-soft);
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  vertical-align: middle;
-}
-
 /* ---------- 我在做什么 ---------- */
 
 .now-grid {
